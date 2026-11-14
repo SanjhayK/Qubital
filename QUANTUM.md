@@ -74,6 +74,14 @@ The scorer subsequently merged into main at
 that main commit, and the full suite was run normally, including the teammate's
 scorer tests. **88 passed, no skips**. No temporary scorer loader is needed now.
 
+The classical solver subsequently merged at
+`f7d18c51a6fb1d563c94b5584148cde5f6e9a3c7`. The unchanged integrated suite
+collected and passed **113 tests**, including `tests/test_classical.py`, with no
+failures or skips. Additional quantum integration tests compare complete tied
+optimal sets across all four alphas and three availability settings and recheck
+the saved run records against the classical implementation. With these 14 new
+checks the complete suite collected **127 tests: 127 passed, 0 failed, 0 skipped**.
+
 Fetch the named teammate ref read-only if that Git object is not already local.
 The tests check all 64 plans at alpha 0, .25, .5, 1 for original, B2 unavailable,
 and A1+B1 unavailable: **768 three-way comparisons** of scorer, QUBO, and basis
@@ -88,11 +96,12 @@ computed reserve upper bound is `0.8254826675849403`, below `0.8254830119`.
 
 ## Initial measured run
 
-`results/initial-p1-original-seed7-20261114/run-merged.json` preserves source/data hashes,
+`results/initial-p1-original-seed7-20261114/run-classical.json` preserves source/data hashes,
 scorer provenance, all optimizer attempts, angles, seeds, settings, raw Qiskit
-counts, canonical counts, and metrics using the merged scorer. The earlier
-`run.json` preserves the original premerge verification provenance. Its reproduction
-script is a single saved run artifact, not the later `experiments.py` work.
+counts, canonical counts, and metrics using the merged scorer and the complete
+optimal set from `classical.enumerate_plans` and `classical.solve_exact`. The earlier
+`run.json` and `run-merged.json` preserve their original verification provenance.
+The reproduction script is a single saved run artifact, not `experiments.py`.
 
 After the real-scorer tests pass, reproduce without overwriting the saved run:
 
@@ -119,13 +128,23 @@ their penalties and remain in both denominators.
 
 ## Shared validation follow-up and next integration
 
-Scorer integration is verified against the merged foundation. The initial run was
-repeated with that imported scorer; angles, optimizer attempts, all raw/canonical
-counts and metrics match the premerge run exactly. The teammate's `classical.py`
-is not on main yet. The next integration check is to compare all optimal sets and
-saved sample metrics against that solver once available. The current reference
-set comes from the real scorer's exhaustive acceptance tests, without introducing
-another production classical solver.
+Scorer and classical integration are verified against the merged foundation.
+The complete classical optimal sets equal every QUBO minimum when a feasible plan
+exists (absolute comparison tolerance `1e-12`, no relative tolerance):
+
+| Availability | alpha 0 | alpha .25 | alpha .5 | alpha 1 |
+| --- | --- | --- | --- | --- |
+| Original | `000111` | `100011` | `110001` | `110001` |
+| B2 unavailable | `110001` | `110001` | `110001` | `110001` |
+| A1 and B1 unavailable | no valid plan | no valid plan | no valid plan | no valid plan |
+
+Every listed optimum is the complete singleton set. In infeasible cases,
+`classical.solve_exact` returns `None` and all penalized QUBO minima remain invalid.
+The saved distribution's metrics were rechecked using the classical reference;
+valid/optimal counts remain 3830/146 out of 4096. A rerun with that reference
+reproduces angles, all optimizer attempts, all raw/canonical counts and metrics
+exactly. Historical JSON records retain their original metadata. Scorer/classical
+integration has no remaining blocker; broader experiments remain a separate task.
 
 No scoring API or mathematical-model change is requested. The inspected scorer's
 loader does not yet enforce every handoff requirement. Proposed teammate-owned

@@ -1,7 +1,7 @@
 # Qubital collaboration contract
 
-- The teammate owns scenario data, `scoring.py`, `classical.py`, and their tests.
-  Codex owns `quantum.py`, `tests/test_quantum.py`, and generated quantum results.
+- SanjhayK owns scenario data, `scoring.py`, `classical.py`, and their tests.
+  Kartikeya Pendem owns `quantum.py`, `tests/test_quantum.py`, and quantum results.
   Dashboard and experiment orchestration are later tasks.
 - The user integrates shared configuration and reviews PRs. Keep dependency changes
   small and explain them. Do not merge, overwrite, or cherry-pick teammate work.

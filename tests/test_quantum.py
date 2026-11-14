@@ -392,3 +392,76 @@ def test_sample_metrics_use_all_raw_samples_as_denominator(scorer):
     )
     assert metrics["valid_sample_rate"] == 0.5
     assert metrics["optimal_sample_rate"] == 0.2
+
+
+def complete_classical_optima(classical, scenario, alpha):
+    """Use the teammate's enumeration, preserving every numerically tied optimum."""
+    valid = [plan for plan in classical.enumerate_plans(scenario, alpha) if plan["valid"]]
+    if not valid:
+        return set(), None
+    best = min(plan["objective_score"] for plan in valid)
+    return {
+        plan["canonical_bits"] for plan in valid
+        if np.isclose(plan["objective_score"], best, rtol=0, atol=1e-12)
+    }, best
+
+
+@pytest.mark.parametrize("alpha", ALPHAS)
+@pytest.mark.parametrize("unavailable", [(), ("B2",), ("A1", "B1")])
+def test_complete_classical_optima_equal_qubo_minima(scorer, alpha, unavailable):
+    import classical
+
+    scenario = scorer.load_scenario(SCENARIO_PATH)
+    for action in scenario["actions"]:
+        if action["id"] in unavailable:
+            action["available"] = False
+    reference, best = complete_classical_optima(classical, scenario, alpha)
+    exact = classical.solve_exact(scenario, alpha)
+    qubo = build_qubo(scenario, alpha)
+    values = {bits: qubo.evaluate(bits) for bits in bit_patterns(len(qubo.action_order))}
+    minimum = min(values.values())
+    quantum_minima = {
+        bits for bits, value in values.items()
+        if np.isclose(value, minimum, rtol=0, atol=1e-12)
+    }
+
+    if reference:
+        assert exact is not None and exact["canonical_bits"] in reference
+        assert exact["objective_score"] == pytest.approx(best, rel=0, abs=1e-12)
+        assert quantum_minima == reference
+        assert all(scorer.evaluate_plan(scenario, bits, alpha)["valid"] for bits in quantum_minima)
+    else:
+        assert exact is None
+        # A penalized minimum exists even when no modeled agreement is feasible.
+        # It must remain invalid rather than being treated as a successful plan.
+        assert all(not scorer.evaluate_plan(scenario, bits, alpha)["valid"] for bits in quantum_minima)
+
+
+@pytest.mark.parametrize("filename", ["run.json", "run-merged.json"])
+def test_saved_run_metrics_match_complete_classical_reference(scorer, filename):
+    import classical
+
+    run_path = SCENARIO_PATH.parents[1] / "results" / "initial-p1-original-seed7-20261114" / filename
+    saved = json.loads(run_path.read_text(encoding="utf-8"))
+    scenario = scorer.load_scenario(SCENARIO_PATH)
+    alpha = saved["alpha"]
+    reference, best = complete_classical_optima(classical, scenario, alpha)
+    cost = qubo_to_ising(build_qubo(scenario, alpha))
+    measured = build_qaoa_circuit(cost, **saved["angles"], measure=True)
+    canonical_counts = decode_counts(saved["raw_counts"], measured)
+
+    assert canonical_counts == saved["canonical_counts"]
+    assert sum(canonical_counts.values()) == saved["shots"]
+    assert set(saved["classical_reference"]["optimal_bits"]) == reference
+    assert saved["classical_reference"]["objective_score"] == pytest.approx(best, rel=0, abs=1e-12)
+    metrics = summarize_samples(scenario, canonical_counts, alpha, optimal_bits=reference)
+    assert metrics.keys() == saved["metrics"].keys()
+    for key, value in metrics.items():
+        # JSON key sorting can change floating-point accumulation order while
+        # preserving the counts and underlying full-precision objective values.
+        if isinstance(value, float):
+            assert value == pytest.approx(saved["metrics"][key], rel=0, abs=1e-12)
+        else:
+            assert value == saved["metrics"][key]
+    assert metrics["valid_samples"] == 3830
+    assert metrics["optimal_samples"] == 146

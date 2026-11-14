@@ -9,6 +9,7 @@ import argparse
 import hashlib
 import importlib
 import json
+from math import isclose
 import platform
 from pathlib import Path
 import subprocess
@@ -51,9 +52,16 @@ def main():
     scenario_path = ROOT / "data/original.json"
     scenario = scoring.load_scenario(scenario_path)
     alpha = 0.25
-    # Complete original alpha=.25 reference set, independently established by
-    # the authoritative scorer acceptance tests. No classical solver is added.
-    reference_optima = {"100011"}
+    from classical import enumerate_plans, solve_exact
+
+    # Keep every tied optimum from the authoritative classical implementation.
+    best = solve_exact(scenario, alpha)
+    reference_optima = {
+        plan["canonical_bits"] for plan in enumerate_plans(scenario, alpha)
+        if best is not None and plan["valid"] and isclose(
+            plan["objective_score"], best["objective_score"], rel_tol=0, abs_tol=1e-12
+        )
+    }
     qubo = build_qubo(scenario, alpha)
     result = optimize_qaoa(
         qubo_to_ising(qubo), seed=7, shots=4096, maxiter=300, starts=4
@@ -74,8 +82,10 @@ def main():
         },
         "classical_reference": {
             "optimal_bits": sorted(reference_optima),
-            "objective_score": scoring.evaluate_plan(scenario, "100011", alpha)["objective_score"],
-            "provenance": "authoritative scorer exhaustive original-scenario acceptance check",
+            "objective_score": None if best is None else best["objective_score"],
+            "provenance": "classical.enumerate_plans and classical.solve_exact",
+            "source_commit": git("log", "-1", "--format=%H", "--", "classical.py"),
+            "source_sha256": hashlib.sha256((ROOT / "classical.py").read_bytes()).hexdigest(),
         },
         "metrics": summarize_samples(
             scenario, result["canonical_counts"], alpha, optimal_bits=reference_optima
@@ -85,7 +95,7 @@ def main():
             "alphas": [0, 0.25, 0.5, 1],
             "scenarios": ["original", "B2 unavailable", "A1 and B1 unavailable"],
             "requirement": "Run tests/test_quantum.py with this real scorer before accepting results",
-            "pending": "Compare with teammate classical.py once available",
+            "pending": [],
         },
     })
     args.output.parent.mkdir(parents=True, exist_ok=True)
