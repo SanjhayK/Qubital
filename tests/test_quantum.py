@@ -2,6 +2,7 @@
 
 import copy
 import importlib
+import importlib.util
 import itertools
 import json
 from pathlib import Path
@@ -465,3 +466,37 @@ def test_saved_run_metrics_match_complete_classical_reference(scorer, filename):
             assert value == saved["metrics"][key]
     assert metrics["valid_samples"] == 3830
     assert metrics["optimal_samples"] == 146
+
+
+def hardware_proposal_artifacts():
+    from qiskit import qpy
+
+    directory = SCENARIO_PATH.parents[1] / "results" / "hardware-proposal-20261114"
+    spec = importlib.util.spec_from_file_location("qubital_hardware_preflight", directory / "prepare.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    with (directory / "verified-ibm-fez" / "isa_circuits.qpy").open("rb") as source:
+        circuits = qpy.load(source)
+    return module, circuits
+
+
+def test_saved_hardware_proposal_controls_use_qaoa_final_physical_qubits():
+    module, circuits = hardware_proposal_artifacts()
+    assert len(circuits) == 7
+    physical = module.hardware_layout(circuits[0])
+    assert len(physical) == 6
+    for i, control in enumerate(circuits[1:]):
+        assert module.hardware_layout(control) == physical
+        x_qubits = [control.find_bit(instruction.qubits[0]).index
+                    for instruction in control.data if instruction.operation.name == "x"]
+        assert x_qubits == [physical[i]]
+
+
+def test_hardware_layout_rejects_rewired_saved_isa_measurements():
+    module, circuits = hardware_proposal_artifacts()
+    physical = module.hardware_layout(circuits[0])
+    bad = circuits[0].copy()
+    bad.data = [instruction for instruction in bad.data if instruction.operation.name != "measure"]
+    bad.measure(physical, [(i + 1) % 6 for i in range(6)])
+    with pytest.raises(ValueError):
+        module.hardware_layout(bad)

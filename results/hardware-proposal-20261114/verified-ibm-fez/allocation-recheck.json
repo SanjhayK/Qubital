@@ -1,0 +1,18 @@
+{
+  "checked_at_utc": "2026-11-14T12:22:21.829406+00:00",
+  "requested_instance_matches": true,
+  "jobs_submitted": 0,
+  "usage": {
+    "usage_consumed_ru": 0,
+    "usage_limit_ru": 10,
+    "usage_consumed_seconds": 0,
+    "usage_limit_seconds": 600,
+    "usage_remaining_seconds": 600,
+    "usage_period": {
+      "start_time": "2026-10-17T12:22:21.759Z",
+      "end_time": "2026-11-14T12:22:21.759Z"
+    },
+    "usage_limit_reached": false
+  },
+  "remaining_ru_to_usage_limit": 10
+}
