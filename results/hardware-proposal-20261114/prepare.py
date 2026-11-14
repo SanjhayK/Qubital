@@ -6,6 +6,7 @@ Credentials are read from the named variables and are never saved or displayed.
 """
 
 import argparse
+from datetime import datetime, timezone
 import json
 import logging
 from math import isfinite
@@ -92,9 +93,17 @@ def hardware_layout(circuit, logical_width=6):
     return physical
 
 
-def ibm_probe(circuits, key_name):
+def ibm_probe(circuits, key_name, *, isa_output=None):
+    # SDK warnings can include account details; suppress them for the full probe.
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        return _ibm_probe(circuits, key_name, isa_output=isa_output)
+
+
+def _ibm_probe(circuits, key_name, *, isa_output=None):
     present = {name: bool(os.environ.get(name)) for name in (key_name, "ibmcrn")}
-    report = {"environment_variables_present": present, "jobs_submitted": 0}
+    report = {"environment_variables_present": present, "jobs_submitted": 0,
+              "checked_at_utc": datetime.now(timezone.utc).isoformat()}
     if not all(present.values()):
         return report | {"status": "blocked: required runtime variables are unavailable"}
     # Suppress SDK diagnostics that could include credentials or the instance CRN.
@@ -118,10 +127,15 @@ def ibm_probe(circuits, key_name):
                    "usage_consumed_seconds", "usage_limit_seconds", "usage_allocation_seconds",
                    "usage_remaining_seconds", "usage_period", "usage_limit_reached")
         report["allocation"] = {k: usage[k] for k in allowed if k in usage}
-        consumed, limit = usage.get("usage_consumed_ru"), usage.get("usage_limit_ru")
-        if (isinstance(consumed, (int, float)) and isinstance(limit, (int, float))
-                and isfinite(consumed) and isfinite(limit)):
-            report["allocation"]["derived_remaining_ru_to_usage_limit"] = max(0, limit - consumed)
+        consumed = usage.get("usage_consumed_ru")
+        for bound_key, output_key in (
+            ("usage_limit_ru", "derived_remaining_ru_to_usage_limit"),
+            ("usage_allocation_ru", "derived_remaining_allocation_ru"),
+        ):
+            bound = usage.get(bound_key)
+            if all(type(v) in (int, float) and isfinite(v) and v >= 0
+                   for v in (consumed, bound)):
+                report["allocation"][output_key] = max(0, bound - consumed)
         stage = "processor access read"
         backends = service.backends(simulator=False, min_num_qubits=6)
         processors = []
@@ -135,7 +149,11 @@ def ibm_probe(circuits, key_name):
             choice = min(eligible, key=lambda b: (b["pending_jobs"], b["name"]))
             backend = next(b for b in backends if b.name == choice["name"])
             stage = "local hardware transpilation"
-            compiled = transpile(circuits, backend, optimization_level=1, seed_transpiler=7)
+            compiled_qaoa = transpile(circuits[0], backend, optimization_level=1, seed_transpiler=7)
+            action_qubits = hardware_layout(compiled_qaoa)
+            controls = transpile(circuits[1:], backend, initial_layout=action_qubits,
+                                 optimization_level=1, seed_transpiler=7)
+            compiled = [compiled_qaoa, *controls]
             report["proposed_backend"] = choice["name"]
             report["selection_reason"] = "operational, at least six qubits, lowest pending-job count"
             report["compiled_circuits"] = []
@@ -147,6 +165,24 @@ def ibm_probe(circuits, key_name):
                 except Exception:
                     detail["estimated_circuit_duration_seconds"] = None
                 report["compiled_circuits"].append(detail)
+            rep_delay = getattr(backend.configuration(), "default_rep_delay", None)
+            report["default_rep_delay_seconds"] = rep_delay
+            durations = [c["estimated_circuit_duration_seconds"] for c in report["compiled_circuits"]]
+            if (len(durations) == 7 and type(rep_delay) in (int, float)
+                    and isfinite(rep_delay) and rep_delay >= 0
+                    and all(type(d) in (int, float) and isfinite(d) and d >= 0 for d in durations)):
+                execution_seconds = sum(n * (d + rep_delay)
+                                        for n, d in zip([1024, *([32] * 6)], durations))
+                report["backend_timing_model"] = {
+                    "circuit_and_rep_delay_seconds": execution_seconds,
+                    "with_one_subjob_overhead_seconds": execution_seconds + 2,
+                    "with_one_subjob_overhead_standard_qpu_ru": (execution_seconds + 2) / 60,
+                    "status": "local timing model; server overhead, calibration, and splitting may differ",
+                }
+            if isa_output is not None:
+                with Path(isa_output).open("xb") as output:
+                    qpy.dump(compiled, output)
+                report["isa_circuit_file"] = Path(isa_output).name
         report["status"] = "authenticated instance access verified; no job submitted"
         return report
     except Exception as error:
@@ -166,12 +202,16 @@ def main():
         parser.error("choose a new output directory")
     circuits, plan = circuits_and_plan()
     plan["api_key_environment_name"] = args.api_key_env
+    args.output_dir.mkdir(parents=True)
     if args.check_ibm:
-        plan["ibm_access"] = ibm_probe(circuits, args.api_key_env)
+        plan["ibm_access"] = ibm_probe(circuits, args.api_key_env,
+                                     isa_output=args.output_dir / "isa_circuits.qpy")
         if plan["ibm_access"].get("proposed_backend"):
             plan["backend"] = plan["ibm_access"]["proposed_backend"]
             plan["backend_status"] = "proposed only; not submitted"
-    args.output_dir.mkdir(parents=True)
+        if "allocation" in plan["ibm_access"]:
+            plan["allocation"]["verified_from_ibm"] = True
+            plan["allocation"]["ibm_report"] = plan["ibm_access"]["allocation"]
     with (args.output_dir / "circuits.qpy").open("wb") as output:
         qpy.dump(circuits, output)
     (args.output_dir / "proposal.json").write_text(json.dumps(plan, indent=2, allow_nan=False) + "\n")
