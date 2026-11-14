@@ -1,0 +1,269 @@
+{
+  "action_order": [
+    "A1",
+    "A2",
+    "A3",
+    "B1",
+    "B2",
+    "B3"
+  ],
+  "algorithm": "QAOA",
+  "alpha": 0.25,
+  "angles": {
+    "beta": 2.6753177487745288,
+    "gamma": 0.5255145508363027
+  },
+  "attempts": [
+    {
+      "angles": [
+        3.9067080877701574,
+        2.7102309400782647
+      ],
+      "evaluations": 67,
+      "expectation": 0.9564245741151061,
+      "initial_angles": [
+        3.927590651355011,
+        2.818680285825393
+      ],
+      "initial_expectation": 1.065304728011161,
+      "message": "Return from COBYLA because the trust region radius reaches its lower bound.",
+      "success": true
+    },
+    {
+      "angles": [
+        6.157149263196875,
+        0.5348626817045178
+      ],
+      "evaluations": 96,
+      "expectation": 0.9093905746072575,
+      "initial_angles": [
+        4.873776931938056,
+        0.7075092536100441
+      ],
+      "initial_expectation": 2.6975960410263182,
+      "message": "Return from COBYLA because the trust region radius reaches its lower bound.",
+      "success": true
+    },
+    {
+      "angles": [
+        2.834798185606665,
+        3.644835781641983
+      ],
+      "evaluations": 77,
+      "expectation": 0.8221046182086482,
+      "initial_angles": [
+        1.8860003910648933,
+        2.7443490865749487
+      ],
+      "initial_expectation": 2.8901974976499303,
+      "message": "Return from COBYLA because the trust region radius reaches its lower bound.",
+      "success": true
+    },
+    {
+      "angles": [
+        0.5255145508363027,
+        2.6753177487745288
+      ],
+      "evaluations": 65,
+      "expectation": 0.8142468191952472,
+      "initial_angles": [
+        0.033082884284244704,
+        2.5799651661104637
+      ],
+      "initial_expectation": 2.2691548383240825,
+      "message": "Return from COBYLA because the trust region radius reaches its lower bound.",
+      "success": true
+    }
+  ],
+  "base_commit": "c3cce0d8185d212b0dc79e54f9be5128d050f6ec",
+  "bit_mapping": "action i -> qubit i -> classical bit i; raw strings c[n-1]...c[0]",
+  "canonical_counts": {
+    "000001": 4,
+    "000010": 1,
+    "000011": 4,
+    "000100": 3,
+    "000101": 4,
+    "000110": 7,
+    "000111": 122,
+    "001000": 8,
+    "001001": 5,
+    "001010": 6,
+    "001011": 3,
+    "001100": 11,
+    "001101": 11,
+    "001110": 146,
+    "001111": 117,
+    "010001": 8,
+    "010011": 4,
+    "010100": 1,
+    "010101": 15,
+    "010110": 15,
+    "010111": 171,
+    "011000": 10,
+    "011001": 9,
+    "011010": 5,
+    "011011": 7,
+    "011100": 11,
+    "011101": 8,
+    "011110": 199,
+    "011111": 170,
+    "100010": 15,
+    "100011": 146,
+    "100101": 14,
+    "100110": 10,
+    "100111": 167,
+    "101000": 4,
+    "101001": 8,
+    "101010": 146,
+    "101011": 149,
+    "101100": 5,
+    "101101": 8,
+    "101110": 167,
+    "101111": 174,
+    "110000": 6,
+    "110001": 135,
+    "110010": 13,
+    "110011": 157,
+    "110100": 9,
+    "110101": 177,
+    "110110": 14,
+    "110111": 217,
+    "111000": 107,
+    "111001": 110,
+    "111010": 147,
+    "111011": 162,
+    "111100": 163,
+    "111101": 168,
+    "111110": 222,
+    "111111": 191
+  },
+  "classical_reference": {
+    "objective_score": 0.4289871843262264,
+    "optimal_bits": [
+      "100011"
+    ],
+    "provenance": "authoritative scorer exhaustive original-scenario acceptance check"
+  },
+  "constant_offset": 2.458885359856578,
+  "expectation": 0.8142468191952472,
+  "layers": 1,
+  "measurement_mapping_verified_before_and_after_transpilation": true,
+  "metrics": {
+    "optimal_sample_rate": 0.03564453125,
+    "optimal_samples": 146,
+    "reference_feasible": true,
+    "reference_optimal_bits": [
+      "100011"
+    ],
+    "sampled_mean_objective": 0.82163172881916,
+    "shots": 4096,
+    "valid_sample_rate": 0.93505859375,
+    "valid_samples": 3830
+  },
+  "optimizer": {
+    "maxiter": 300,
+    "method": "COBYLA",
+    "objective": "exact expectation including all violation penalties",
+    "rhobeg": 0.5,
+    "starts": 4,
+    "tol": 1e-08
+  },
+  "project": "Qubital",
+  "python_version": "3.12.14",
+  "quantum_source_sha256": "02130939361ec664d215c506caf1729f8e54f289d7bf9e7bc43f872044411f4c",
+  "raw_counts": {
+    "000011": 6,
+    "000100": 8,
+    "000101": 4,
+    "000110": 10,
+    "000111": 107,
+    "001000": 3,
+    "001010": 1,
+    "001011": 9,
+    "001100": 11,
+    "001101": 5,
+    "001110": 11,
+    "001111": 163,
+    "010000": 1,
+    "010001": 15,
+    "010011": 13,
+    "010100": 6,
+    "010101": 146,
+    "010110": 5,
+    "010111": 147,
+    "011000": 7,
+    "011001": 10,
+    "011010": 15,
+    "011011": 14,
+    "011100": 146,
+    "011101": 167,
+    "011110": 199,
+    "011111": 222,
+    "100000": 4,
+    "100010": 8,
+    "100011": 135,
+    "100100": 5,
+    "100101": 8,
+    "100110": 9,
+    "100111": 110,
+    "101000": 4,
+    "101001": 14,
+    "101010": 15,
+    "101011": 177,
+    "101100": 11,
+    "101101": 8,
+    "101110": 8,
+    "101111": 168,
+    "110000": 4,
+    "110001": 146,
+    "110010": 4,
+    "110011": 157,
+    "110100": 3,
+    "110101": 149,
+    "110110": 7,
+    "110111": 162,
+    "111000": 122,
+    "111001": 167,
+    "111010": 171,
+    "111011": 217,
+    "111100": 117,
+    "111101": 174,
+    "111110": 170,
+    "111111": 191
+  },
+  "scenario_id": "original",
+  "scenario_sha256": "4cd8aca26a78960120094692f0ccf24a43ace35389b98d7eddfe25b1b30e0b0b",
+  "scorer_provenance": {
+    "commit": "871f904c4e9effe02553bafd5c2bc29b4c8a02bf",
+    "loaded_from_task_checkout": true,
+    "source": "imported merged scoring.py",
+    "source_sha256": "b60eab1289aa65f528517a257e85fbcd04e1d0a917ad8a0affeea7889487e5a3"
+  },
+  "seed": 7,
+  "seed_simulator": 7,
+  "seed_transpiler": 7,
+  "shots": 4096,
+  "simulator": "BasicSimulator (ideal)",
+  "transpile_optimization_level": 1,
+  "verification": {
+    "alphas": [
+      0,
+      0.25,
+      0.5,
+      1
+    ],
+    "basis_states_per_case": 64,
+    "pending": "Compare with teammate classical.py once available",
+    "requirement": "Run tests/test_quantum.py with this real scorer before accepting results",
+    "scenarios": [
+      "original",
+      "B2 unavailable",
+      "A1 and B1 unavailable"
+    ]
+  },
+  "versions": {
+    "numpy": "2.3.5",
+    "qiskit": "2.2.3",
+    "scipy": "1.17.0"
+  }
+}
