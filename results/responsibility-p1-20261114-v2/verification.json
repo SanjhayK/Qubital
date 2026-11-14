@@ -1,0 +1,20 @@
+{
+  "status": "pass",
+  "recorded_method_runs_verified": 36,
+  "method_runs": {
+    "uniform": 12,
+    "annealing_best_of_independent_chains": 12,
+    "qaoa_p1": 12
+  },
+  "total_returned_samples": 147456,
+  "actual_ideal_qaoa_final_shots": 49152,
+  "quantum_optimizer_expectation_evaluations": 2400,
+  "quantum_optimizer_converged_runs": 0,
+  "quantum_training_and_sampling_seconds_sum": 131.93287836699892,
+  "annealing_cached_score_queries": 1622016,
+  "new_model_basis_state_comparisons": 256,
+  "maximum_direct_qubo_ising_discrepancy": 3.3306690738754696e-16,
+  "historical_pilot": "v1 retains 12 convergence-gated MAXFUN failures with no quantum samples",
+  "hardware_jobs_submitted": 0,
+  "scope": "arithmetic/encoding/record QA; not validation of orbital or maneuver safety"
+}

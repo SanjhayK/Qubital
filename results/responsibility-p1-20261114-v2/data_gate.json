@@ -1,0 +1,214 @@
+{
+  "aligned_background_by_group": {
+    "OneWeb": 2,
+    "Starlink": 0
+  },
+  "aligned_background_rows": 2,
+  "canonical_pair_tca_duplicates": 0,
+  "case_end_utc": "2026-11-16T11:10:06.289000+00:00",
+  "catalog_classification_available_at_raw_cutoff_established": false,
+  "catalog_source_metadata": [
+    {
+      "completion_timestamp_not_logged": false,
+      "metadata_file": "satcat-22296-source.json",
+      "retrieved_at_utc": "2026-11-14T21:48:39.894145+00:00",
+      "url": "https://celestrak.org/satcat/records.php?CATNR=22296&FORMAT=JSON"
+    },
+    {
+      "completion_timestamp_not_logged": false,
+      "metadata_file": "satcat-26259-source.json",
+      "retrieved_at_utc": "2026-11-14T21:48:47.371223+00:00",
+      "url": "https://celestrak.org/satcat/records.php?CATNR=26259&FORMAT=JSON"
+    },
+    {
+      "completion_timestamp_not_logged": false,
+      "metadata_file": "satcat-32176-source.json",
+      "retrieved_at_utc": "2026-11-14T21:48:43.913404+00:00",
+      "url": "https://celestrak.org/satcat/records.php?CATNR=32176&FORMAT=JSON"
+    },
+    {
+      "completion_timestamp_not_logged": false,
+      "metadata_file": "satcat-41536-source.json",
+      "retrieved_at_utc": "2026-11-14T21:48:52.637026+00:00",
+      "url": "https://celestrak.org/satcat/records.php?CATNR=41536&FORMAT=JSON"
+    },
+    {
+      "completion_timestamp_not_logged": true,
+      "metadata_file": "satcat-46443-source.json",
+      "retrieved_at_utc": null,
+      "url": "https://celestrak.org/satcat/records.php?CATNR=46443&FORMAT=JSON"
+    },
+    {
+      "completion_timestamp_not_logged": false,
+      "metadata_file": "satcat-48212-source.json",
+      "retrieved_at_utc": "2026-11-14T21:48:56.215515+00:00",
+      "url": "https://celestrak.org/satcat/records.php?CATNR=48212&FORMAT=JSON"
+    }
+  ],
+  "classification_complete": false,
+  "close_pair_is_duplicate": false,
+  "cross_fleet_rows": 17,
+  "data_dictionary": {
+    "DILUTION": "km: screening dilution threshold, not measured orbital covariance",
+    "DSE_1/DSE_2": "days: orbital-data age at TCA; not measured covariance or calibrated accuracy",
+    "MAX_PROB": "dimensionless conservative screening construction, not true event probability",
+    "NORAD_CAT_ID_1/NORAD_CAT_ID_2": "positive integer catalog identifiers, not company identifiers",
+    "OBJECT_NAME_1/OBJECT_NAME_2": "catalog names; constellation grouping uses documented name prefixes",
+    "TCA": "predicted closest-approach time; source's naive timestamps are documented UTC",
+    "TCA_RANGE": "km: predicted minimum separation, not an avoidance burn",
+    "TCA_RELATIVE_SPEED": "km/s: predicted relative speed"
+  },
+  "data_manifest_sha256": "71323e9e19640afb41821817f7e0ddb634b1a23da622d4ceeccece50c98034fa",
+  "eligible_from_utc": "2026-11-15T03:40:05.826487+00:00",
+  "eligible_rows": 10,
+  "excluded_already_past": 6,
+  "excluded_future_under_six_hours": 1,
+  "gate": "pass_with_stated_model_and_source_limitations",
+  "known_available_cutoff_utc": "2026-11-14T21:40:05.826487+00:00",
+  "limitations": [
+    "Screening predictions, not observed collisions or validated burns",
+    "Debris discovered by DEB/R/B name candidates then catalog confirmation; not exhaustive threat classification",
+    "No matched Starlink debris in this snapshot/window is not evidence of zero fleet-wide burden",
+    "Event independence omits trajectory changes and coupled maneuvers",
+    "Source owner country is not maneuvering company; active status does not prove response capability",
+    "SATCAT was retrieved after raw-screen cutoff; type checks are later research validation, not proven operational knowledge at the cutoff",
+    "No redistribution license inferred; raw/source rows remain outside Git"
+  ],
+  "missing_or_nonfinite_numeric_cells": 0,
+  "modeled_lead_hours": 6,
+  "nearest_shared_satellite_gap_seconds": 2.844,
+  "participating_satellites": 7,
+  "primary_rows": 6,
+  "raw_bytes": 22493166,
+  "raw_rows": 198115,
+  "raw_sha256": "53f6fa639083579e65921cd3058ec2370f537eecb05d77398ec9d0989e22edec",
+  "satcat_verified_debris_types": 5,
+  "selected_oneweb_satcat_owner_codes": [
+    "UK"
+  ],
+  "selection_rule": "earliest six by UTC TCA then source catalog IDs after frozen known-available time plus modeled six hours; before solver outcomes",
+  "source_url": "https://celestrak.org/SOCRATES/sort-minRange.csv",
+  "verified_debris_candidates_in_full_future_snapshot": 5,
+  "verified_file_digests": [
+    {
+      "bytes": 4502,
+      "file": "README.md",
+      "sha256": "d6bc4bb9c0954a259414fd051a32f0d8989c5243d8f8563ebdab7d45efc58d33"
+    },
+    {
+      "bytes": 22493166,
+      "file": "SOCRATES-sort-minRange.csv",
+      "sha256": "53f6fa639083579e65921cd3058ec2370f537eecb05d77398ec9d0989e22edec"
+    },
+    {
+      "bytes": 556,
+      "file": "SOCRATES-source.json",
+      "sha256": "4adf4f7b359e8305c0c3606828e1e03500ed14cb2c04c08f3154045b892e9968"
+    },
+    {
+      "bytes": 3275,
+      "file": "check_proposed_model.py",
+      "sha256": "83381113234ef1b071b354d111ed42466483aae7f980c20f789960bdd5c8fec8"
+    },
+    {
+      "bytes": 3369,
+      "file": "exploratory-model-sanity.json",
+      "sha256": "dbff027daca87e33a7287bbe055b4d131ee66ade4688c2cf91f8ceea4c7f1b38"
+    },
+    {
+      "bytes": 2039,
+      "file": "oneweb-starlink-all17.csv",
+      "sha256": "7925f07c8e9e159f9d271100fb8547cb6ad7ad7aace3b4b930ed55f7ac7b1f14"
+    },
+    {
+      "bytes": 1249,
+      "file": "oneweb-starlink-future6h-10.csv",
+      "sha256": "451e909afc191bff2bd792071b48d24f5efca36fe63cc9c1c79cc662f48dc10c"
+    },
+    {
+      "bytes": 673,
+      "file": "oneweb0179-debris-candidates.csv",
+      "sha256": "7143ace5fa9a8d327192b88b7149ccead6375ee4f388f23199cc11767a7862bd"
+    },
+    {
+      "bytes": 342,
+      "file": "primary6-aligned-debris-background.csv",
+      "sha256": "10ee5d85b29efefa4aec1d8e14fe8c774ea3dd82028c034e3ce953a5417f3ddb"
+    },
+    {
+      "bytes": 799,
+      "file": "primary6-earliest-eligible-events.csv",
+      "sha256": "8d4db3e3197ae87cefa22e7fc256c8ab662d7add1e9e137e1f9f4a45eefafa4c"
+    },
+    {
+      "bytes": 342,
+      "file": "primary6-symmetric-debris-candidates.csv",
+      "sha256": "10ee5d85b29efefa4aec1d8e14fe8c774ea3dd82028c034e3ce953a5417f3ddb"
+    },
+    {
+      "bytes": 191,
+      "file": "satcat-22296-source.json",
+      "sha256": "226b804b14c078310621f92c7b7aaffe2195cf6c30de6bec8d23a892860d5886"
+    },
+    {
+      "bytes": 332,
+      "file": "satcat-22296.json",
+      "sha256": "42bc905916df60d23df06695aa807efc00d3d14a3480a5ca348cab09d4bd7cc7"
+    },
+    {
+      "bytes": 191,
+      "file": "satcat-26259-source.json",
+      "sha256": "6e69fff20ceb491f802a91d1abba323e74c5f922862e77f87f91bd8c63b7a537"
+    },
+    {
+      "bytes": 332,
+      "file": "satcat-26259.json",
+      "sha256": "72c3e30634296cceb92098d1cc769fff8a1e1e2b89a5e096a24a155de2ac28e6"
+    },
+    {
+      "bytes": 191,
+      "file": "satcat-32176-source.json",
+      "sha256": "cee73d12873324557ac9678a217441d82576b923a0f6bbaa1dc2791b32bf852a"
+    },
+    {
+      "bytes": 338,
+      "file": "satcat-32176.json",
+      "sha256": "416641f1f704fa62d944783edb1598d072a770dbaeb97ac529698c3d6ed722a5"
+    },
+    {
+      "bytes": 191,
+      "file": "satcat-41536-source.json",
+      "sha256": "27a9c1892a9c8c8c29d21471905daaea686ac8f83f784acae0e46b8b254af42c"
+    },
+    {
+      "bytes": 335,
+      "file": "satcat-41536.json",
+      "sha256": "702105a9143711f2dd4ea14d8cddc8b8656f9cd672e227c627e1db88609a1ce2"
+    },
+    {
+      "bytes": 204,
+      "file": "satcat-46443-source.json",
+      "sha256": "39845f04d6e3411adb7c7c8564e081ff80d91760f406f27b8c2e010cedcd8b79"
+    },
+    {
+      "bytes": 337,
+      "file": "satcat-46443.json",
+      "sha256": "91956cbe3bdab6a9153975b2ed2ab1b57ceab7ee0b1bd13039f051390d9102c3"
+    },
+    {
+      "bytes": 191,
+      "file": "satcat-48212-source.json",
+      "sha256": "37c1c080c0e51d38b4f86ec374549da3d1a8bc0b95c188c62140aa8e22db0cdb"
+    },
+    {
+      "bytes": 331,
+      "file": "satcat-48212.json",
+      "sha256": "d6d8f8c71773ed29f7e6f988cdd67c2c2b29c2ae5ce987bcfcff9c1661df5192"
+    },
+    {
+      "bytes": 3862,
+      "file": "verify_dataset.py",
+      "sha256": "055cf8ac2ff701c2ba2d87ed84ad3f961fb51b853b6218d5307e07f96f5a02df"
+    }
+  ]
+}

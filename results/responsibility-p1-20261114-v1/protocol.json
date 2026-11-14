@@ -1,0 +1,48 @@
+{
+  "annealing_cooling_rate": 0.9,
+  "annealing_independent_chains": 4096,
+  "annealing_initial_temperature": 0.1,
+  "annealing_output": "best visited plan per independent chain, not stationary samples",
+  "annealing_steps_per_chain": 32,
+  "background_switches": [
+    false,
+    true
+  ],
+  "comparison": "matched 4096 returned samples, not matched computational work",
+  "constant_convention": "full direct J including all fixed/background constants",
+  "eta": 0.5,
+  "execution_type": "ideal_simulator",
+  "frozen_before_training_at_utc": "2026-11-14T22:40:23.029027+00:00",
+  "hardware_jobs_authorized": false,
+  "layers": 1,
+  "max_optimizer_evaluations": 200,
+  "model_id": "qubital.responsibility.v1",
+  "near_optimal_absolute_threshold": 0.02,
+  "optimizer": "COBYLA",
+  "optimum_absolute_tolerance": 1e-12,
+  "python": "3.12.14",
+  "runner_sha256": "ea8b9319796b709454e1f4482fce6cd08d65189ef389287e6c3eb274278c03fb",
+  "shots_per_run": 4096,
+  "source_sha256": {
+    "quantum.py": "02130939361ec664d215c506caf1729f8e54f289d7bf9e7bc43f872044411f4c",
+    "requirements-quantum.txt": "94694503ab211f61de73fdec59050fdc0039552f0aab86533cb2dc2287ecb33f",
+    "research/responsibility.py": "3cfa8c1d8f38ba61d71f98e2e62b7dad7d1b40a96e68089c089e31cf887a0de9",
+    "research/socrates_gate.py": "feac74f9b638fa0e816db632304d98647b0d30d6b869cb6e26e6ef581087af31"
+  },
+  "starts_per_seed": 1,
+  "training_seeds": [
+    7,
+    19,
+    43
+  ],
+  "versions": {
+    "matplotlib": "3.10.8",
+    "numpy": "2.3.5",
+    "qiskit": "2.2.3",
+    "scipy": "1.17.0"
+  },
+  "weight_variants": [
+    "unit",
+    "priority"
+  ]
+}

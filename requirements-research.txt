@@ -1,0 +1,3 @@
+# Optional plotting dependency; existing quantum versions remain unchanged.
+-r requirements-quantum.txt
+matplotlib==3.10.8

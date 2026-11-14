@@ -1,0 +1,16 @@
+{
+  "W_ref": 8.0,
+  "case": "unit-debris-on",
+  "classical_substitution": false,
+  "counts": {},
+  "data_sha256": "53f6fa639083579e65921cd3058ec2370f537eecb05d77398ec9d0989e22edec",
+  "eta": 0.5,
+  "execution_type": "ideal_simulator",
+  "failure": "No QAOA start converged; no sample substituted: [{'initial_angles': [4.098517143286439, 0.13752423515278736], 'initial_expectation': 0.5625721191549354, 'angles': [8.303430956450672, -0.5267475751484433], 'expectation': 0.3937369045256997, 'success': False, 'message': 'Return from COBYLA because the objective function has been evaluated MAXFUN times.', 'evaluations': 200}]",
+  "method": "qaoa_p1",
+  "metrics": null,
+  "model_id": "qubital.responsibility.v1",
+  "seconds": 0.6772142490008264,
+  "seed": 43,
+  "success": false
+}

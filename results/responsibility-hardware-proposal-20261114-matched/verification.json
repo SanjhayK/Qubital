@@ -1,0 +1,21 @@
+{
+  "status": "pass",
+  "model_id": "qubital.responsibility.v1",
+  "new_model_angles_verified": true,
+  "logical_statevector_equivalence": true,
+  "statevector_width_simulated": 6,
+  "hardware_isa_width_not_simulated": 156,
+  "all_controls_same_physical_qubits": [
+    122,
+    123,
+    144,
+    142,
+    136,
+    143
+  ],
+  "paired_main_shots": 4096,
+  "total_proposed_shots": 4288,
+  "actual_hardware_jobs_submitted": 0,
+  "selected_training_seed": 7,
+  "optimizer_converged": false
+}

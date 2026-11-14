@@ -1,0 +1,90 @@
+[
+  {
+    "background": true,
+    "counterfactual": "OneWeb",
+    "eta": 0.5,
+    "evaluations": 1,
+    "minimum_score": 0.390625,
+    "optimal_bits": [
+      ""
+    ],
+    "optimal_full_bits": [
+      "000000"
+    ],
+    "quantum_run": false,
+    "status": "deterministic",
+    "weight_variant": "unit"
+  },
+  {
+    "background": true,
+    "counterfactual": "Starlink",
+    "eta": 0.5,
+    "evaluations": 1,
+    "minimum_score": 1.0,
+    "optimal_bits": [
+      ""
+    ],
+    "optimal_full_bits": [
+      "111111"
+    ],
+    "quantum_run": false,
+    "status": "deterministic",
+    "weight_variant": "unit"
+  },
+  {
+    "background": true,
+    "counterfactual": "neither_side_for_first_event",
+    "eta": 0.5,
+    "evaluations": 0,
+    "minimum_score": null,
+    "optimal_bits": [],
+    "optimal_full_bits": [],
+    "quantum_run": false,
+    "status": "infeasible",
+    "weight_variant": "unit"
+  },
+  {
+    "background": true,
+    "counterfactual": "OneWeb",
+    "eta": 0.5,
+    "evaluations": 1,
+    "minimum_score": 0.6406292267285836,
+    "optimal_bits": [
+      ""
+    ],
+    "optimal_full_bits": [
+      "000000"
+    ],
+    "quantum_run": false,
+    "status": "deterministic",
+    "weight_variant": "priority"
+  },
+  {
+    "background": true,
+    "counterfactual": "Starlink",
+    "eta": 0.5,
+    "evaluations": 1,
+    "minimum_score": 1.0,
+    "optimal_bits": [
+      ""
+    ],
+    "optimal_full_bits": [
+      "111111"
+    ],
+    "quantum_run": false,
+    "status": "deterministic",
+    "weight_variant": "priority"
+  },
+  {
+    "background": true,
+    "counterfactual": "neither_side_for_first_event",
+    "eta": 0.5,
+    "evaluations": 0,
+    "minimum_score": null,
+    "optimal_bits": [],
+    "optimal_full_bits": [],
+    "quantum_run": false,
+    "status": "infeasible",
+    "weight_variant": "priority"
+  }
+]

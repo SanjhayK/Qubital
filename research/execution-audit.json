@@ -1,0 +1,80 @@
+{
+  "checked_at_america_new_york": "2026-11-14T18:17:36.316229-05:00",
+  "branch": "codex/responsibility-research",
+  "base_commit": "f334464c284330b7babea9603e9e15d88042d514",
+  "starting_hardware_branch_head": "e842d2dfddfcba3b828ffb494f4051b3aea89837",
+  "starting_hardware_branch_tests": {
+    "collected": 129,
+    "passed": 129,
+    "failed": 0,
+    "skipped": 0
+  },
+  "main_foundation_tests": {
+    "collected": 127,
+    "passed": 127,
+    "failed": 0,
+    "skipped": 0
+  },
+  "final_complete_tests": {
+    "tests": 202,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 202
+  },
+  "test_command": "/workspace/.venv-qubital/bin/python -m pytest -ra --junitxml=/tmp/qubital-research-final-tests.xml",
+  "protected_files_byte_identical_to_main": [
+    "scoring.py",
+    "classical.py",
+    "quantum.py",
+    "data/original.json",
+    "requirements-quantum.txt",
+    "AGENTS.md",
+    "QUANTUM.md",
+    "tests/test_scoring.py",
+    "tests/test_classical.py",
+    "tests/test_quantum.py"
+  ],
+  "source_sha256": {
+    "research/verify_results.py": "5b5dba2108ee4a49257ddf75fd11798969839155fa8bf9d3190a68c914b674dc",
+    "research/report.py": "898fbe1e901dc09848dc89f1047a27f37fb28375c873c0d325168ff1231fae7f",
+    "research/responsibility.py": "3cfa8c1d8f38ba61d71f98e2e62b7dad7d1b40a96e68089c089e31cf887a0de9",
+    "research/hardware_plan.py": "c87fc4250d8b54b187f3f2c891f3fd3ba988fe24cb6b2d171f93546dacb8f4ed",
+    "research/experiments.py": "ee4efdf4ee1e712d1a354c096df389ecbc6b1e498830e4dcf76dd0dbb7675f0e",
+    "research/socrates_gate.py": "feac74f9b638fa0e816db632304d98647b0d30d6b869cb6e26e6ef581087af31",
+    "research/__init__.py": "bf8e62330ec2c40a85b498f99fd963c3c9c3157bcae8c7aedf158a1db7774036",
+    "tests/test_research_experiments.py": "7354cc627218cf4cdf905206b5df2414bcd9ca80b7800d446d57f07dfb665f61",
+    "tests/test_research_hardware.py": "35bb34bfc40fa69aeaa35c4b34884f376fae9641c08a0fad46f3c6fc51c2995d",
+    "tests/test_responsibility.py": "925ab07a4b88cad648704ecee2c877664859955051fb57865133d2eb801ee3b6",
+    "tests/test_socrates_gate.py": "242ff0d97865734d1d2a66505691898dc1004e36260e8731471ee1d28b119fd0"
+  },
+  "gate_completed_before_20_minute_limit": true,
+  "gate_evidence": "results/research-gate-20261114/gate-audit.json",
+  "reproduction_evidence": "results/responsibility-p1-20261114-v2/verification.json",
+  "sampled_results": "results/responsibility-p1-20261114-v2/final-report/comparison.csv",
+  "pipeline_records": {
+    "pilot_qaoa_failures": 12,
+    "primary_actual_qaoa_sampling_runs": 12,
+    "primary_optimizer_converged": 0
+  },
+  "new_hardware_proposal": "results/responsibility-hardware-proposal-20261114-matched/proposal.json",
+  "new_hardware_submission_authorized": false,
+  "new_hardware_jobs_submitted": 0,
+  "repository_visibility": "private; unchanged",
+  "judge_access_verified": false,
+  "rules_url": "https://uscibm-qff26.devpost.com/rules",
+  "rules_access": "read-only web open unavailable; bounded direct request proxy-blocked; no edits/login/submission",
+  "submission_confirmation_verified": false,
+  "raw_data_redistributed": false,
+  "original_teammate_pdf": "not in supplied ZIP; research review and handoff were read",
+  "rehearsals": "talk outline prepared; no claim of human rehearsal or final slide approval",
+  "derived_rendering_format_check": "CSV LF and SVG trailing-whitespace normalization; SVG XML structure retained",
+  "staged_credential_value_scan": "pass; no API key or instance CRN values in staged files",
+  "raw_source_exclusion_check": "pass; only derived comparison CSV staged",
+  "frozen_v1_v2_runner_source_archives_match_protocol_hashes": true,
+  "additional_checks": {
+    "compileall": "pass",
+    "pip_check": "no broken requirements",
+    "git_diff_cached_check": "pass"
+  }
+}

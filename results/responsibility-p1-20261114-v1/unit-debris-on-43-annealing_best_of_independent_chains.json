@@ -1,0 +1,43 @@
+{
+  "W_ref": 8.0,
+  "cached_objective_queries": 135168,
+  "case": "unit-debris-on",
+  "counts": {
+    "000001": 1746,
+    "000010": 1075,
+    "000100": 623,
+    "001000": 374,
+    "010000": 179,
+    "100000": 99
+  },
+  "data_sha256": "53f6fa639083579e65921cd3058ec2370f537eecb05d77398ec9d0989e22edec",
+  "eta": 0.5,
+  "execution_type": "ideal_simulator",
+  "independent_chains": 4096,
+  "method": "annealing_best_of_independent_chains",
+  "metrics": {
+    "absolute_regret": 0.0,
+    "assignment_validity": 1.0,
+    "best_actual_sampled_bits": [
+      "000001",
+      "000010",
+      "000100",
+      "001000",
+      "010000",
+      "100000"
+    ],
+    "best_actual_sampled_objective": 0.375,
+    "complete_optimum_hit_probability": 1.0,
+    "distinct_assignments": 6,
+    "distinct_near_optimal_assignments": 6,
+    "distinct_optimal_assignments": 6,
+    "full_score_sample_mean": 0.375,
+    "relative_gap": 0.0,
+    "returned_samples": 4096,
+    "validity_interpretation": "all unconstrained assignments valid by construction; not physical safety"
+  },
+  "model_id": "qubital.responsibility.v1",
+  "seconds": 0.109612367000409,
+  "seed": 43,
+  "steps_per_chain": 32
+}

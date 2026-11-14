@@ -1,0 +1,48 @@
+{
+  "W_ref": 1.9611673672143677,
+  "cached_objective_queries": 135168,
+  "case": "priority-debris-off",
+  "counts": {
+    "000010": 1603,
+    "000110": 71,
+    "001010": 48,
+    "001101": 6,
+    "010010": 56,
+    "010110": 37,
+    "011001": 6,
+    "011101": 282,
+    "100001": 1501,
+    "100101": 250,
+    "101001": 40,
+    "101101": 3,
+    "110001": 174,
+    "110101": 3,
+    "111001": 4,
+    "111100": 12
+  },
+  "data_sha256": "53f6fa639083579e65921cd3058ec2370f537eecb05d77398ec9d0989e22edec",
+  "eta": 0.5,
+  "execution_type": "ideal_simulator",
+  "independent_chains": 4096,
+  "method": "annealing_best_of_independent_chains",
+  "metrics": {
+    "absolute_regret": 0.03155538550671838,
+    "assignment_validity": 1.0,
+    "best_actual_sampled_bits": [
+      "000010"
+    ],
+    "best_actual_sampled_objective": 0.40098003221454714,
+    "complete_optimum_hit_probability": 0.391357421875,
+    "distinct_assignments": 16,
+    "distinct_near_optimal_assignments": 2,
+    "distinct_optimal_assignments": 1,
+    "full_score_sample_mean": 0.4325354177212655,
+    "relative_gap": 0.0786956530788906,
+    "returned_samples": 4096,
+    "validity_interpretation": "all unconstrained assignments valid by construction; not physical safety"
+  },
+  "model_id": "qubital.responsibility.v1",
+  "seconds": 0.49200081499930093,
+  "seed": 19,
+  "steps_per_chain": 32
+}
