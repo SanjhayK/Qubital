@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "scenario_id": "original",
+  "name": "Original reserve-tradeoff example",
+  "description": "Synthetic six-action scenario demonstrating the tradeoff between total maneuver fuel and concentration of reserve depletion.",
+
+  "units": {
+    "fuel": "synthetic maneuver-reserve units",
+    "remaining_reserve": "synthetic maneuver-reserve units"
+  },
+
+  "action_order": ["A1", "A2", "A3", "B1", "B2", "B3"],
+
+  "bit_ordering": {
+    "canonical_order": "Left-to-right follows action_order",
+    "qiskit_mapping": "action_order[i] maps to qubit i",
+    "qiskit_counts": "Reverse raw Qiskit count strings before canonical decoding"
+  },
+
+  "companies": ["Company A", "Company B"],
+
+  "encounters": ["E1", "E2", "E3", "E4"],
+
+  "actions": [
+    {
+      "id": "A1",
+      "satellite": "A-Sat-1",
+      "company": "Company A",
+      "fuel": 2.0,
+      "remaining_reserve": 20.0,
+      "covers": ["E1", "E2"],
+      "available": true
+    },
+    {
+      "id": "A2",
+      "satellite": "A-Sat-2",
+      "company": "Company A",
+      "fuel": 2.0,
+      "remaining_reserve": 16.0,
+      "covers": ["E3"],
+      "available": true
+    },
+    {
+      "id": "A3",
+      "satellite": "A-Sat-3",
+      "company": "Company A",
+      "fuel": 2.0,
+      "remaining_reserve": 10.0,
+      "covers": ["E4"],
+      "available": true
+    },
+    {
+      "id": "B1",
+      "satellite": "B-Sat-1",
+      "company": "Company B",
+      "fuel": 1.0,
+      "remaining_reserve": 4.0,
+      "covers": ["E1"],
+      "available": true
+    },
+    {
+      "id": "B2",
+      "satellite": "B-Sat-2",
+      "company": "Company B",
+      "fuel": 1.0,
+      "remaining_reserve": 3.3,
+      "covers": ["E2", "E3"],
+      "available": true
+    },
+    {
+      "id": "B3",
+      "satellite": "B-Sat-3",
+      "company": "Company B",
+      "fuel": 1.0,
+      "remaining_reserve": 4.0,
+      "covers": ["E4"],
+      "available": true
+    }
+  ],
+
+  "objective": {
+    "fuel_normalization": 9.0,
+    "reserve_normalization": 0.8254830119,
+    "violation_penalty": 2.0,
+    "default_alpha": 0.25,
+    "reserve_burden_definition": "For each company, sum fuel divided by remaining_reserve over its selected actions. Reserve score equals the sum of squared company burdens."
+  },
+
+  "assumptions": {
+    "actions_are_prevalidated": true,
+    "selected_actions_are_compatible": true,
+    "one_planning_window": true,
+    "one_action_per_satellite": true,
+    "values_are_synthetic": true
+  }
+}
