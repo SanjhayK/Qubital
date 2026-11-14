@@ -47,7 +47,7 @@ def main():
         sys.modules["scoring"] = scoring
     else:
         scoring = importlib.import_module("scoring")
-        scorer_sha = None
+        scorer_sha = git("log", "-1", "--format=%H", "--", "scoring.py")
     scenario_path = ROOT / "data/original.json"
     scenario = scoring.load_scenario(scenario_path)
     alpha = 0.25
@@ -63,14 +63,14 @@ def main():
         "python_version": platform.python_version(),
         "scenario_sha256": hashlib.sha256(scenario_path.read_bytes()).hexdigest(),
         "quantum_source_sha256": hashlib.sha256((ROOT / "quantum.py").read_bytes()).hexdigest(),
-        "base_commit": "b1ffa2c8e83b09c95b618c65cadac32fe4e6a5b7",
+        "base_commit": git("merge-base", "HEAD", "origin/main"),
         "scorer_provenance": {
-            "source": "unmerged Git object" if scorer_sha else "imported scoring.py",
+            "source": "pinned Git object" if args.scorer_ref else "imported merged scoring.py",
             "commit": scorer_sha,
             "source_sha256": hashlib.sha256(
-                source.encode() if scorer_sha else Path(scoring.__file__).read_bytes()
+                source.encode() if args.scorer_ref else Path(scoring.__file__).read_bytes()
             ).hexdigest(),
-            "merged_in_task_branch": scorer_sha is None,
+            "loaded_from_task_checkout": not bool(args.scorer_ref),
         },
         "classical_reference": {
             "optimal_bits": sorted(reference_optima),
@@ -85,7 +85,7 @@ def main():
             "alphas": [0, 0.25, 0.5, 1],
             "scenarios": ["original", "B2 unavailable", "A1 and B1 unavailable"],
             "requirement": "Run tests/test_quantum.py with this real scorer before accepting results",
-            "pending": "Repeat integration on main after the scorer foundation merges",
+            "pending": "Compare with teammate classical.py once available",
         },
     })
     args.output.parent.mkdir(parents=True, exist_ok=True)

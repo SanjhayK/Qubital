@@ -69,6 +69,11 @@ raise SystemExit(pytest.main(['tests/test_quantum.py', '-q']))
 PY
 ```
 
+The scorer subsequently merged into main at
+`c3cce0d8185d212b0dc79e54f9be5128d050f6ec`. The task branch was updated from
+that main commit, and the full suite was run normally, including the teammate's
+scorer tests. **88 passed, no skips**. No temporary scorer loader is needed now.
+
 Fetch the named teammate ref read-only if that Git object is not already local.
 The tests check all 64 plans at alpha 0, .25, .5, 1 for original, B2 unavailable,
 and A1+B1 unavailable: **768 three-way comparisons** of scorer, QUBO, and basis
@@ -83,16 +88,16 @@ computed reserve upper bound is `0.8254826675849403`, below `0.8254830119`.
 
 ## Initial measured run
 
-`results/initial-p1-original-seed7-20261114/run.json` preserves source/data hashes,
+`results/initial-p1-original-seed7-20261114/run-merged.json` preserves source/data hashes,
 scorer provenance, all optimizer attempts, angles, seeds, settings, raw Qiskit
-counts, canonical counts, and metrics. Its reproduction script is a single saved
-run artifact, not the later `experiments.py` work.
+counts, canonical counts, and metrics using the merged scorer. The earlier
+`run.json` preserves the original premerge verification provenance. Its reproduction
+script is a single saved run artifact, not the later `experiments.py` work.
 
 After the real-scorer tests pass, reproduce without overwriting the saved run:
 
 ```sh
 .venv/bin/python results/initial-p1-original-seed7-20261114/reproduce.py \
-  --scorer-ref 871f904c4e9effe02553bafd5c2bc29b4c8a02bf \
   --output /tmp/qubital-reproduced-run.json
 ```
 
@@ -112,14 +117,15 @@ These are initial one-layer simulator results from one seed, not a guarantee of
 global angle optimality or a claim of quantum advantage. Invalid samples retain
 their penalties and remain in both denominators.
 
-## Pending foundation integration and shared validation follow-up
+## Shared validation follow-up and next integration
 
-`main` still has no scorer or classical solver. The executed branch-scorer checks
-are provisional integration evidence, not verification of a merged foundation.
-After the integrator merges the scorer, update this task branch from current main,
-run the tests normally with **no scorer skips**, and reproduce the saved run using
-the imported merged scorer (omit `--scorer-ref`). Compare against the teammate's
-classical solver once available. Do not merge their task branch into this one.
+Scorer integration is verified against the merged foundation. The initial run was
+repeated with that imported scorer; angles, optimizer attempts, all raw/canonical
+counts and metrics match the premerge run exactly. The teammate's `classical.py`
+is not on main yet. The next integration check is to compare all optimal sets and
+saved sample metrics against that solver once available. The current reference
+set comes from the real scorer's exhaustive acceptance tests, without introducing
+another production classical solver.
 
 No scoring API or mathematical-model change is requested. The inspected scorer's
 loader does not yet enforce every handoff requirement. Proposed teammate-owned
