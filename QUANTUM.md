@@ -8,9 +8,9 @@ does not simulate orbital trajectories or establish physical safety or speedup.
 
 There were no dependency files, `AGENTS.md`, or `HACKATHON-TOOLS.md` on the
 inspected main commit `b1ffa2c8e83b09c95b618c65cadac32fe4e6a5b7`. The new
-`AGENTS.md` records the shared ownership/model contract. `requirements-quantum.txt`
-is separate from integrator-owned shared configuration and pins the small tested
-dependency set. Python 3.12.14, Qiskit 2.2.3, NumPy 2.3.5, SciPy 1.17.0, and
+`AGENTS.md` records development guidelines and the model contract.
+`requirements-quantum.txt` is separate from the shared project configuration and
+pins the small tested dependency set. Python 3.12.14, Qiskit 2.2.3, NumPy 2.3.5, SciPy 1.17.0, and
 pytest 8.4.2 were used. NumPy/SciPy were already installed; Qiskit/pytest and their
 missing dependencies were installed in a virtual environment. Aer, algorithms,
 optimization add-ons, and hardware credentials are unnecessary.
@@ -53,8 +53,8 @@ explicitly identify missing scorer integration; they are not passing integration
 
 Against the actual authoritative scorer source at unmerged commit
 `871f904c4e9effe02553bafd5c2bc29b4c8a02bf` on `sanjhay/scoring`:
-**68 passed, no skips**. No teammate source was copied into this branch. The
-following command loads that real Git object in memory, then runs the same tests:
+**68 passed, no skips**. The following command loads the scorer's Git object
+in memory without copying its source into the branch, then runs the same tests:
 
 ```sh
 .venv/bin/python - <<'PY'
@@ -71,7 +71,7 @@ PY
 
 The scorer subsequently merged into main at
 `c3cce0d8185d212b0dc79e54f9be5128d050f6ec`. The task branch was updated from
-that main commit, and the full suite was run normally, including the teammate's
+that main commit, and the full suite was run normally, including the
 scorer tests. **88 passed, no skips**. No temporary scorer loader is needed now.
 
 The classical solver subsequently merged at
@@ -82,7 +82,7 @@ optimal sets across all four alphas and three availability settings and recheck
 the saved run records against the classical implementation. With these 14 new
 checks the complete suite collected **127 tests: 127 passed, 0 failed, 0 skipped**.
 
-Fetch the named teammate ref read-only if that Git object is not already local.
+Fetch the named scorer commit read-only if that Git object is not already local.
 The tests check all 64 plans at alpha 0, .25, .5, 1 for original, B2 unavailable,
 and A1+B1 unavailable: **768 three-way comparisons** of scorer, QUBO, and basis
 energy plus offset. They also check 24 original valid plans, all stated optimum
@@ -147,7 +147,7 @@ exactly. Historical JSON records retain their original metadata. Scorer/classica
 integration has no remaining blocker; broader experiments remain a separate task.
 
 No scoring API or mathematical-model change is requested. The inspected scorer's
-loader does not yet enforce every handoff requirement. Proposed teammate-owned
+loader does not yet enforce every handoff requirement. Proposed scorer
 rejection tests: missing/wrong schema version; duplicate satellites, companies,
 encounters or coverage; nonfinite/nonpositive numeric inputs; fuel above reserve;
 fuel normalization below the all-action sum; and encounter candidate counts other

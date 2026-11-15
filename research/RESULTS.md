@@ -34,7 +34,7 @@ Near-optimal was fixed at `J <= J_min + .02`. Exact near-menu sizes are35,7,2,1 
 - The v1 pilot used another 2400 optimizer expectation evaluations plus 12 reporting calls and no quantum final shots. It is not hidden from the resource history.
 - No p2, noise, mitigation, or on-device optimization was added. Prior original-model angles/counts were not reused or rescored.
 
-## Files for Sanjhay’s slides
+## Presentation assets
 
 - `../results/responsibility-p1-20261114-v2/final-report/comparison.png` and `.svg`: final figure with explicit convergence status.
 - `../results/responsibility-p1-20261114-v2/final-report/comparison.csv`: seed-level results, sample-success and optimizer-convergence fields.

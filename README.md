@@ -5,6 +5,11 @@ response-burden allocation. It is a verified small optimization study, not an
 orbital maneuver planner. It includes ideal local simulations and an actual
 fixed-angle IBM hardware comparison. No quantum advantage is claimed.
 
+## Contributors
+
+Qubital was developed by [Kartikeya Pendem](https://github.com/kartikeya1107)
+and [Sanjhay](https://github.com/SanjhayK).
+
 ## Two separate models
 
 | Model | Decision | Score and input |

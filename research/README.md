@@ -8,18 +8,12 @@ This is a separate **conditional responsibility-assignment** benchmark. It leave
 `scoring.py`, `classical.py`, `data/original.json`, `quantum.py`, and their existing
 tests/results unchanged. The original fuel/reserve example remains synthetic.
 
-## Question, ownership, and model
+## Research question and model
 
 How well does shallow QAOA sample low-burden assignments on a frozen six-event
 screening case compared with exact enumeration, uniform sampling, and a classical
 Metropolis baseline? Exact enumeration already provides the full 64-assignment
 menu; neither a diverse menu nor these small timings establishes quantum advantage.
-
-Kartikeya Pendem owns these new research modules/tests/results and the quantum
-adapter. Sanjhay owns the existing scenario/scoring/classical files and their
-tests, independent source review, final slides/simple plots, and any existing UI.
-The new figure and presentation notes are research handoff material for review;
-no teammate-owned slide or UI file was edited.
 
 `model_id = qubital.responsibility.v1`. Free bit `y_e=1` assigns OneWeb; `0`
 assigns Starlink. In particular **`000000` means all Starlink**, whereas in the
@@ -127,8 +121,8 @@ and `comparison.csv` for both sampling and convergence flags; the earlier basic
 `summary.json` success field describes sampling, not optimizer convergence.
 
 Uniform sampling and QAOA return 4096 assignments per seed. The annealing menu
-adapts the Metropolis flip/cooling method in Sanjhay's `classical.py` to the same
-new-model scorer: 4096 separately initialized 32-step chains, each returning its
+adapts the Metropolis flip/cooling method implemented by Sanjhay in `classical.py`
+to the same new-model scorer: 4096 separately initialized 32-step chains, each returning its
 best visited plan. It is not a stationary thermal distribution. Preprocessing
 uses all 64 direct scores, shared with the exact reference; each annealing seed
 then makes 135,168 cached queries. Sample budgets match; computation does not.

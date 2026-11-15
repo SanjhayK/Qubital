@@ -396,7 +396,7 @@ def test_sample_metrics_use_all_raw_samples_as_denominator(scorer):
 
 
 def complete_classical_optima(classical, scenario, alpha):
-    """Use the teammate's enumeration, preserving every numerically tied optimum."""
+    """Use classical enumeration, preserving every numerically tied optimum."""
     valid = [plan for plan in classical.enumerate_plans(scenario, alpha) if plan["valid"]]
     if not valid:
         return set(), None
