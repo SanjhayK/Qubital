@@ -1,0 +1,250 @@
+[
+  {
+    "case": "unit-debris-off",
+    "method": "uniform",
+    "successful_seeds": 3,
+    "total_seeds": 3,
+    "complete_optimum_hit_probability": {
+      "mean": 0.23152669270833334,
+      "min": 0.227783203125,
+      "max": 0.23681640625
+    },
+    "absolute_regret": {
+      "mean": 0.05162938435872396,
+      "min": 0.05086517333984375,
+      "max": 0.052539825439453125
+    },
+    "full_score_sample_mean": {
+      "mean": 0.27037938435872394,
+      "min": 0.26961517333984375,
+      "max": 0.2712898254394531
+    },
+    "distinct_near_optimal_assignments": {
+      "mean": 35.0,
+      "min": 35,
+      "max": 35
+    }
+  },
+  {
+    "case": "unit-debris-on",
+    "method": "uniform",
+    "successful_seeds": 3,
+    "total_seeds": 3,
+    "complete_optimum_hit_probability": {
+      "mean": 0.095458984375,
+      "min": 0.08984375,
+      "max": 0.0986328125
+    },
+    "absolute_regret": {
+      "mean": 0.14643732706705728,
+      "min": 0.14408111572265625,
+      "max": 0.14961624145507812
+    },
+    "full_score_sample_mean": {
+      "mean": 0.5214373270670573,
+      "min": 0.5190811157226562,
+      "max": 0.5246162414550781
+    },
+    "distinct_near_optimal_assignments": {
+      "mean": 7.0,
+      "min": 7,
+      "max": 7
+    }
+  },
+  {
+    "case": "priority-debris-off",
+    "method": "uniform",
+    "successful_seeds": 3,
+    "total_seeds": 3,
+    "complete_optimum_hit_probability": {
+      "mean": 0.016031901041666668,
+      "min": 0.01513671875,
+      "max": 0.017822265625
+    },
+    "absolute_regret": {
+      "mean": 0.16076601591675885,
+      "min": 0.16021478301244685,
+      "max": 0.16152384505910145
+    },
+    "full_score_sample_mean": {
+      "mean": 0.561746048131306,
+      "min": 0.561194815226994,
+      "max": 0.5625038772736486
+    },
+    "distinct_near_optimal_assignments": {
+      "mean": 2.0,
+      "min": 2,
+      "max": 2
+    }
+  },
+  {
+    "case": "priority-debris-on",
+    "method": "uniform",
+    "successful_seeds": 3,
+    "total_seeds": 3,
+    "complete_optimum_hit_probability": {
+      "mean": 0.016031901041666668,
+      "min": 0.01513671875,
+      "max": 0.017822265625
+    },
+    "absolute_regret": {
+      "mean": 0.15989351033012494,
+      "min": 0.15918894383053434,
+      "max": 0.16085732058389873
+    },
+    "full_score_sample_mean": {
+      "mean": 0.5826983187259862,
+      "min": 0.5819937522263956,
+      "max": 0.58366212897976
+    },
+    "distinct_near_optimal_assignments": {
+      "mean": 1.0,
+      "min": 1,
+      "max": 1
+    }
+  },
+  {
+    "case": "unit-debris-off",
+    "method": "qaoa_p1",
+    "successful_seeds": 0,
+    "total_seeds": 3,
+    "complete_optimum_hit_probability": null,
+    "absolute_regret": null,
+    "full_score_sample_mean": null,
+    "distinct_near_optimal_assignments": null
+  },
+  {
+    "case": "unit-debris-on",
+    "method": "qaoa_p1",
+    "successful_seeds": 0,
+    "total_seeds": 3,
+    "complete_optimum_hit_probability": null,
+    "absolute_regret": null,
+    "full_score_sample_mean": null,
+    "distinct_near_optimal_assignments": null
+  },
+  {
+    "case": "priority-debris-off",
+    "method": "qaoa_p1",
+    "successful_seeds": 0,
+    "total_seeds": 3,
+    "complete_optimum_hit_probability": null,
+    "absolute_regret": null,
+    "full_score_sample_mean": null,
+    "distinct_near_optimal_assignments": null
+  },
+  {
+    "case": "priority-debris-on",
+    "method": "qaoa_p1",
+    "successful_seeds": 0,
+    "total_seeds": 3,
+    "complete_optimum_hit_probability": null,
+    "absolute_regret": null,
+    "full_score_sample_mean": null,
+    "distinct_near_optimal_assignments": null
+  },
+  {
+    "case": "unit-debris-off",
+    "method": "annealing_best_of_independent_chains",
+    "successful_seeds": 3,
+    "total_seeds": 3,
+    "complete_optimum_hit_probability": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0
+    },
+    "absolute_regret": {
+      "mean": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "full_score_sample_mean": {
+      "mean": 0.21875,
+      "min": 0.21875,
+      "max": 0.21875
+    },
+    "distinct_near_optimal_assignments": {
+      "mean": 14.666666666666666,
+      "min": 14,
+      "max": 15
+    }
+  },
+  {
+    "case": "unit-debris-on",
+    "method": "annealing_best_of_independent_chains",
+    "successful_seeds": 3,
+    "total_seeds": 3,
+    "complete_optimum_hit_probability": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0
+    },
+    "absolute_regret": {
+      "mean": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "full_score_sample_mean": {
+      "mean": 0.375,
+      "min": 0.375,
+      "max": 0.375
+    },
+    "distinct_near_optimal_assignments": {
+      "mean": 6.0,
+      "min": 6,
+      "max": 6
+    }
+  },
+  {
+    "case": "priority-debris-off",
+    "method": "annealing_best_of_independent_chains",
+    "successful_seeds": 3,
+    "total_seeds": 3,
+    "complete_optimum_hit_probability": {
+      "mean": 0.392822265625,
+      "min": 0.391357421875,
+      "max": 0.394287109375
+    },
+    "absolute_regret": {
+      "mean": 0.03152134949539329,
+      "min": 0.031467792483474144,
+      "max": 0.03155538550671838
+    },
+    "full_score_sample_mean": {
+      "mean": 0.4325013817099404,
+      "min": 0.4324478246980213,
+      "max": 0.4325354177212655
+    },
+    "distinct_near_optimal_assignments": {
+      "mean": 2.0,
+      "min": 2,
+      "max": 2
+    }
+  },
+  {
+    "case": "priority-debris-on",
+    "method": "annealing_best_of_independent_chains",
+    "successful_seeds": 3,
+    "total_seeds": 3,
+    "complete_optimum_hit_probability": {
+      "mean": 0.3677571614583333,
+      "min": 0.364013671875,
+      "max": 0.374267578125
+    },
+    "absolute_regret": {
+      "mean": 0.02842181676228565,
+      "min": 0.028161155957958095,
+      "max": 0.02856533881392148
+    },
+    "full_score_sample_mean": {
+      "mean": 0.45122662515814693,
+      "min": 0.45096596435381936,
+      "max": 0.45137014720978275
+    },
+    "distinct_near_optimal_assignments": {
+      "mean": 1.0,
+      "min": 1,
+      "max": 1
+    }
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "case_count": 4,
+  "comparison_records": 60,
+  "hardware_jobs_submitted": 0,
+  "input_sha256": {
+    "results/responsibility-p1-robustness-20261115/comparison.json": "f25a22bf7f499025d3b59e21c807bfbe7242ae235265764a702348fd5f612365",
+    "results/responsibility-p1-robustness-20261115/verification.json": "ea879d4329ec6469915953154e62378d668886af8346e67b51cf9c82d3f04770",
+    "results/responsibility-p1-robustness-bfgs-20261115/comparison.json": "56ba4b5dc84012d6a33a1905bfebe202741dfe669253956ce739611ea62d53d8",
+    "results/responsibility-p1-robustness-bfgs-20261115/verification.json": "5cadd4de3f5bd94cd29c593a40b82a2cd91af9e943c40e1ce2aea9b96d556945"
+  },
+  "interpretation": "better optimization reliability does not imply quantum advantage or physical safety",
+  "renderer_sha256": "972c44f20697f65e11e1f13b099b5af0d742ea2acf1b8e655357749542c76b36",
+  "v2_baselines_reused_unchanged": true
+}

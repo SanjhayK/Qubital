@@ -1,0 +1,6 @@
+{
+  "source_summary_sha256": "0d6fd286264461e7d03e8edde4a7dbf5f20833150ed87f5bdcd3a1167a9d6369",
+  "renderer_sha256": "898fbe1e901dc09848dc89f1047a27f37fb28375c873c0d325168ff1231fae7f",
+  "figure_error_bars": "range of the three recorded seeds, not confidence intervals",
+  "sampling_success_is_not_optimizer_convergence": true
+}

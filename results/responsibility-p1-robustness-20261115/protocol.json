@@ -1,0 +1,130 @@
+{
+  "angle_bounds": null,
+  "baseline_commit": "415876318cc7550ed93fd3a2b21bd12c2a04e506",
+  "baseline_directory": "results/responsibility-p1-20261114-v2",
+  "baseline_verification": {
+    "actual_ideal_qaoa_final_shots": 49152,
+    "annealing_cached_score_queries": 1622016,
+    "hardware_jobs_submitted": 0,
+    "historical_pilot": "v1 retains 12 convergence-gated MAXFUN failures with no quantum samples",
+    "maximum_direct_qubo_ising_discrepancy": 3.3306690738754696e-16,
+    "method_runs": {
+      "annealing_best_of_independent_chains": 12,
+      "qaoa_p1": 12,
+      "uniform": 12
+    },
+    "new_model_basis_state_comparisons": 256,
+    "quantum_optimizer_converged_runs": 0,
+    "quantum_optimizer_expectation_evaluations": 2400,
+    "quantum_training_and_sampling_seconds_sum": 131.93287836699892,
+    "recorded_method_runs_verified": 36,
+    "scope": "arithmetic/encoding/record QA; not validation of orbital or maneuver safety",
+    "status": "pass",
+    "total_returned_samples": 147456
+  },
+  "baselines": "reuse verified immutable v2 exact/uniform/annealing records; same cases and 4096 returned samples, unequal computation",
+  "cases": [
+    "unit-debris-off",
+    "unit-debris-on",
+    "priority-debris-off",
+    "priority-debris-on"
+  ],
+  "convergence_meaning": "COBYLA success at declared trust-region tolerance, not a global-optimality certificate",
+  "eta": 0.5,
+  "execution_type": "ideal_simulator",
+  "frozen_at_utc": "2026-11-15T00:53:10.905533+00:00",
+  "hardware_jobs_authorized": false,
+  "hardware_jobs_submitted": 0,
+  "hardware_recommendation_gate": "all 12 selected runs formally converged and every case's mean exact expectation no worse than v2 within 1e-10; target candidate no worse than best v2 target expectation within 1e-10",
+  "hardware_target": "priority-debris-on, fixed before training; lowest expectation among converged selected seeds only after all-case comparison",
+  "initial_starts": {
+    "19": [
+      [
+        2.6413178727759403,
+        2.908704331860151
+      ],
+      [
+        1.7207758840399372,
+        0.18864825356965154
+      ],
+      [
+        1.9512020945136812,
+        2.256245530047408
+      ],
+      [
+        4.906951468778805,
+        1.6923754475176749
+      ]
+    ],
+    "43": [
+      [
+        4.098517143286439,
+        0.13752423515278736
+      ],
+      [
+        0.12584960595695643,
+        2.63646408401677
+      ],
+      [
+        3.6891285698179335,
+        0.7059323004309098
+      ],
+      [
+        4.723650156341887,
+        0.8284134704070109
+      ]
+    ],
+    "7": [
+      [
+        3.927590651355011,
+        2.818680285825393
+      ],
+      [
+        4.873776931938056,
+        0.7075092536100441
+      ],
+      [
+        1.8860003910648933,
+        2.7443490865749487
+      ],
+      [
+        0.033082884284244704,
+        2.5799651661104637
+      ]
+    ]
+  },
+  "initialization": "default_rng(seed), four successive uniform draws from [0,2pi] x [0,pi]; first matches v2",
+  "layers": 1,
+  "max_evaluations_per_start": 2000,
+  "model_id": "qubital.responsibility.v1",
+  "near_optimal_absolute_threshold": 0.02,
+  "optimizer": "COBYLA",
+  "optimum_absolute_tolerance": 1e-12,
+  "preserved_files_sha256": "c1268a7ed78cfa88545b71ca406ca7dc577daa1f0cc2b67495a94c31291a8b9e",
+  "python": "3.12.14",
+  "qiskit_checks": "every start's initial, best-visited and returned angles; selected full probability distribution",
+  "rhobeg": 0.5,
+  "sampling": "one 4096-shot Qiskit circuit for the selected start per case/seed, not per start",
+  "selection": "lowest best-visited expectation among formally converged starts; if none, lowest among all starts, flagged ineligible for hardware",
+  "selection_ties": "start index; hardware candidate ties by seed",
+  "shots_per_run": 4096,
+  "source_sha256": {
+    "research/robustness.py": "b85dc9a068e27b504c3def4e8fe7f208ff53851f378dc9158a4690d912136d42",
+    "research/verify_robustness.py": "cf9ab7315ad76e7db687fab20a0e59b0bef801bb8434bcfa67037f86c93902bf"
+  },
+  "starts_per_seed": 4,
+  "study_id": "qubital.p1.optimizer-robustness.v1",
+  "study_scope": "v2-informed within-dataset optimizer robustness, not independent data validation or quantum advantage",
+  "tolerance": 1e-06,
+  "training": "exact six-qubit statevector from Ising diagonal and RX mixers; no exact-optimum lookup",
+  "training_seeds": [
+    7,
+    19,
+    43
+  ],
+  "versions": {
+    "numpy": "2.3.5",
+    "qiskit": "2.2.3",
+    "scipy": "1.17.0"
+  }
+}

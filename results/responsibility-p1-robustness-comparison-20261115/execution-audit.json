@@ -1,0 +1,135 @@
+{
+  "checked_at_utc": "2026-11-15T01:04:33.997825+00:00",
+  "checked_at_america_new_york": "2026-11-14T20:04:33.997987-05:00",
+  "branch": "codex/responsibility-research",
+  "starting_branch_sha": "415876318cc7550ed93fd3a2b21bd12c2a04e506",
+  "remote_main_sha": "f334464c284330b7babea9603e9e15d88042d514",
+  "preserved_preexisting_tracked_files": 146,
+  "all_preexisting_tracked_files_unchanged": true,
+  "no_dependency_changes": true,
+  "pip_check": "pass, no broken requirements",
+  "hardware_jobs_submitted": 0,
+  "new_ibm_authentication_or_network_requests": 0,
+  "raw_source_package_committed": false,
+  "presentation_notes_slides_devpost_ownership_files_changed": false,
+  "pull_requests_merged_or_closed": [],
+  "sdk_warning_count": 35,
+  "sdk_warnings": "Samplomatic 0.16.1 beta notice plus 34 IBM fractional-transpiler plugin deprecations",
+  "optimization_evaluations": {
+    "cobyla": 85340,
+    "bfgs_joint_value_and_gradient": 910
+  },
+  "new_final_simulator_shots": 98304,
+  "interpretation": "all-case optimizer robustness, no quantum advantage; weighted background-on sampled regret slightly worse than v2 despite lower exact expectation",
+  "pending": "fresh backend compilation/layout/usage for BFGS angles before any later approval; no hardware job authorized",
+  "core_tests": {
+    "tests": 219,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 219,
+    "seconds": 24.208
+  },
+  "ibm_sdk_tests": {
+    "tests": 219,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 219,
+    "seconds": 25.646
+  },
+  "responsibility-p1-robustness-20261115": {
+    "actual_new_qaoa_final_shots": 49152,
+    "attempts_verified": 48,
+    "basis_encoding_comparisons": 256,
+    "case_comparison": [
+      {
+        "case": "unit-debris-off",
+        "expectation_change": -0.006216295256686433,
+        "mean_expectation_no_worse_than_v2": true,
+        "new_mean_expectation": 0.23000213610181441,
+        "v2_mean_expectation": 0.23621843135850085
+      },
+      {
+        "case": "unit-debris-on",
+        "expectation_change": -0.0022581630057880164,
+        "mean_expectation_no_worse_than_v2": true,
+        "new_mean_expectation": 0.39199669726228265,
+        "v2_mean_expectation": 0.39425486026807066
+      },
+      {
+        "case": "priority-debris-off",
+        "expectation_change": -0.0004305422262563252,
+        "mean_expectation_no_worse_than_v2": true,
+        "new_mean_expectation": 0.4837852917648699,
+        "v2_mean_expectation": 0.4842158339911262
+      },
+      {
+        "case": "priority-debris-on",
+        "expectation_change": -0.00010130623453208365,
+        "mean_expectation_no_worse_than_v2": true,
+        "new_mean_expectation": 0.501610443290134,
+        "v2_mean_expectation": 0.5017117495246661
+      }
+    ],
+    "cases_verified": 4,
+    "formally_converged_selected_runs": 8,
+    "formally_converged_starts": 20,
+    "hardware_jobs_submitted": 0,
+    "maximum_numeric_discrepancy": 4.440892098500626e-16,
+    "optimizer_evaluations": 85340,
+    "preserved_files": 146,
+    "protocol_sha256": "51697617bbfb24cd19deedcb9a96c7d3a8d4681a61cd0761de5c9edcf7d6b984",
+    "qiskit_checkpoint_comparisons": 144,
+    "selected_runs_verified": 12,
+    "status": "pass",
+    "v2_unchanged": true,
+    "verified_at_utc": "2026-11-15T00:55:53.079963+00:00"
+  },
+  "responsibility-p1-robustness-bfgs-20261115": {
+    "actual_new_qaoa_final_shots": 49152,
+    "analytic_gradient_evaluations": 910,
+    "attempts_verified": 48,
+    "case_comparison": [
+      {
+        "case": "unit-debris-off",
+        "expectation_change": -0.006348756696956698,
+        "mean_expectation_no_worse_than_v2": true,
+        "new_mean_expectation": 0.22986967466154415,
+        "v2_mean_expectation": 0.23621843135850085
+      },
+      {
+        "case": "unit-debris-on",
+        "expectation_change": -0.0022581631067664087,
+        "mean_expectation_no_worse_than_v2": true,
+        "new_mean_expectation": 0.39199669716130425,
+        "v2_mean_expectation": 0.39425486026807066
+      },
+      {
+        "case": "priority-debris-off",
+        "expectation_change": -0.00043054230456290865,
+        "mean_expectation_no_worse_than_v2": true,
+        "new_mean_expectation": 0.4837852916865633,
+        "v2_mean_expectation": 0.4842158339911262
+      },
+      {
+        "case": "priority-debris-on",
+        "expectation_change": -0.00010130626899096384,
+        "mean_expectation_no_worse_than_v2": true,
+        "new_mean_expectation": 0.5016104432556752,
+        "v2_mean_expectation": 0.5017117495246661
+      }
+    ],
+    "central_difference_gradient_checks": 48,
+    "formally_converged_selected_runs": 12,
+    "formally_converged_starts": 48,
+    "hardware_jobs_submitted": 0,
+    "maximum_numeric_discrepancy": 4.440892098500626e-16,
+    "optimizer_evaluations": 910,
+    "qiskit_checkpoint_comparisons": 144,
+    "selected_runs_verified": 12,
+    "status": "pass",
+    "study": "qubital.p1.optimizer-robustness.bfgs.v1",
+    "v2_and_cobyla_unchanged": true
+  }
+}

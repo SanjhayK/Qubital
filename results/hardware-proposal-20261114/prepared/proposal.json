@@ -1,0 +1,127 @@
+{
+  "project": "Qubital",
+  "submission_authorized": false,
+  "jobs_submitted": 0,
+  "api_key_environment_name": "qiskithacks",
+  "instance_environment_name": "ibmcrn",
+  "alpha": 0.25,
+  "angles": {
+    "beta": 2.6753177487745288,
+    "gamma": 0.5255145508363027
+  },
+  "layers": 1,
+  "backend": null,
+  "backend_status": "pending authenticated instance access",
+  "circuits": [
+    {
+      "name": "qubital_p1_alpha025",
+      "logical_qubits": 6,
+      "classical_bits": 6,
+      "shots": 1024,
+      "logical_depth": 9,
+      "logical_operations": {
+        "rzz": 10,
+        "h": 6,
+        "rz": 6,
+        "rx": 6,
+        "measure": 6
+      }
+    },
+    {
+      "name": "mapping_A1",
+      "logical_qubits": 6,
+      "classical_bits": 6,
+      "shots": 32,
+      "logical_depth": 2,
+      "logical_operations": {
+        "measure": 6,
+        "x": 1
+      }
+    },
+    {
+      "name": "mapping_A2",
+      "logical_qubits": 6,
+      "classical_bits": 6,
+      "shots": 32,
+      "logical_depth": 2,
+      "logical_operations": {
+        "measure": 6,
+        "x": 1
+      }
+    },
+    {
+      "name": "mapping_A3",
+      "logical_qubits": 6,
+      "classical_bits": 6,
+      "shots": 32,
+      "logical_depth": 2,
+      "logical_operations": {
+        "measure": 6,
+        "x": 1
+      }
+    },
+    {
+      "name": "mapping_B1",
+      "logical_qubits": 6,
+      "classical_bits": 6,
+      "shots": 32,
+      "logical_depth": 2,
+      "logical_operations": {
+        "measure": 6,
+        "x": 1
+      }
+    },
+    {
+      "name": "mapping_B2",
+      "logical_qubits": 6,
+      "classical_bits": 6,
+      "shots": 32,
+      "logical_depth": 2,
+      "logical_operations": {
+        "measure": 6,
+        "x": 1
+      }
+    },
+    {
+      "name": "mapping_B3",
+      "logical_qubits": 6,
+      "classical_bits": 6,
+      "shots": 32,
+      "logical_depth": 2,
+      "logical_operations": {
+        "measure": 6,
+        "x": 1
+      }
+    }
+  ],
+  "total_circuits": 7,
+  "total_shots": 1216,
+  "runtime_plan": {
+    "primitive": "SamplerV2, job mode after separate authorization",
+    "twirling": false,
+    "dynamical_decoupling": false,
+    "error_mitigation": false,
+    "on_hardware_angle_optimization": false
+  },
+  "usage_estimate": {
+    "method": "IBM quick heuristic: 2 seconds/subjob + 350 microseconds/execution",
+    "one_subjob_qpu_seconds": 2.4256,
+    "seven_subjobs_qpu_seconds": 14.4256,
+    "one_subjob_standard_qpu_ru": 0.04042666666666667,
+    "seven_subjobs_standard_qpu_ru": 0.24042666666666665,
+    "status": "planning heuristic; live backend timing and actual subjob count unknown",
+    "standard_qpu_seconds_per_ru": 60
+  },
+  "allocation": {
+    "reported_by_user_ru": 10,
+    "verified_from_ibm": false
+  },
+  "ibm_access": {
+    "environment_variables_present": {
+      "qiskithacks": false,
+      "ibmcrn": false
+    },
+    "jobs_submitted": 0,
+    "status": "blocked: required runtime variables are unavailable"
+  }
+}

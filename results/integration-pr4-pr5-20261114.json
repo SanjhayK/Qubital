@@ -1,0 +1,68 @@
+{
+  "pr5_before": "65250af002bcb271a5d7a0646df725c1a0492413",
+  "pr4_included": "e842d2dfddfcba3b828ffb494f4051b3aea89837",
+  "base_main": "f334464c284330b7babea9603e9e15d88042d514",
+  "backup_ref": "refs/heads/backup/research-before-pr4-integration-20261114T233016Z",
+  "worktree_initially_clean": true,
+  "verified_at_utc": "2026-11-14T23:32:07.391325+00:00",
+  "branch": "codex/responsibility-research",
+  "branch_integration_conflicts": 0,
+  "pr4_fully_included": true,
+  "pr4_changes_byte_identical": true,
+  "protected_baseline_files_unchanged": [
+    "scoring.py",
+    "classical.py",
+    "quantum.py",
+    "data/original.json",
+    "requirements-quantum.txt",
+    "AGENTS.md",
+    "QUANTUM.md",
+    "tests/test_scoring.py",
+    "tests/test_classical.py"
+  ],
+  "existing_research_notes_and_presentation_untouched": true,
+  "core_environment_tests": {
+    "tests": 206,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 206
+  },
+  "ibm_sdk_environment_tests": {
+    "tests": 206,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 206
+  },
+  "ibm_sdk_environment_warnings": 31,
+  "warning_notes": "samplomatic beta notice and IBM fractional transpilation plugin deprecation; no failures",
+  "combined_dependency_resolution": "all research and IBM preflight pinned requirements already satisfied; no installs/upgrades",
+  "pip_check": "no broken requirements",
+  "offline_synthetic_preparation": "pass; 7 logical circuits,1216 proposed shots, no authentication/job",
+  "research_records_reverified": {
+    "status": "pass",
+    "recorded_method_runs_verified": 36,
+    "method_runs": {
+      "uniform": 12,
+      "annealing_best_of_independent_chains": 12,
+      "qaoa_p1": 12
+    },
+    "total_returned_samples": 147456,
+    "actual_ideal_qaoa_final_shots": 49152,
+    "quantum_optimizer_expectation_evaluations": 2400,
+    "quantum_optimizer_converged_runs": 0,
+    "quantum_training_and_sampling_seconds_sum": 131.93287836699892,
+    "annealing_cached_score_queries": 1622016,
+    "new_model_basis_state_comparisons": 256,
+    "maximum_direct_qubo_ising_discrepancy": 3.3306690738754696e-16,
+    "historical_pilot": "v1 retains 12 convergence-gated MAXFUN failures with no quantum samples",
+    "hardware_jobs_submitted": 0,
+    "scope": "arithmetic/encoding/record QA; not validation of orbital or maneuver safety"
+  },
+  "new_functional_tests": "tests/test_model_integration.py",
+  "raw_dataset_present_and_hash_verified": true,
+  "hardware_jobs_submitted": 0,
+  "pull_requests_merged_or_closed": [],
+  "recommendation": "Merge PR #5 only; PR #4 is fully included and can be closed as superseded after #5 merges if still open."
+}

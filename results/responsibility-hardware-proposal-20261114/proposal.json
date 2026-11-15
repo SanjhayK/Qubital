@@ -1,0 +1,213 @@
+{
+  "model_id": "qubital.responsibility.v1",
+  "schema_version": "1.0",
+  "weight_variant": "priority",
+  "eta": 0.5,
+  "background": true,
+  "W_ref": 1.9611673672143677,
+  "data_sha256": "53f6fa639083579e65921cd3058ec2370f537eecb05d77398ec9d0989e22edec",
+  "checked_at_utc": "2026-11-14T22:56:12.483705+00:00",
+  "execution_type": "proposal_only_local_transpilation",
+  "hardware_jobs_submitted": 0,
+  "submission_authorized": false,
+  "environment_variables_present": {
+    "qiskithacks": true,
+    "ibmcrn": true
+  },
+  "requested_instance_matches": true,
+  "backend": "ibm_fez",
+  "backend_pending_jobs": 3,
+  "available_processors": [
+    {
+      "name": "ibm_fez",
+      "qubits": 156,
+      "operational": true,
+      "pending_jobs": 3
+    },
+    {
+      "name": "ibm_kingston",
+      "qubits": 156,
+      "operational": true,
+      "pending_jobs": 245
+    },
+    {
+      "name": "ibm_marrakesh",
+      "qubits": 156,
+      "operational": true,
+      "pending_jobs": 0
+    }
+  ],
+  "accessible_job_ids_returned": [],
+  "job_history_query_limit": 20,
+  "usage": {
+    "usage_consumed_ru": 0,
+    "usage_limit_ru": 10,
+    "usage_remaining_seconds": 600,
+    "usage_period": {
+      "start_time": "2026-10-17T22:56:06.281Z",
+      "end_time": "2026-11-14T22:56:06.281Z"
+    }
+  },
+  "seed_selection_rule": "lowest actual ideal quantum expectation among all three new-model training seeds",
+  "selected_training_seed": 7,
+  "angles": {
+    "beta": 2.7686026999184037,
+    "gamma": 4.8501879357649536
+  },
+  "optimizer_converged": false,
+  "training_status": "budget_limited_not_converged",
+  "sampling_plan": "fixed-angle sampling, not hardware training",
+  "shots": 1216,
+  "circuits": [
+    {
+      "name": "responsibility_v1_priority_background_on",
+      "shots": 1024,
+      "logical_qubits": 6,
+      "physical_event_qubits": [
+        122,
+        123,
+        144,
+        142,
+        136,
+        143
+      ],
+      "depth": 142,
+      "two_qubit_gates": 54,
+      "operations": {
+        "sx": 95,
+        "rz": 93,
+        "cz": 54,
+        "measure": 6
+      },
+      "estimated_duration_seconds": 5.508000000000002e-06
+    },
+    {
+      "name": "event_mapping_0",
+      "shots": 32,
+      "logical_qubits": 6,
+      "physical_event_qubits": [
+        122,
+        123,
+        144,
+        142,
+        136,
+        143
+      ],
+      "depth": 2,
+      "two_qubit_gates": 0,
+      "operations": {
+        "measure": 6,
+        "x": 1
+      },
+      "estimated_duration_seconds": 1.6839999999999999e-06
+    },
+    {
+      "name": "event_mapping_1",
+      "shots": 32,
+      "logical_qubits": 6,
+      "physical_event_qubits": [
+        122,
+        123,
+        144,
+        142,
+        136,
+        143
+      ],
+      "depth": 2,
+      "two_qubit_gates": 0,
+      "operations": {
+        "measure": 6,
+        "x": 1
+      },
+      "estimated_duration_seconds": 1.6839999999999999e-06
+    },
+    {
+      "name": "event_mapping_2",
+      "shots": 32,
+      "logical_qubits": 6,
+      "physical_event_qubits": [
+        122,
+        123,
+        144,
+        142,
+        136,
+        143
+      ],
+      "depth": 2,
+      "two_qubit_gates": 0,
+      "operations": {
+        "measure": 6,
+        "x": 1
+      },
+      "estimated_duration_seconds": 1.6839999999999999e-06
+    },
+    {
+      "name": "event_mapping_3",
+      "shots": 32,
+      "logical_qubits": 6,
+      "physical_event_qubits": [
+        122,
+        123,
+        144,
+        142,
+        136,
+        143
+      ],
+      "depth": 2,
+      "two_qubit_gates": 0,
+      "operations": {
+        "measure": 6,
+        "x": 1
+      },
+      "estimated_duration_seconds": 1.6839999999999999e-06
+    },
+    {
+      "name": "event_mapping_4",
+      "shots": 32,
+      "logical_qubits": 6,
+      "physical_event_qubits": [
+        122,
+        123,
+        144,
+        142,
+        136,
+        143
+      ],
+      "depth": 2,
+      "two_qubit_gates": 0,
+      "operations": {
+        "measure": 6,
+        "x": 1
+      },
+      "estimated_duration_seconds": 1.6839999999999999e-06
+    },
+    {
+      "name": "event_mapping_5",
+      "shots": 32,
+      "logical_qubits": 6,
+      "physical_event_qubits": [
+        122,
+        123,
+        144,
+        142,
+        136,
+        143
+      ],
+      "depth": 2,
+      "two_qubit_gates": 0,
+      "operations": {
+        "measure": 6,
+        "x": 1
+      },
+      "estimated_duration_seconds": 1.6839999999999999e-06
+    }
+  ],
+  "default_rep_delay_seconds": 0.00025,
+  "twirling": false,
+  "mitigation": false,
+  "dynamical_decoupling": false,
+  "one_subjob_duration_model_ru": 0.038499392,
+  "one_subjob_quick_heuristic_ru": 0.04042666666666667,
+  "seven_subjob_quick_heuristic_ru": 0.24042666666666665,
+  "estimate_caveat": "planning scenarios, not guaranteed bounds or billing quote"
+}

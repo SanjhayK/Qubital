@@ -1,0 +1,294 @@
+"""Reproduce the frozen six-event responsibility study locally, with no IBM calls.
+
+This benchmark compares sampling on an exactly enumerable instance. Enumeration
+already provides its full menu; neither timing nor diversity establishes speedup.
+"""
+
+import argparse
+from collections import Counter
+from copy import deepcopy
+from datetime import datetime, timezone
+import hashlib
+from importlib.metadata import version
+import itertools
+import json
+import math
+from pathlib import Path
+import platform
+import random
+import time
+
+import numpy as np
+from qiskit import transpile
+from qiskit.providers.basic_provider import BasicSimulator
+from qiskit.quantum_info import Statevector
+from scipy.optimize import minimize
+
+from quantum import (build_qaoa_circuit, decode_counts, qubo_to_ising,
+                     verify_measurement_mapping)
+from research.responsibility import (build_responsibility_qubo, evaluate_assignment,
+                                     free_event_ids, solve_exact)
+from research.socrates_gate import adapt_case, audit_snapshot
+
+PROTOCOL = {
+    "model_id": "qubital.responsibility.v1", "layers": 1, "eta": 0.5,
+    "weight_variants": ["unit", "priority"], "background_switches": [False, True],
+    "training_seeds": [7, 19, 43], "shots_per_run": 4096,
+    "optimizer": "COBYLA", "max_optimizer_evaluations": 200, "starts_per_seed": 1,
+    "near_optimal_absolute_threshold": 0.02, "optimum_absolute_tolerance": 1e-12,
+    "annealing_independent_chains": 4096, "annealing_steps_per_chain": 32,
+    "annealing_initial_temperature": 0.1, "annealing_cooling_rate": 0.9,
+    "annealing_output": "best visited plan per independent chain, not stationary samples",
+    "comparison": "matched 4096 returned samples, not matched computational work",
+    "execution_type": "ideal_simulator", "hardware_jobs_authorized": False,
+    "constant_convention": "full direct J including all fixed/background constants",
+    "training_stop_policy": "sample best actually evaluated quantum angles at fixed budget; separately report convergence",
+}
+
+
+def write_json(path, value):
+    with Path(path).open("x", encoding="utf-8") as stream:
+        json.dump(value, stream, indent=2, sort_keys=True, allow_nan=False)
+        stream.write("\n")
+
+
+def sample_metrics(counts, scores, minimum, optimum):
+    """Metrics over actual nonzero samples; no postselection or replacements."""
+    total = sum(counts.values())
+    if total <= 0 or any(type(n) is not int or n < 0 for n in counts.values()):
+        raise ValueError("sample counts must be nonnegative integers with positive total")
+    sampled = {b for b, n in counts.items() if n > 0}
+    best = min(scores[b] for b in sampled)
+    mean = math.fsum(n * scores[b] for b, n in counts.items()) / total
+    return {
+        "returned_samples": total,
+        "best_actual_sampled_bits": sorted(b for b in sampled if abs(scores[b] - best) <= 1e-12),
+        "best_actual_sampled_objective": best,
+        "complete_optimum_hit_probability": sum(counts.get(b, 0) for b in optimum) / total,
+        "full_score_sample_mean": mean, "absolute_regret": mean - minimum,
+        "relative_gap": None if abs(minimum) <= 1e-12 or max(scores.values()) - min(scores.values()) <= 1e-12
+                        else (mean - minimum) / minimum,
+        "distinct_near_optimal_assignments": sum(scores[b] <= minimum + 0.02 + 1e-12 for b in sampled),
+        "distinct_optimal_assignments": len(sampled & set(optimum)),
+        "distinct_assignments": len(sampled),
+        "assignment_validity": 1.0,
+        "validity_interpretation": "all unconstrained assignments valid by construction; not physical safety",
+    }
+
+
+def annealing_menu(scores, width, seed):
+    """Adapt the Metropolis flip/cooling baseline in classical.py to this scorer.
+
+    All score values come from the shared new-model scorer, precomputed for the
+    small exact reference. Count every cached score query separately from the 64
+    preprocessing evaluations. Restart each chain; retain its best visited plan.
+    """
+    rng = random.Random(seed)
+    counts = Counter()
+    queries = 0
+    for _ in range(PROTOCOL["annealing_independent_chains"]):
+        bits = [rng.choice("01") for _ in range(width)]
+        current = scores["".join(bits)]
+        best_bits, best = "".join(bits), current
+        queries += 1
+        temperature = PROTOCOL["annealing_initial_temperature"]
+        for _ in range(PROTOCOL["annealing_steps_per_chain"]):
+            i = rng.randrange(width)
+            candidate = bits.copy()
+            candidate[i] = "1" if candidate[i] == "0" else "0"
+            key = "".join(candidate)
+            value = scores[key]
+            queries += 1
+            delta = value - current
+            if delta <= 0 or rng.random() < math.exp(-delta / max(temperature, 1e-15)):
+                bits, current = candidate, value
+                if (current, key) < (best, best_bits):
+                    best, best_bits = current, key
+            temperature *= PROTOCOL["annealing_cooling_rate"]
+        counts[best_bits] += 1
+    return dict(counts), queries
+
+
+def train_and_sample_budgeted(cost, seed):
+    """A fixed-budget quantum experiment; MAXFUN is reported, never hidden.
+
+    No classical optimum or score-table lookup is used to choose angles. Fail on
+    nonfinite objective values. The best observed quantum expectation determines
+    the measured circuit even when the optimizer exhausts its declared budget.
+    """
+    initial = np.random.default_rng(seed).uniform([0, 0], [2 * np.pi, np.pi]).tolist()
+    history = []
+
+    def expectation(angles):
+        state = Statevector.from_instruction(build_qaoa_circuit(cost, *angles))
+        value = float(state.expectation_value(cost.operator).real + cost.offset)
+        if not math.isfinite(value):
+            raise RuntimeError("nonfinite quantum expectation")
+        history.append({"angles": np.asarray(angles).tolist(), "expectation": value})
+        return value
+
+    fitted = minimize(expectation, initial, method="COBYLA",
+                      options={"maxiter": 200, "tol": 1e-8, "rhobeg": 0.5})
+    if not history or len(history) > 200:
+        raise RuntimeError("quantum objective evaluation budget not respected")
+    best = min(history, key=lambda row: row["expectation"])
+    gamma, beta = best["angles"]
+    circuit = build_qaoa_circuit(cost, gamma, beta, measure=True)
+    verify_measurement_mapping(circuit, len(cost.action_order))
+    backend = BasicSimulator()
+    compiled = transpile(circuit, backend, seed_transpiler=seed, optimization_level=1)
+    verify_measurement_mapping(compiled, len(cost.action_order))
+    raw = dict(backend.run(compiled, shots=4096, seed_simulator=seed).result().get_counts())
+    return {"angles": {"gamma": gamma, "beta": beta}, "expectation": best["expectation"],
+            "initial_angles": initial, "initial_expectation": history[0]["expectation"],
+            "optimizer_evaluations": len(history), "optimizer_converged": bool(fitted.success),
+            "optimizer_message": str(fitted.message),
+            "training_status": "converged" if fitted.success else "budget_limited_not_converged",
+            "history": history, "raw_counts": raw, "canonical_counts": decode_counts(raw, compiled),
+            "shots": 4096, "seed_simulator": seed, "seed_transpiler": seed,
+            "constant_offset": cost.offset, "measurement_mapping_verified": True,
+            "sampling_succeeded": True, "classical_substitution": False}
+
+
+def verify_encoding(case, eta, background):
+    """Independent direct scorer, polynomial, and actual Qiskit basis energies."""
+    q = build_responsibility_qubo(case, eta=eta, background=background)
+    if not q.action_order:
+        raise ValueError("this minimum experiment requires six free choices")
+    cost = qubo_to_ising(q)
+    scores = {}
+    maximum_error = 0.0
+    for bits in itertools.product("01", repeat=len(q.action_order)):
+        canonical = "".join(bits)
+        direct = evaluate_assignment(case, canonical, eta=eta, background=background)["objective_score"]
+        state = Statevector.from_int(int(canonical[::-1], 2), 2 ** len(canonical))
+        energy = float(state.expectation_value(cost.operator).real) + cost.offset
+        error = max(abs(direct - q.evaluate(canonical)), abs(direct - energy))
+        if error > 1e-12:
+            raise ValueError(f"three-way encoding mismatch: {canonical}, error={error}")
+        maximum_error = max(maximum_error, error)
+        scores[canonical] = direct
+    return q, cost, scores, maximum_error
+
+
+def run(snapshot_root, output):
+    output = Path(output)
+    output.mkdir(parents=True, exist_ok=False)
+    protocol = PROTOCOL | {"frozen_before_training_at_utc": datetime.now(timezone.utc).isoformat(),
+                           "python": platform.python_version(),
+                           "versions": {n: version(n) for n in ("qiskit", "numpy", "scipy", "matplotlib")},
+                           "runner_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
+    project_root = Path(__file__).resolve().parents[1]
+    protocol["source_sha256"] = {name: hashlib.sha256((project_root / name).read_bytes()).hexdigest()
+                                 for name in ("quantum.py", "research/responsibility.py",
+                                              "research/socrates_gate.py", "requirements-quantum.txt")}
+    write_json(output / "protocol.json", protocol)
+    gate = audit_snapshot(snapshot_root)
+    write_json(output / "data_gate.json", gate)
+    results = []
+    references = []
+    eta_references = []
+    fixed_response_checks = []
+    for variant in PROTOCOL["weight_variants"]:
+        case = adapt_case(snapshot_root, variant)
+        if len(free_event_ids(case)) != 6:
+            raise ValueError("the frozen minimum experiment must have six free events")
+        for refusal in ("OneWeb", "Starlink", "neither_side_for_first_event"):
+            changed = deepcopy(case)
+            if refusal == "neither_side_for_first_event":
+                changed["events"][0].update(oneweb_allowed=False, starlink_allowed=False)
+            else:
+                field = "oneweb_allowed" if refusal == "OneWeb" else "starlink_allowed"
+                for event in changed["events"]:
+                    event[field] = False
+            fixed_response_checks.append({"weight_variant": variant, "counterfactual": refusal,
+                                          "background": True, "eta": 0.5,
+                                          **solve_exact(changed, eta=0.5, background=True),
+                                          "quantum_run": False})
+        for background in PROTOCOL["background_switches"]:
+            for eta in (0.0, 0.5, 1.0):
+                eta_references.append({"weight_variant": variant, "background": background,
+                                       "eta": eta, "W_ref": case["W_ref"],
+                                       **solve_exact(case, eta=eta, background=background)})
+            started = time.perf_counter()
+            q, cost, scores, error = verify_encoding(case, 0.5, background)
+            minimum = min(scores.values())
+            optimum = sorted(b for b, value in scores.items() if abs(value - minimum) <= 1e-12)
+            reference = {
+                "model_id": case["model_id"], "weight_variant": variant,
+                "background": background, "eta": 0.5, "W_ref": case["W_ref"],
+                "case_sha256": hashlib.sha256(json.dumps(case, sort_keys=True).encode()).hexdigest(),
+                "data_sha256": case["source_sha256"], "free_event_order": list(q.action_order),
+                "all_assignments": 64, "minimum_score": minimum, "optimal_bits": optimum,
+                "number_of_optima": len(optimum), "maximum_encoding_error": error,
+                "uniform_exact_optimal_probability": len(optimum) / 64,
+                "uniform_exact_expectation": math.fsum(scores.values()) / 64,
+                "near_optimal_menu_size": sum(v <= minimum + 0.02 + 1e-12 for v in scores.values()),
+                "objective_flat": max(scores.values()) - minimum <= 1e-12,
+                "preprocessing_seconds": time.perf_counter() - started,
+                "score_preprocessing": "64 authoritative direct scorer values; Ising check separately for each",
+            }
+            references.append(reference)
+            case_name = f"{variant}-{'debris-on' if background else 'debris-off'}"
+            for seed in PROTOCOL["training_seeds"]:
+                common = {"model_id": case["model_id"], "case": case_name,
+                          "data_sha256": case["source_sha256"], "seed": seed,
+                          "eta": 0.5, "W_ref": case["W_ref"], "execution_type": "ideal_simulator"}
+                started = time.perf_counter()
+                rng = np.random.default_rng(seed)
+                uniform = dict(Counter("".join(map(str, row)) for row in rng.integers(0, 2, (4096, 6))))
+                records = [common | {"method": "uniform", "counts": uniform,
+                                    "seconds": time.perf_counter() - started,
+                                    "metrics": sample_metrics(uniform, scores, minimum, optimum)}]
+                started = time.perf_counter()
+                menu, queries = annealing_menu(scores, 6, seed)
+                records.append(common | {"method": "annealing_best_of_independent_chains", "counts": menu,
+                                         "seconds": time.perf_counter() - started,
+                                         "cached_objective_queries": queries,
+                                         "independent_chains": 4096, "steps_per_chain": 32,
+                                         "metrics": sample_metrics(menu, scores, minimum, optimum)})
+                started = time.perf_counter()
+                try:
+                    trained = train_and_sample_budgeted(cost, seed)
+                    counts = trained["canonical_counts"]
+                    circuit = build_qaoa_circuit(cost, **trained["angles"], measure=True)
+                    nfev = trained["optimizer_evaluations"]
+                    records.append(common | {"method": "qaoa_p1", "success": True,
+                        "seconds": time.perf_counter() - started, "counts": counts,
+                        "training_and_sampling": trained, "optimizer_evaluations": nfev,
+                        "objective_calls_including_reporting": nfev,
+                        "optimizer_converged": trained["optimizer_converged"],
+                        "training_status": trained["training_status"],
+                        "logical_depth": circuit.depth(),
+                        "logical_two_qubit_gates": sum(len(i.qubits) == 2 for i in circuit.data),
+                        "exact_expectation_regret": trained["expectation"] - minimum,
+                        "metrics": sample_metrics(counts, scores, minimum, optimum)})
+                except RuntimeError as error:
+                    records.append(common | {"method": "qaoa_p1", "success": False,
+                        "seconds": time.perf_counter() - started, "failure": str(error),
+                        "metrics": None, "counts": {}, "classical_substitution": False})
+                for record in records:
+                    write_json(output / f"{case_name}-{seed}-{record['method']}.json", record)
+                results.extend(records)
+            print(f"{case_name}: {len(optimum)} complete optima; three seeds recorded", flush=True)
+    write_json(output / "exact_references.json", references)
+    write_json(output / "eta_exact_references.json", eta_references)
+    write_json(output / "fixed_response_checks.json", fixed_response_checks)
+    summary = []
+    for record in results:
+        summary.append({k: record[k] for k in ("case", "seed", "method", "seconds")} |
+                       {"success": record.get("success", True), **(record["metrics"] or {})})
+    write_json(output / "summary.json", summary)
+    return references, summary
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--snapshot-root", type=Path, required=True)
+    parser.add_argument("--output", type=Path, required=True)
+    args = parser.parse_args()
+    run(args.snapshot_root, args.output)
+
+
+if __name__ == "__main__":
+    main()

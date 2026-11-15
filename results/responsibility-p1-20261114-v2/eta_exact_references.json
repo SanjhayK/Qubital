@@ -1,0 +1,312 @@
+[
+  {
+    "W_ref": 8.0,
+    "background": false,
+    "eta": 0.0,
+    "evaluations": 64,
+    "minimum_score": 0.28125,
+    "optimal_bits": [
+      "000111",
+      "001011",
+      "001101",
+      "001110",
+      "010011",
+      "010101",
+      "010110",
+      "011001",
+      "011010",
+      "011100",
+      "100011",
+      "100101",
+      "100110",
+      "101001",
+      "101010",
+      "101100",
+      "110001",
+      "110010",
+      "110100",
+      "111000"
+    ],
+    "optimal_full_bits": [
+      "000111",
+      "001011",
+      "001101",
+      "001110",
+      "010011",
+      "010101",
+      "010110",
+      "011001",
+      "011010",
+      "011100",
+      "100011",
+      "100101",
+      "100110",
+      "101001",
+      "101010",
+      "101100",
+      "110001",
+      "110010",
+      "110100",
+      "111000"
+    ],
+    "status": "feasible",
+    "weight_variant": "unit"
+  },
+  {
+    "W_ref": 8.0,
+    "background": false,
+    "eta": 0.5,
+    "evaluations": 64,
+    "minimum_score": 0.21875,
+    "optimal_bits": [
+      "000011",
+      "000101",
+      "000110",
+      "001001",
+      "001010",
+      "001100",
+      "010001",
+      "010010",
+      "010100",
+      "011000",
+      "100001",
+      "100010",
+      "100100",
+      "101000",
+      "110000"
+    ],
+    "optimal_full_bits": [
+      "000011",
+      "000101",
+      "000110",
+      "001001",
+      "001010",
+      "001100",
+      "010001",
+      "010010",
+      "010100",
+      "011000",
+      "100001",
+      "100010",
+      "100100",
+      "101000",
+      "110000"
+    ],
+    "status": "feasible",
+    "weight_variant": "unit"
+  },
+  {
+    "W_ref": 8.0,
+    "background": false,
+    "eta": 1.0,
+    "evaluations": 64,
+    "minimum_score": 0.09375,
+    "optimal_bits": [
+      "000000",
+      "000001",
+      "000010",
+      "000100",
+      "001000",
+      "010000",
+      "100000"
+    ],
+    "optimal_full_bits": [
+      "000000",
+      "000001",
+      "000010",
+      "000100",
+      "001000",
+      "010000",
+      "100000"
+    ],
+    "status": "feasible",
+    "weight_variant": "unit"
+  },
+  {
+    "W_ref": 8.0,
+    "background": true,
+    "eta": 0.0,
+    "evaluations": 64,
+    "minimum_score": 0.5,
+    "optimal_bits": [
+      "000011",
+      "000101",
+      "000110",
+      "001001",
+      "001010",
+      "001100",
+      "010001",
+      "010010",
+      "010100",
+      "011000",
+      "100001",
+      "100010",
+      "100100",
+      "101000",
+      "110000"
+    ],
+    "optimal_full_bits": [
+      "000011",
+      "000101",
+      "000110",
+      "001001",
+      "001010",
+      "001100",
+      "010001",
+      "010010",
+      "010100",
+      "011000",
+      "100001",
+      "100010",
+      "100100",
+      "101000",
+      "110000"
+    ],
+    "status": "feasible",
+    "weight_variant": "unit"
+  },
+  {
+    "W_ref": 8.0,
+    "background": true,
+    "eta": 0.5,
+    "evaluations": 64,
+    "minimum_score": 0.375,
+    "optimal_bits": [
+      "000001",
+      "000010",
+      "000100",
+      "001000",
+      "010000",
+      "100000"
+    ],
+    "optimal_full_bits": [
+      "000001",
+      "000010",
+      "000100",
+      "001000",
+      "010000",
+      "100000"
+    ],
+    "status": "feasible",
+    "weight_variant": "unit"
+  },
+  {
+    "W_ref": 8.0,
+    "background": true,
+    "eta": 1.0,
+    "evaluations": 64,
+    "minimum_score": 0.15625,
+    "optimal_bits": [
+      "000000"
+    ],
+    "optimal_full_bits": [
+      "000000"
+    ],
+    "status": "feasible",
+    "weight_variant": "unit"
+  },
+  {
+    "W_ref": 1.9611673672143677,
+    "background": false,
+    "eta": 0.0,
+    "evaluations": 64,
+    "minimum_score": 0.4800811636927564,
+    "optimal_bits": [
+      "000010",
+      "111101"
+    ],
+    "optimal_full_bits": [
+      "000010",
+      "111101"
+    ],
+    "status": "feasible",
+    "weight_variant": "priority"
+  },
+  {
+    "W_ref": 1.9611673672143677,
+    "background": false,
+    "eta": 0.5,
+    "evaluations": 64,
+    "minimum_score": 0.40098003221454714,
+    "optimal_bits": [
+      "000010"
+    ],
+    "optimal_full_bits": [
+      "000010"
+    ],
+    "status": "feasible",
+    "weight_variant": "priority"
+  },
+  {
+    "W_ref": 1.9611673672143677,
+    "background": false,
+    "eta": 1.0,
+    "evaluations": 64,
+    "minimum_score": 0.3218789007363379,
+    "optimal_bits": [
+      "000000",
+      "000001",
+      "000010",
+      "000100",
+      "001000",
+      "010000",
+      "100000"
+    ],
+    "optimal_full_bits": [
+      "000000",
+      "000001",
+      "000010",
+      "000100",
+      "001000",
+      "010000",
+      "100000"
+    ],
+    "status": "feasible",
+    "weight_variant": "priority"
+  },
+  {
+    "W_ref": 1.9611673672143677,
+    "background": true,
+    "eta": 0.0,
+    "evaluations": 64,
+    "minimum_score": 0.5001960353353057,
+    "optimal_bits": [
+      "111101"
+    ],
+    "optimal_full_bits": [
+      "111101"
+    ],
+    "status": "feasible",
+    "weight_variant": "priority"
+  },
+  {
+    "W_ref": 1.9611673672143677,
+    "background": true,
+    "eta": 0.5,
+    "evaluations": 64,
+    "minimum_score": 0.42280480839586126,
+    "optimal_bits": [
+      "000010"
+    ],
+    "optimal_full_bits": [
+      "000010"
+    ],
+    "status": "feasible",
+    "weight_variant": "priority"
+  },
+  {
+    "W_ref": 1.9611673672143677,
+    "background": true,
+    "eta": 1.0,
+    "evaluations": 64,
+    "minimum_score": 0.32231863425123536,
+    "optimal_bits": [
+      "000000"
+    ],
+    "optimal_full_bits": [
+      "000000"
+    ],
+    "status": "feasible",
+    "weight_variant": "priority"
+  }
+]

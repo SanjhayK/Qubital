@@ -1,0 +1,46 @@
+{
+  "actual_new_qaoa_final_shots": 49152,
+  "analytic_gradient_evaluations": 910,
+  "attempts_verified": 48,
+  "case_comparison": [
+    {
+      "case": "unit-debris-off",
+      "expectation_change": -0.006348756696956698,
+      "mean_expectation_no_worse_than_v2": true,
+      "new_mean_expectation": 0.22986967466154415,
+      "v2_mean_expectation": 0.23621843135850085
+    },
+    {
+      "case": "unit-debris-on",
+      "expectation_change": -0.0022581631067664087,
+      "mean_expectation_no_worse_than_v2": true,
+      "new_mean_expectation": 0.39199669716130425,
+      "v2_mean_expectation": 0.39425486026807066
+    },
+    {
+      "case": "priority-debris-off",
+      "expectation_change": -0.00043054230456290865,
+      "mean_expectation_no_worse_than_v2": true,
+      "new_mean_expectation": 0.4837852916865633,
+      "v2_mean_expectation": 0.4842158339911262
+    },
+    {
+      "case": "priority-debris-on",
+      "expectation_change": -0.00010130626899096384,
+      "mean_expectation_no_worse_than_v2": true,
+      "new_mean_expectation": 0.5016104432556752,
+      "v2_mean_expectation": 0.5017117495246661
+    }
+  ],
+  "central_difference_gradient_checks": 48,
+  "formally_converged_selected_runs": 12,
+  "formally_converged_starts": 48,
+  "hardware_jobs_submitted": 0,
+  "maximum_numeric_discrepancy": 4.440892098500626e-16,
+  "optimizer_evaluations": 910,
+  "qiskit_checkpoint_comparisons": 144,
+  "selected_runs_verified": 12,
+  "status": "pass",
+  "study": "qubital.p1.optimizer-robustness.bfgs.v1",
+  "v2_and_cobyla_unchanged": true
+}

@@ -1,0 +1,48 @@
+{
+  "actual_new_qaoa_final_shots": 49152,
+  "attempts_verified": 48,
+  "basis_encoding_comparisons": 256,
+  "case_comparison": [
+    {
+      "case": "unit-debris-off",
+      "expectation_change": -0.006216295256686433,
+      "mean_expectation_no_worse_than_v2": true,
+      "new_mean_expectation": 0.23000213610181441,
+      "v2_mean_expectation": 0.23621843135850085
+    },
+    {
+      "case": "unit-debris-on",
+      "expectation_change": -0.0022581630057880164,
+      "mean_expectation_no_worse_than_v2": true,
+      "new_mean_expectation": 0.39199669726228265,
+      "v2_mean_expectation": 0.39425486026807066
+    },
+    {
+      "case": "priority-debris-off",
+      "expectation_change": -0.0004305422262563252,
+      "mean_expectation_no_worse_than_v2": true,
+      "new_mean_expectation": 0.4837852917648699,
+      "v2_mean_expectation": 0.4842158339911262
+    },
+    {
+      "case": "priority-debris-on",
+      "expectation_change": -0.00010130623453208365,
+      "mean_expectation_no_worse_than_v2": true,
+      "new_mean_expectation": 0.501610443290134,
+      "v2_mean_expectation": 0.5017117495246661
+    }
+  ],
+  "cases_verified": 4,
+  "formally_converged_selected_runs": 8,
+  "formally_converged_starts": 20,
+  "hardware_jobs_submitted": 0,
+  "maximum_numeric_discrepancy": 4.440892098500626e-16,
+  "optimizer_evaluations": 85340,
+  "preserved_files": 146,
+  "protocol_sha256": "51697617bbfb24cd19deedcb9a96c7d3a8d4681a61cd0761de5c9edcf7d6b984",
+  "qiskit_checkpoint_comparisons": 144,
+  "selected_runs_verified": 12,
+  "status": "pass",
+  "v2_unchanged": true,
+  "verified_at_utc": "2026-11-15T00:55:53.079963+00:00"
+}

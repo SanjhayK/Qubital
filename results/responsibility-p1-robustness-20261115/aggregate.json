@@ -1,0 +1,386 @@
+[
+  {
+    "absolute_regret": {
+      "max": 0.011913299560546875,
+      "mean": 0.011316935221354166,
+      "min": 0.01073455810546875
+    },
+    "case": "unit-debris-off",
+    "complete_optimum_hit_probability": {
+      "max": 0.51708984375,
+      "mean": 0.5069986979166666,
+      "min": 0.491943359375
+    },
+    "converged_starts": 0,
+    "expectation": {
+      "max": 0.230023759212456,
+      "mean": 0.23000213610181441,
+      "min": 0.22997998015932608
+    },
+    "expectation_regret": {
+      "max": 0.011273759212455992,
+      "mean": 0.011252136101814405,
+      "min": 0.01122998015932608
+    },
+    "method": "qaoa_p1_robustness",
+    "seeds": 3,
+    "selected_converged_runs": 0,
+    "total_starts": 12
+  },
+  {
+    "absolute_regret": {
+      "max": 0.018634796142578125,
+      "mean": 0.017449696858723957,
+      "min": 0.016788482666015625
+    },
+    "case": "unit-debris-off",
+    "complete_optimum_hit_probability": {
+      "max": 0.40380859375,
+      "mean": 0.397705078125,
+      "min": 0.38720703125
+    },
+    "converged_starts": 0,
+    "expectation": {
+      "max": 0.2372890482380242,
+      "mean": 0.23621843135850085,
+      "min": 0.23526706100537098
+    },
+    "expectation_regret": {
+      "max": 0.018539048238024214,
+      "mean": 0.017468431358500857,
+      "min": 0.01651706100537098
+    },
+    "method": "qaoa_p1_v2",
+    "seeds": 3,
+    "selected_converged_runs": 0,
+    "total_starts": 3
+  },
+  {
+    "absolute_regret": {
+      "max": 0.052539825439453125,
+      "mean": 0.05162938435872396,
+      "min": 0.05086517333984375
+    },
+    "case": "unit-debris-off",
+    "complete_optimum_hit_probability": {
+      "max": 0.23681640625,
+      "mean": 0.23152669270833334,
+      "min": 0.227783203125
+    },
+    "converged_starts": 0,
+    "expectation": null,
+    "expectation_regret": null,
+    "method": "uniform_v2",
+    "seeds": 3,
+    "selected_converged_runs": 0,
+    "total_starts": 0
+  },
+  {
+    "absolute_regret": {
+      "max": 0.0,
+      "mean": 0.0,
+      "min": 0.0
+    },
+    "case": "unit-debris-off",
+    "complete_optimum_hit_probability": {
+      "max": 1.0,
+      "mean": 1.0,
+      "min": 1.0
+    },
+    "converged_starts": 0,
+    "expectation": null,
+    "expectation_regret": null,
+    "method": "annealing_best_of_independent_chains_v2",
+    "seeds": 3,
+    "selected_converged_runs": 0,
+    "total_starts": 0
+  },
+  {
+    "absolute_regret": {
+      "max": 0.016948699951171875,
+      "mean": 0.016877492268880207,
+      "min": 0.0167999267578125
+    },
+    "case": "unit-debris-on",
+    "complete_optimum_hit_probability": {
+      "max": 0.55419921875,
+      "mean": 0.5454915364583334,
+      "min": 0.539306640625
+    },
+    "converged_starts": 4,
+    "expectation": {
+      "max": 0.39199669729096465,
+      "mean": 0.39199669726228265,
+      "min": 0.3919966972265223
+    },
+    "expectation_regret": {
+      "max": 0.016996697290964646,
+      "mean": 0.016996697262282628,
+      "min": 0.016996697226522306
+    },
+    "method": "qaoa_p1_robustness",
+    "seeds": 3,
+    "selected_converged_runs": 2,
+    "total_starts": 12
+  },
+  {
+    "absolute_regret": {
+      "max": 0.019977569580078125,
+      "mean": 0.019301096598307293,
+      "min": 0.01886749267578125
+    },
+    "case": "unit-debris-on",
+    "complete_optimum_hit_probability": {
+      "max": 0.49755859375,
+      "mean": 0.4915364583333333,
+      "min": 0.48486328125
+    },
+    "converged_starts": 0,
+    "expectation": {
+      "max": 0.39479278423729747,
+      "mean": 0.39425486026807066,
+      "min": 0.3937369045256997
+    },
+    "expectation_regret": {
+      "max": 0.019792784237297467,
+      "mean": 0.019254860268070644,
+      "min": 0.018736904525699705
+    },
+    "method": "qaoa_p1_v2",
+    "seeds": 3,
+    "selected_converged_runs": 0,
+    "total_starts": 3
+  },
+  {
+    "absolute_regret": {
+      "max": 0.14961624145507812,
+      "mean": 0.14643732706705728,
+      "min": 0.14408111572265625
+    },
+    "case": "unit-debris-on",
+    "complete_optimum_hit_probability": {
+      "max": 0.0986328125,
+      "mean": 0.095458984375,
+      "min": 0.08984375
+    },
+    "converged_starts": 0,
+    "expectation": null,
+    "expectation_regret": null,
+    "method": "uniform_v2",
+    "seeds": 3,
+    "selected_converged_runs": 0,
+    "total_starts": 0
+  },
+  {
+    "absolute_regret": {
+      "max": 0.0,
+      "mean": 0.0,
+      "min": 0.0
+    },
+    "case": "unit-debris-on",
+    "complete_optimum_hit_probability": {
+      "max": 1.0,
+      "mean": 1.0,
+      "min": 1.0
+    },
+    "converged_starts": 0,
+    "expectation": null,
+    "expectation_regret": null,
+    "method": "annealing_best_of_independent_chains_v2",
+    "seeds": 3,
+    "selected_converged_runs": 0,
+    "total_starts": 0
+  },
+  {
+    "absolute_regret": {
+      "max": 0.08493094275318175,
+      "mean": 0.08327541904070902,
+      "min": 0.08092013474593857
+    },
+    "case": "priority-debris-off",
+    "complete_optimum_hit_probability": {
+      "max": 0.055908203125,
+      "mean": 0.048095703125,
+      "min": 0.040771484375
+    },
+    "converged_starts": 8,
+    "expectation": {
+      "max": 0.48378529178403884,
+      "mean": 0.4837852917648699,
+      "min": 0.4837852917379569
+    },
+    "expectation_regret": {
+      "max": 0.0828052595694917,
+      "mean": 0.0828052595503227,
+      "min": 0.08280525952340978
+    },
+    "method": "qaoa_p1_robustness",
+    "seeds": 3,
+    "selected_converged_runs": 3,
+    "total_starts": 12
+  },
+  {
+    "absolute_regret": {
+      "max": 0.08523252030799372,
+      "mean": 0.0834905953059666,
+      "min": 0.08118970195727998
+    },
+    "case": "priority-debris-off",
+    "complete_optimum_hit_probability": {
+      "max": 0.05517578125,
+      "mean": 0.046875,
+      "min": 0.04052734375
+    },
+    "converged_starts": 0,
+    "expectation": {
+      "max": 0.48478228592052186,
+      "mean": 0.4842158339911262,
+      "min": 0.48392422584498457
+    },
+    "expectation_regret": {
+      "max": 0.08380225370597472,
+      "mean": 0.08323580177657909,
+      "min": 0.08294419363043742
+    },
+    "method": "qaoa_p1_v2",
+    "seeds": 3,
+    "selected_converged_runs": 0,
+    "total_starts": 3
+  },
+  {
+    "absolute_regret": {
+      "max": 0.16152384505910145,
+      "mean": 0.16076601591675885,
+      "min": 0.16021478301244685
+    },
+    "case": "priority-debris-off",
+    "complete_optimum_hit_probability": {
+      "max": 0.017822265625,
+      "mean": 0.016031901041666668,
+      "min": 0.01513671875
+    },
+    "converged_starts": 0,
+    "expectation": null,
+    "expectation_regret": null,
+    "method": "uniform_v2",
+    "seeds": 3,
+    "selected_converged_runs": 0,
+    "total_starts": 0
+  },
+  {
+    "absolute_regret": {
+      "max": 0.03155538550671838,
+      "mean": 0.03152134949539329,
+      "min": 0.031467792483474144
+    },
+    "case": "priority-debris-off",
+    "complete_optimum_hit_probability": {
+      "max": 0.394287109375,
+      "mean": 0.392822265625,
+      "min": 0.391357421875
+    },
+    "converged_starts": 0,
+    "expectation": null,
+    "expectation_regret": null,
+    "method": "annealing_best_of_independent_chains_v2",
+    "seeds": 3,
+    "selected_converged_runs": 0,
+    "total_starts": 0
+  },
+  {
+    "absolute_regret": {
+      "max": 0.07999281927136587,
+      "mean": 0.07919455740555716,
+      "min": 0.07794389128895135
+    },
+    "case": "priority-debris-on",
+    "complete_optimum_hit_probability": {
+      "max": 0.049072265625,
+      "mean": 0.046468098958333336,
+      "min": 0.043212890625
+    },
+    "converged_starts": 8,
+    "expectation": {
+      "max": 0.5016104433006645,
+      "mean": 0.501610443290134,
+      "min": 0.5016104432835401
+    },
+    "expectation_regret": {
+      "max": 0.07880563490480325,
+      "mean": 0.07880563489427278,
+      "min": 0.07880563488767883
+    },
+    "method": "qaoa_p1_robustness",
+    "seeds": 3,
+    "selected_converged_runs": 3,
+    "total_starts": 12
+  },
+  {
+    "absolute_regret": {
+      "max": 0.08024039018414836,
+      "mean": 0.07908950509923235,
+      "min": 0.07775425317081236
+    },
+    "case": "priority-debris-on",
+    "complete_optimum_hit_probability": {
+      "max": 0.048583984375,
+      "mean": 0.045247395833333336,
+      "min": 0.04052734375
+    },
+    "converged_starts": 0,
+    "expectation": {
+      "max": 0.501843425674328,
+      "mean": 0.5017117495246661,
+      "min": 0.5016225887024481
+    },
+    "expectation_regret": {
+      "max": 0.07903861727846678,
+      "mean": 0.07890694112880482,
+      "min": 0.07881778030658687
+    },
+    "method": "qaoa_p1_v2",
+    "seeds": 3,
+    "selected_converged_runs": 0,
+    "total_starts": 3
+  },
+  {
+    "absolute_regret": {
+      "max": 0.16085732058389873,
+      "mean": 0.15989351033012494,
+      "min": 0.15918894383053434
+    },
+    "case": "priority-debris-on",
+    "complete_optimum_hit_probability": {
+      "max": 0.017822265625,
+      "mean": 0.016031901041666668,
+      "min": 0.01513671875
+    },
+    "converged_starts": 0,
+    "expectation": null,
+    "expectation_regret": null,
+    "method": "uniform_v2",
+    "seeds": 3,
+    "selected_converged_runs": 0,
+    "total_starts": 0
+  },
+  {
+    "absolute_regret": {
+      "max": 0.02856533881392148,
+      "mean": 0.02842181676228565,
+      "min": 0.028161155957958095
+    },
+    "case": "priority-debris-on",
+    "complete_optimum_hit_probability": {
+      "max": 0.374267578125,
+      "mean": 0.3677571614583333,
+      "min": 0.364013671875
+    },
+    "converged_starts": 0,
+    "expectation": null,
+    "expectation_regret": null,
+    "method": "annealing_best_of_independent_chains_v2",
+    "seeds": 3,
+    "selected_converged_runs": 0,
+    "total_starts": 0
+  }
+]

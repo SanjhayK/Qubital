@@ -1,0 +1,49 @@
+{
+  "W_ref": 1.9611673672143677,
+  "cached_objective_queries": 135168,
+  "case": "priority-debris-on",
+  "counts": {
+    "000010": 1491,
+    "000110": 79,
+    "001001": 1,
+    "001010": 7,
+    "001101": 59,
+    "010010": 57,
+    "010101": 1,
+    "011001": 296,
+    "011101": 5,
+    "100001": 1585,
+    "100010": 1,
+    "100101": 302,
+    "101001": 16,
+    "101101": 4,
+    "110001": 167,
+    "110101": 7,
+    "111100": 18
+  },
+  "data_sha256": "53f6fa639083579e65921cd3058ec2370f537eecb05d77398ec9d0989e22edec",
+  "eta": 0.5,
+  "execution_type": "ideal_simulator",
+  "independent_chains": 4096,
+  "method": "annealing_best_of_independent_chains",
+  "metrics": {
+    "absolute_regret": 0.02853895551497737,
+    "assignment_validity": 1.0,
+    "best_actual_sampled_bits": [
+      "000010"
+    ],
+    "best_actual_sampled_objective": 0.42280480839586126,
+    "complete_optimum_hit_probability": 0.364013671875,
+    "distinct_assignments": 17,
+    "distinct_near_optimal_assignments": 1,
+    "distinct_optimal_assignments": 1,
+    "full_score_sample_mean": 0.45134376391083864,
+    "relative_gap": 0.06749912713446977,
+    "returned_samples": 4096,
+    "validity_interpretation": "all unconstrained assignments valid by construction; not physical safety"
+  },
+  "model_id": "qubital.responsibility.v1",
+  "seconds": 1.7895230260000972,
+  "seed": 43,
+  "steps_per_chain": 32
+}

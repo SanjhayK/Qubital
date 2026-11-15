@@ -1,0 +1,141 @@
+[
+  {
+    "W_ref": 8.0,
+    "all_assignments": 64,
+    "background": false,
+    "case_sha256": "fa9d27f3b805f8409a0a7f8afb2fd6eeb1bca6ff7ec6f378330743d17ae14235",
+    "data_sha256": "53f6fa639083579e65921cd3058ec2370f537eecb05d77398ec9d0989e22edec",
+    "eta": 0.5,
+    "free_event_order": [
+      "event_0",
+      "event_1",
+      "event_2",
+      "event_3",
+      "event_4",
+      "event_5"
+    ],
+    "maximum_encoding_error": 0.0,
+    "minimum_score": 0.21875,
+    "model_id": "qubital.responsibility.v1",
+    "near_optimal_menu_size": 35,
+    "number_of_optima": 15,
+    "objective_flat": false,
+    "optimal_bits": [
+      "000011",
+      "000101",
+      "000110",
+      "001001",
+      "001010",
+      "001100",
+      "010001",
+      "010010",
+      "010100",
+      "011000",
+      "100001",
+      "100010",
+      "100100",
+      "101000",
+      "110000"
+    ],
+    "preprocessing_seconds": 0.031160146000729583,
+    "score_preprocessing": "64 authoritative direct scorer values; Ising check separately for each",
+    "uniform_exact_expectation": 0.26953125,
+    "uniform_exact_optimal_probability": 0.234375,
+    "weight_variant": "unit"
+  },
+  {
+    "W_ref": 8.0,
+    "all_assignments": 64,
+    "background": true,
+    "case_sha256": "fa9d27f3b805f8409a0a7f8afb2fd6eeb1bca6ff7ec6f378330743d17ae14235",
+    "data_sha256": "53f6fa639083579e65921cd3058ec2370f537eecb05d77398ec9d0989e22edec",
+    "eta": 0.5,
+    "free_event_order": [
+      "event_0",
+      "event_1",
+      "event_2",
+      "event_3",
+      "event_4",
+      "event_5"
+    ],
+    "maximum_encoding_error": 0.0,
+    "minimum_score": 0.375,
+    "model_id": "qubital.responsibility.v1",
+    "near_optimal_menu_size": 7,
+    "number_of_optima": 6,
+    "objective_flat": false,
+    "optimal_bits": [
+      "000001",
+      "000010",
+      "000100",
+      "001000",
+      "010000",
+      "100000"
+    ],
+    "preprocessing_seconds": 0.032274127999698976,
+    "score_preprocessing": "64 authoritative direct scorer values; Ising check separately for each",
+    "uniform_exact_expectation": 0.51953125,
+    "uniform_exact_optimal_probability": 0.09375,
+    "weight_variant": "unit"
+  },
+  {
+    "W_ref": 1.9611673672143677,
+    "all_assignments": 64,
+    "background": false,
+    "case_sha256": "72cf5df7b3df09c4a9da58acedfecd347095309812bcee5327048e6d33109fbb",
+    "data_sha256": "53f6fa639083579e65921cd3058ec2370f537eecb05d77398ec9d0989e22edec",
+    "eta": 0.5,
+    "free_event_order": [
+      "event_0",
+      "event_1",
+      "event_2",
+      "event_3",
+      "event_4",
+      "event_5"
+    ],
+    "maximum_encoding_error": 3.3306690738754696e-16,
+    "minimum_score": 0.40098003221454714,
+    "model_id": "qubital.responsibility.v1",
+    "near_optimal_menu_size": 2,
+    "number_of_optima": 1,
+    "objective_flat": false,
+    "optimal_bits": [
+      "000010"
+    ],
+    "preprocessing_seconds": 0.035792898000181594,
+    "score_preprocessing": "64 authoritative direct scorer values; Ising check separately for each",
+    "uniform_exact_expectation": 0.560611845094349,
+    "uniform_exact_optimal_probability": 0.015625,
+    "weight_variant": "priority"
+  },
+  {
+    "W_ref": 1.9611673672143677,
+    "all_assignments": 64,
+    "background": true,
+    "case_sha256": "72cf5df7b3df09c4a9da58acedfecd347095309812bcee5327048e6d33109fbb",
+    "data_sha256": "53f6fa639083579e65921cd3058ec2370f537eecb05d77398ec9d0989e22edec",
+    "eta": 0.5,
+    "free_event_order": [
+      "event_0",
+      "event_1",
+      "event_2",
+      "event_3",
+      "event_4",
+      "event_5"
+    ],
+    "maximum_encoding_error": 2.220446049250313e-16,
+    "minimum_score": 0.42280480839586126,
+    "model_id": "qubital.responsibility.v1",
+    "near_optimal_menu_size": 1,
+    "number_of_optima": 1,
+    "objective_flat": false,
+    "optimal_bits": [
+      "000010"
+    ],
+    "preprocessing_seconds": 0.033735455999703845,
+    "score_preprocessing": "64 authoritative direct scorer values; Ising check separately for each",
+    "uniform_exact_expectation": 0.5815816690062807,
+    "uniform_exact_optimal_probability": 0.015625,
+    "weight_variant": "priority"
+  }
+]

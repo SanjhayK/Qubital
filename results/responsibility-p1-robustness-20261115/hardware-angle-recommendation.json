@@ -1,0 +1,18 @@
+{
+  "all_case_comparison_completed": true,
+  "case": "priority-debris-on",
+  "comparison_scope": "more optimization work than v2; within-dataset robustness, not quantum advantage",
+  "compiled_depth_two_qubit_gates_and_usage": "pending fresh compilation for these angles; old proposal values do not transfer",
+  "eta": 0.5,
+  "gate_passed": false,
+  "hardware_jobs_submitted": 0,
+  "intended_backend": "ibm_fez, subject to fresh eligibility/calibration checks",
+  "main_shots": 4096,
+  "mapping_controls": 6,
+  "model_id": "qubital.responsibility.v1",
+  "old_v2_hardware_proposal": "preserved historical preparation, not the recommended current angles",
+  "shots_per_control": 32,
+  "status": "no_hardware_angle_recommendation",
+  "submission_authorized": false,
+  "total_shots": 4288
+}
