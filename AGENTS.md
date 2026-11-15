@@ -1,10 +1,10 @@
-# Qubital collaboration contract
+# Qubital development guidelines
 
-- SanjhayK owns scenario data, `scoring.py`, `classical.py`, and their tests.
-  Kartikeya Pendem owns `quantum.py`, `tests/test_quantum.py`, and quantum results.
-  Dashboard and experiment orchestration are later tasks.
-- The user integrates shared configuration and reviews PRs. Keep dependency changes
-  small and explain them. Do not merge, overwrite, or cherry-pick teammate work.
+- Coordinate changes to shared data, scoring, classical and quantum interfaces,
+  and their tests with the other project contributors.
+- Review shared configuration changes before implementation. Keep dependency
+  changes small and explain them in the PR. Do not merge, overwrite, or
+  cherry-pick existing work without authorization.
 - Use a task branch from inspected current main; preserve existing changes. Commit
   reviewable work, open a PR when authorized, and do not merge it.
 - Consume `load_scenario(path)` and `evaluate_plan(scenario, canonical_bits, alpha)`

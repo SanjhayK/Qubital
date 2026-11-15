@@ -105,8 +105,7 @@ harder matched-budget instances. Thank you.”
 ## Finish checklist for the presenters
 
 - Rehearse once to cut jargon, once for the speaker handoff and hard time limit.
-- Export the final figure and these notes into Sanjhay's slide deck; no existing
-  teammate deck has been edited here.
+- Include the final figure and supporting notes in the presentation.
 - Keep data attribution and all material limitations visible, not only in Q&A.
 - Confirm judge access to the actual submitted artifacts. The repo is private;
   no visibility change or judge invitation was made.
