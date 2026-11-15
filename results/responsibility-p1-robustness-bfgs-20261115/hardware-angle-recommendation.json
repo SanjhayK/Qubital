@@ -1,0 +1,31 @@
+{
+  "all_case_comparison_completed": true,
+  "angles": {
+    "beta": -0.3713096130814176,
+    "gamma": 4.91701540321722
+  },
+  "case": "priority-debris-on",
+  "comparison_scope": "optimizer robustness, not quantum advantage; BFGS was declared after observing COBYLA failures",
+  "compiled_depth_two_qubit_gates_and_usage": "pending fresh compilation; old v2 proposal does not transfer",
+  "data_sha256": "53f6fa639083579e65921cd3058ec2370f537eecb05d77398ec9d0989e22edec",
+  "eta": 0.5,
+  "expectation": 0.5016104432556737,
+  "gate_passed": true,
+  "hardware_jobs_submitted": 0,
+  "intended_backend": "ibm_fez, subject to fresh eligibility/calibration checks",
+  "logical_depth": 13,
+  "logical_qpy_sha256": "74e861c06bbf9dd16eb9cac1bb8b3660d537d865a00ef08d684cd7db44e82ace",
+  "logical_two_qubit_gates": 15,
+  "main_shots": 4096,
+  "mapping_controls": 6,
+  "model_id": "qubital.responsibility.v1",
+  "optimizer_converged": true,
+  "selected_seed": 19,
+  "selected_start": 1,
+  "shots_per_control": 32,
+  "status": "recommend_angles_for_fresh_preparation",
+  "study_id": "qubital.p1.optimizer-robustness.bfgs.v1",
+  "submission_authorized": false,
+  "total_shots": 4288,
+  "training_record": "priority-debris-on-19-qaoa_p1.json"
+}
