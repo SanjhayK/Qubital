@@ -38,10 +38,33 @@ def verify_layout(circuit):
     return physical
 
 
-def choose_training_record(runs):
-    records = [json.loads(path.read_text()) for path in Path(runs).glob("priority-debris-on-*-qaoa_p1.json")]
+def choose_training_record(runs, snapshot_root=None):
+    runs = Path(runs)
+    protocol_path = runs / "protocol.json"
+    protocol = json.loads(protocol_path.read_text()) if protocol_path.is_file() else {}
+    study = protocol.get("study_id")
+    if study:
+        if study != "qubital.p1.optimizer-robustness.bfgs.v1":
+            raise ValueError("only the verified BFGS follow-up is eligible for a new hardware proposal")
+        if snapshot_root is None:
+            raise ValueError("the frozen snapshot is required to verify the BFGS study")
+        from research.robustness_bfgs import verify
+        checked = verify(snapshot_root, runs)
+        if (checked["formally_converged_selected_runs"] != 12 or
+                not all(c["mean_expectation_no_worse_than_v2"] for c in checked["case_comparison"])):
+            raise ValueError("all-case BFGS comparison gate failed")
+    records = [json.loads(path.read_text()) for path in runs.glob("priority-debris-on-*-qaoa_p1.json")]
     if sorted(record["seed"] for record in records) != [7, 19, 43]:
         raise ValueError("require all three recorded training seeds")
+    if study:
+        selected = min(records, key=lambda r: (r["expectation"], r["seed"]))
+        recommendation = json.loads((runs / "hardware-angle-recommendation.json").read_text())
+        if (not recommendation["gate_passed"] or not selected["selected_optimizer_converged"] or
+                recommendation["selected_seed"] != selected["seed"] or
+                recommendation["angles"] != selected["angles"]):
+            raise ValueError("BFGS record does not match its verified angle recommendation")
+        return dict(selected, success=True, optimizer_converged=True, training_status="converged",
+                    training_and_sampling={"angles": selected["angles"], "expectation": selected["expectation"]})
     if any(record["model_id"] != "qubital.responsibility.v1" or not record["success"] for record in records):
         raise ValueError("all new-model sampling records must be available")
     return min(records, key=lambda r: (r["training_and_sampling"]["expectation"], r["seed"]))
@@ -54,7 +77,7 @@ def prepare(snapshot_root, runs, output, backend_name="ibm_fez"):
     present = {name: bool(os.environ.get(name)) for name in ("qiskithacks", "ibmcrn")}
     if not all(present.values()):
         raise RuntimeError("secure environment bindings unavailable; values are never logged")
-    selected = choose_training_record(runs)
+    selected = choose_training_record(runs, snapshot_root)
     case = adapt_case(snapshot_root, "priority")
     angles = selected["training_and_sampling"]["angles"]
     cost = qubo_to_ising(build_responsibility_qubo(case, eta=.5, background=True))
@@ -119,11 +142,12 @@ def prepare(snapshot_root, runs, output, backend_name="ibm_fez"):
                 "usage": {key: usage[key] for key in allowed if key in usage},
                 "seed_selection_rule": "lowest actual ideal quantum expectation among all three new-model training seeds",
                 "selected_training_seed": selected["seed"], "angles": angles,
+                "training_study_id": selected.get("study_id", "original-v2-fixed-budget"),
                 "optimizer_converged": selected["optimizer_converged"],
                 "training_status": selected["training_status"],
                 "sampling_plan": "fixed-angle sampling, not hardware training",
                 "shots": 4288, "main_circuit_shots": 4096,
-                "paired_ideal_reference": "priority-debris-on-7-qaoa_p1.json",
+                "paired_ideal_reference": f"priority-debris-on-{selected['seed']}-qaoa_p1.json",
                 "circuits": details, "default_rep_delay_seconds": rep_delay,
                 "twirling": False, "mitigation": False, "dynamical_decoupling": False,
                 "one_subjob_duration_model_ru": (seconds + 2) / 60,

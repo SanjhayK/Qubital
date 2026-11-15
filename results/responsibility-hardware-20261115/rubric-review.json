@@ -1,0 +1,17 @@
+{
+  "source_filename": "QFF26_Friday_Overview_and_QiskitIntro.pptx",
+  "sha256": "f9679b4cb151876084f43f768702b153fedd6d37155aa1678f17f427ec8acea5",
+  "slides_read": 17,
+  "slide4_rubric_percent": {
+    "Qiskit": 10,
+    "creativity": 20,
+    "methods": 30,
+    "presentation": 40
+  },
+  "slide16": "Real hardware testing is recommended; noise simulation suggestions are not a requirement to add mitigation to the optimization track.",
+  "slide17": "Garnet Gate check-in is required; completion not verified by this task.",
+  "slide5_deadlines": "Separate challenge Saturday 9 PM; main prompt Sunday 8 AM; presentation 9:30 AM.",
+  "source_status": "Organizer overview upload; the unrelated original teammate PDF is still not available, and the Devpost rules URL remained inaccessible.",
+  "hardware_execution": "User explicitly authorized the actual run in the latest message; one job completed. The older no-job flags remain unchanged historical records.",
+  "data_model_assumptions": "Unchanged; a real QPU run does not validate maneuver feasibility, weight interpretation or event independence."
+}

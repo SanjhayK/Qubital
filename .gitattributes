@@ -1,0 +1,5 @@
+# Numerical attempt histories are generated evidence, not hand-edited source.
+# Keep their bulk out of code diffs; hashes and verifiers protect the content.
+results/**/*-start-*.json -diff linguist-generated=true
+results/**/*-start-*.json.gz binary linguist-generated=true
+results/**/*.qpy binary

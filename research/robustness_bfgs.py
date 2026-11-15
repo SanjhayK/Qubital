@@ -19,6 +19,7 @@ from scipy.optimize import minimize
 
 from quantum import build_qaoa_circuit, decode_counts
 from research.experiments import sample_metrics, verify_encoding, write_json
+from research.artifacts import read_json, trace_paths, verify_preserved, verify_source
 from research.robustness import (CASES, ROOT, SETTINGS as COBYLA_SETTINGS, P1State,
                                  check_angles, digest, sample_selected, select_attempt,
                                  starts_for_seed, write_comparison)
@@ -105,10 +106,10 @@ def read_protocol(output):
     output = Path(output)
     protocol = json.loads((output / "protocol.json").read_text())
     require(all(protocol[k] == v for k, v in SETTINGS.items()), "frozen BFGS settings changed")
-    for name, expected in protocol["preserved_files"].items():
-        require(digest(ROOT / name) == expected, f"preserved file changed: {name}")
+    completed = (output / "completed.json").is_file()
+    verify_preserved(ROOT, protocol["preserved_files"], completed=completed)
     for name, expected in protocol["source_sha256"].items():
-        require(digest(ROOT / name) == expected, f"planned BFGS source changed: {name}")
+        verify_source(ROOT, name, expected, output / (Path(name).name + ".txt"), completed=completed)
     return protocol
 
 
@@ -119,10 +120,11 @@ def plan(snapshot_root, cobyla, output):
     preserved = json.loads((cobyla / "preserved-files.json").read_text())
     for path in cobyla.rglob("*"):
         if path.is_file():
-            preserved[path.relative_to(ROOT).as_posix()] = digest(path)
+            logical = path.with_suffix("") if path.name.endswith(".json.gz") else path
+            preserved[logical.relative_to(ROOT).as_posix()] = digest(logical)
     for name in first_protocol["source_sha256"]:
         preserved[name] = digest(ROOT / name)
-    sources = ("research/robustness_bfgs.py",)
+    sources = ("research/robustness_bfgs.py", "research/artifacts.py")
     protocol = dict(SETTINGS, frozen_at_utc=datetime.now(timezone.utc).isoformat(),
                     baseline_directory=first_protocol["baseline_directory"],
                     cobyla_directory=cobyla.relative_to(ROOT).as_posix(),
@@ -131,7 +133,8 @@ def plan(snapshot_root, cobyla, output):
                     preserved_files=preserved,
                     source_sha256={name: digest(ROOT / name) for name in sources})
     output.mkdir(parents=True, exist_ok=False)
-    (output / "robustness_bfgs.py.txt").write_bytes(Path(__file__).read_bytes())
+    for name in sources:
+        (output / (Path(name).name + ".txt")).write_bytes((ROOT / name).read_bytes())
     write_json(output / "protocol.json", protocol)
     return {"protocol_sha256": digest(output / "protocol.json"), "training_started": False,
             "planned_starts": 48, "maximum_function_gradient_evaluations": 96000,
@@ -185,7 +188,7 @@ def verify(snapshot_root, output):
     require((output / "completed.json").is_file(), "incomplete BFGS study")
     baseline = ROOT / protocol["baseline_directory"]
     rows = json.loads((output / "comparison.json").read_text())
-    require(len(rows) == 48 and len(list(output.glob("*-start-*.json"))) == 48, "missing runs")
+    require(len(rows) == 48 and len(trace_paths(output)) == 48, "missing runs")
     evaluations, converged, selected_converged, max_error = 0, 0, 0, 0.0
     comparisons = []
     for case_name in CASES:
@@ -199,7 +202,7 @@ def verify(snapshot_root, output):
             attempts = []
             require(protocol["initial_starts"][str(seed)] == starts_for_seed(seed, 4), "changed start schedule")
             for index, initial in enumerate(protocol["initial_starts"][str(seed)]):
-                a = json.loads((output / f"{case_name}-{seed}-start-{index}.json").read_text())
+                a = read_json(output / f"{case_name}-{seed}-start-{index}.json")
                 require(a["initial_angles"] == initial and a["case"] == case_name and a["seed"] == seed and a["start_index"] == index, "attempt metadata mismatch")
                 require(0 < len(a["history"]) == a["evaluations"] == a["gradient_evaluations"] == a["reported_nfev"] <= 2000, "evaluation accounting mismatch")
                 require(a["history"][0]["angles"] == initial, "wrong optimizer start")
