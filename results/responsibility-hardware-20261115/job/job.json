@@ -1,0 +1,55 @@
+{
+  "backend": "ibm_fez",
+  "case": "priority-debris-on",
+  "circuits": 7,
+  "estimate_is_not_billing_guarantee": true,
+  "eta": 0.5,
+  "hardware_jobs_submitted": 1,
+  "isa_sha256": "16e7aee5c3173fb4363aa2cff369c9b9be056e82b0d175c3d99f194f02533925",
+  "job_id": "dbsgu4habdes73fr5530",
+  "logical_sha256": "f5d469cf2abf2118cb060a14b2cd1308a7fc1ea824abe3f5cdfba4b550c87feb",
+  "model_id": "qubital.responsibility.v1",
+  "one_subjob_estimated_ru": 0.0515814016,
+  "options": {
+    "dynamical_decoupling": {
+      "enable": false
+    },
+    "execution": {
+      "init_qubits": true
+    },
+    "max_execution_time": 60,
+    "twirling": {
+      "enable_gates": false,
+      "enable_measure": false
+    }
+  },
+  "paired_ideal_reference": "priority-debris-on-19-qaoa_p1.json",
+  "physical_event_qubits": [
+    122,
+    123,
+    144,
+    142,
+    136,
+    143
+  ],
+  "proposal_sha256": "89c5fd6613e40b8542d0cd416738753ebae47dcddf3348b0e4b5fdb6151dc4d0",
+  "runner_sha256": "24a3d899defafc88ed45c68b070d472e4e88413b209443cddaafe72179e11db2",
+  "shots": [
+    4096,
+    32,
+    32,
+    32,
+    32,
+    32,
+    32
+  ],
+  "software_versions": {
+    "numpy": "2.3.5",
+    "qiskit": "2.2.3",
+    "qiskit-ibm-runtime": "0.46.1",
+    "scipy": "1.17.0"
+  },
+  "submitted_at_utc": "2026-11-15T01:46:59.009829+00:00",
+  "total_shots": 4288,
+  "training_record_sha256": "17f24f8bb81686e3fa8caef57edd3dd070b1fe12a5c109cb14bb8a214bcc46b7"
+}

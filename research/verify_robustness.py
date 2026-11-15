@@ -16,6 +16,7 @@ from qiskit.quantum_info import Statevector
 
 from quantum import build_qaoa_circuit, decode_counts, verify_measurement_mapping
 from research.experiments import sample_metrics, verify_encoding, write_json
+from research.artifacts import read_json, trace_paths
 from research.robustness import (CASES, ROOT, P1State, check_angles, check_preservation,
                                  digest, read_protocol, select_attempt, starts_for_seed)
 from research.socrates_gate import adapt_case
@@ -63,7 +64,7 @@ def verify(snapshot_root, output):
             old = json.loads((baseline / f"{case_name}-{seed}-qaoa_p1.json").read_text())
             require(initials[0] == old["training_and_sampling"]["initial_angles"], "first start differs from v2")
             for index, initial in enumerate(initials):
-                attempt = json.loads((output / f"{case_name}-{seed}-start-{index}.json").read_text())
+                attempt = read_json(output / f"{case_name}-{seed}-start-{index}.json")
                 require(attempt["initial_angles"] == initial and attempt["start_index"] == index
                         and attempt["case"] == case_name and attempt["seed"] == seed, "attempt metadata mismatch")
                 history = attempt["history"]
@@ -129,7 +130,7 @@ def verify(snapshot_root, output):
             values = [row[key] for row in selected if row.get(key) is not None]
             expected = {"mean": math.fsum(values) / len(values), "min": min(values), "max": max(values)} if values else None
             require(item[key] == expected, "aggregate metric mismatch")
-    require(len(list(output.glob("*-start-*.json"))) == 48 and len(records) == 12, "incomplete study")
+    require(len(trace_paths(output)) == 48 and len(records) == 12, "incomplete study")
     return {"status": "pass", "verified_at_utc": datetime.now(timezone.utc).isoformat(),
             "protocol_sha256": digest(output / "protocol.json"),
             "preserved_files": check_preservation(output), "v2_unchanged": True,

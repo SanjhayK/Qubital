@@ -1,9 +1,11 @@
 # Local p=1 optimizer robustness follow-up
 
 The frozen six-event responsibility model is unchanged. V2, its source archive,
-all recorded results and both existing hardware proposals remain byte-identical.
-The synthetic fuel/reserve model is also unchanged. These are local ideal
-simulations, with no IBM authentication, hardware submission or allocation use.
+and existing hardware proposals remain byte-identical. Larger COBYLA traces are
+now stored as `.json.gz`; decompression reproduces their original bytes exactly.
+The synthetic fuel/reserve model is also unchanged. These optimizer follow-ups
+were local ideal simulations. The subsequent separately authorized hardware
+sampling is recorded in `results/responsibility-hardware-20261115/`.
 
 ## Protocol and why there are two follow-ups
 
@@ -100,8 +102,11 @@ supported. All free assignments are structurally valid by construction.
   are checked against Qiskit. Every training-history entry is recomputed.
 - BFGS analytic gradients additionally pass central-difference checks at all
   48 best points and generic one-, two- and six-qubit test cases.
-- Preservation manifests cover the original 146 tracked files and then the
-  completed COBYLA follow-up. Frozen source files and input hashes are verified.
+- Original preservation manifests record the files present at training time.
+  Completed-run verification protects scientific evidence and frozen source
+  archives; live documentation/tests/runners can be maintained. Unfinished plans
+  still require all planned live files to match. Original-byte hashes are used
+  when checking compressed traces. No settings or results were rewritten.
 - Full tests with the private frozen dataset: **219 collected, 219 passed,
   0 failed, 0 skipped** in both the core and IBM SDK environments. The SDK run
   reports 35 Samplomatic beta / IBM transpiler deprecation warnings. No package
@@ -124,10 +129,10 @@ is not evidence of a meaningful performance difference.
 
 `recommended-logical.qpy` and `hardware-angle-recommendation.json` are in the
 BFGS result directory. They supersede the earlier v2 angles as the recommendation,
-while leaving the earlier artifacts intact. **Fresh device compilation, layout
-checks and usage estimates remain pending.** Old compiled depths/gate counts
-and usage estimates must not be transferred to these angles. No job is
-authorized or submitted, and no new on-device result is claimed.
+while leaving the earlier artifacts intact. Fresh device compilation and layout
+checks were subsequently completed, followed by separately authorized ibm_fez
+job `dbsgu4habdes73fr5530`. Its device counts and usage are separate from this
+local optimizer study. Old v2 compiled estimates were not transferred.
 
 ## Reproduce without overwriting saved runs
 

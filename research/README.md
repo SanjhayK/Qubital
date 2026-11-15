@@ -1,5 +1,9 @@
 # Qubital: frozen-data responsibility research
 
+For the latest all-case optimizer checks and current logical hardware-angle
+recommendation, read [ROBUSTNESS.md](ROBUSTNESS.md). The v2 experiment described
+below remains the original fixed-budget reference, with unchanged records.
+
 This is a separate **conditional responsibility-assignment** benchmark. It leaves
 `scoring.py`, `classical.py`, `data/original.json`, `quantum.py`, and their existing
 tests/results unchanged. The original fuel/reserve example remains synthetic.
@@ -105,7 +109,7 @@ additional hardware-layout tests; final counts are recorded in the execution aud
 
 ## Completed experiments and failure handling
 
-`results/responsibility-p1-20261114-v2/` is the primary result set: p=1, seeds
+`results/responsibility-p1-20261114-v2/` is the original fixed-budget result set: p=1, seeds
 7/19/43, one start each, 200 quantum-expectation evaluations, and 4096 final shots
 per case/seed. Four cases: unit/priority crossed with background off/on.
 Training uses exact six-qubit statevectors, not shot-based expectation estimates.
@@ -137,33 +141,44 @@ All free assignments are valid by construction: 100% validity is neither improve
 quantum performance nor physical safety. Original synthetic counts are never
 rescored under this model.
 
-Read `RESULTS.md`, the generated comparison figure/table, and `presentation.md`.
-The reproducible script fulfills the notebook/script deliverable: cloud notebook
-guidance was available, but its referenced executable helper/template resources
-and local kernel packages were unavailable. No environment variables such as HOME
-or CODEX_HOME were rewritten, no default skill path was invented, and no notebook
-execution was claimed.
+Read `RESULTS.md` for the preserved v2 findings and `ROBUSTNESS.md` for the
+separate follow-ups. The reproducible Python scripts do not require a notebook.
 
-## Hardware is a proposal only
+## Historical hardware proposals and completed execution
 
-`research.hardware_plan` recompiled a new-model priority/background-on circuit
+The verified BFGS fixed-angle case has now run on ibm_fez as job
+`dbsgu4habdes73fr5530`. See `results/responsibility-hardware-20261115/` for the
+actual circuits, counts, decoder/control checks, usage and paired ideal analysis.
+This is hardware sampling, not hardware angle training. The older proposals
+below remain historical and were not used with old angles for this job.
+
+The historical v2 preparation used `research.hardware_plan` to recompile a new-model priority/background-on circuit
 from newly trained seed-7 angles. It did not reuse original-model angles or count
 files. The separate proposal uses ibm_fez, one 4096-shot QAOA circuit and six
 32-shot mapping controls on the same final physical qubits, 4288 shots total.
-The current ISA QAOA has depth 142 and 54 CZ gates. The one-subjob timing estimate
+That v2 ISA QAOA has depth 142 and 54 CZ gates. Its one-subjob timing estimate
 is about .0516 standard-QPU RU; the quick heuristic gives .0583 RU (one subjob)
 or .2583 RU (seven). These are scenarios, not guaranteed bounds or billing quotes.
-The current review target is `results/responsibility-hardware-proposal-20261114-matched/`;
+The retained v2 artifact is `results/responsibility-hardware-proposal-20261114-matched/`;
 its 4096 main shots match the recorded ideal seed-7 comparison. The earlier
 `...-20261114/` 1024-main-shot candidate is retained as superseded preparation,
-not a hardware result or the current approval target.
+not a hardware result or the current approval target. Both are superseded as
+angle recommendations by the verified BFGS follow-up. Its new logical circuits
+are in `results/responsibility-p1-robustness-bfgs-20261115/`. Fresh compilation
+and layout checks were subsequently completed for the actual hardware run.
 Metadata reads and local transpilation do not constitute a hardware result.
-No 156-wire statevector is simulated. **No IBM job is authorized or submitted.**
+No 156-wire statevector is simulated. These historical proposal steps submitted
+no job; subsequent execution used the user's separate explicit authorization.
 
 The optional read-only proposal script needs the already configured Runtime
 environment and secure settings; it never saves an account or logs key/CRN values.
-The main research reproduction does not need it. Any actual submission requires
-a new explicit authorization after reviewing this new-model proposal.
+The main research reproduction does not need it. Additional jobs require their
+own authorization; result retrieval never resubmits a job.
+
+The same preparation script now accepts the verified BFGS results through
+`--runs results/responsibility-p1-robustness-bfgs-20261115`. It rechecks all four
+cases before selecting the target and records the actual selected seed. This
+path has local selection tests and was used for the completed IBM compilation.
 
 ## Sources and access
 

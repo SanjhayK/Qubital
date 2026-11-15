@@ -1,0 +1,392 @@
+{
+  "format": "gzip, deterministic mtime=0, original JSON bytes retained exactly",
+  "archived_from_commit": "18730d02c59beaa26528922b616511a4a67503f6",
+  "files": [
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-19-start-0.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-19-start-0.json.gz",
+      "original_sha256": "e18edc80cb3de82a597950d8970882f0c3a976fc8ba6b846a98b8e5b0787445c",
+      "stored_sha256": "89c875aa20035bca6969e3fe89b7df635adfd9b6d5cd8e039c06df7049935218",
+      "original_bytes": 199952,
+      "stored_bytes": 37187
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-19-start-1.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-19-start-1.json.gz",
+      "original_sha256": "cd3450c0ee4dff91ee5d9172b052cbdb692bf80c2d15504ba4f5dc96a2c73e2d",
+      "stored_sha256": "4b0cb5015f674182c3ea1b62a08723b5fafa7727ed5f056bc980488cd2bdd187",
+      "original_bytes": 213005,
+      "stored_bytes": 40225
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-19-start-2.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-19-start-2.json.gz",
+      "original_sha256": "b451ca88d3f83274f60a2143c4c40600d04d14dd7eeaf88b5b6ee782922bd561",
+      "stored_sha256": "a5224ab526400bec53212f45375cf3c7b8446ac55f5941f87a5a4faa373152b6",
+      "original_bytes": 212542,
+      "stored_bytes": 39637
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-19-start-3.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-19-start-3.json.gz",
+      "original_sha256": "f83816d5bddcc0a2e8000cc89df1251ff4deb3f6e1eaf53002e5169c6565e6ae",
+      "stored_sha256": "698f6331a6a902b5346c95e5b502e88c4068106efaa9b0ab88887322fb0a7a62",
+      "original_bytes": 267977,
+      "stored_bytes": 52472
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-43-start-0.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-43-start-0.json.gz",
+      "original_sha256": "0abb8a49a2034bb7c01a96d99710169756fb8586ac6f9e336dfa4454e69b5cc3",
+      "stored_sha256": "f186a959185e31c3a54446b54482cd10038274ab93d1097b2354efb19b10d908",
+      "original_bytes": 182155,
+      "stored_bytes": 33680
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-43-start-1.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-43-start-1.json.gz",
+      "original_sha256": "2b18ee84c47f3bc1bca093de9a5b4b23fbbc9bd1e060a90dafe1828762602256",
+      "stored_sha256": "37e33bf58e85881d7e8726b1ecf462d6fd5b6cdcaa376f33d610d5c590dfd9b4",
+      "original_bytes": 203151,
+      "stored_bytes": 38421
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-43-start-2.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-43-start-2.json.gz",
+      "original_sha256": "6bbc7565e9c42dcd422937065ce0b29216a9dd965a927f498a4d41c18d3e2f21",
+      "stored_sha256": "3949fb80b500285c0ddd7158a518b1c0b81b5e9f51c41dc7c8db22e4f1d1421c",
+      "original_bytes": 268102,
+      "stored_bytes": 52930
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-43-start-3.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-43-start-3.json.gz",
+      "original_sha256": "a421de378c213f7b50716a5f6cf317d55116e3a2fcc698f1083153c1f5242768",
+      "stored_sha256": "829e1c40b36afd6a82606401f7ecf92ddb478d53c5232a59e55d66825da11c4f",
+      "original_bytes": 267934,
+      "stored_bytes": 52409
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-7-start-0.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-7-start-0.json.gz",
+      "original_sha256": "36be83c9d370bc22fdda9c2f5cf336e18acd8faff2355aff4e039b125be4d03e",
+      "stored_sha256": "e0e90525f6a471b0718b8167dc6dfbf0f3ecd4150634bcb05f640b13d9526383",
+      "original_bytes": 174169,
+      "stored_bytes": 32283
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-7-start-1.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-7-start-1.json.gz",
+      "original_sha256": "67251e40da4239f214afe6ed5763043d5b0f076d7424c7a720e951cbcd6df6e9",
+      "stored_sha256": "1cfd122d2a03e99b9d9a51e7802a2b933b944cb911d836e852ae6f8ab8b10406",
+      "original_bytes": 267993,
+      "stored_bytes": 52141
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-7-start-2.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-7-start-2.json.gz",
+      "original_sha256": "e06d68928836c9c81710c4a84b4fd1be9517031adf5d71ebb38b25e31cda3d0b",
+      "stored_sha256": "79abd855c59437d6d60eefc17ccbdd1a98b91a47e14e8b27cd055040d3ef897b",
+      "original_bytes": 187728,
+      "stored_bytes": 35262
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-7-start-3.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-off-7-start-3.json.gz",
+      "original_sha256": "1804fde4dec6fef96ea6bc87ab2275eca78b5f580befb0cdc2f64c0a7e451198",
+      "stored_sha256": "791c4aa1312707768321e55b3ecddafdd871665a41a8fb68b4252a8c4247a687",
+      "original_bytes": 199628,
+      "stored_bytes": 37509
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-19-start-0.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-19-start-0.json.gz",
+      "original_sha256": "4c36d292c934519e13bd71ef20204bd1440a7cf1430c25df3fbebf1f38d8557f",
+      "stored_sha256": "e0b1b596732fb09edb122186561abc91617c989d484e22307749d0d9205ec315",
+      "original_bytes": 158651,
+      "stored_bytes": 29394
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-19-start-1.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-19-start-1.json.gz",
+      "original_sha256": "3946bd29dae5754d9eeaeb9e66eb76a8c63eb965cb0c3b6b6d5f218fe8d00904",
+      "stored_sha256": "cdc575c0208f9a5cfd19ed8ae806ce37e67a63461a82976d5cb5aaeee0191b54",
+      "original_bytes": 191091,
+      "stored_bytes": 36017
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-19-start-2.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-19-start-2.json.gz",
+      "original_sha256": "788aafefb47a85e27526bad962c4be49b76ae309c6e690a130908d05abc6a1bd",
+      "stored_sha256": "bcca6f7c4afc34dd047a9247881b23d5ea574b9b9de04d7325bf7d33ea42503c",
+      "original_bytes": 173593,
+      "stored_bytes": 32460
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-19-start-3.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-19-start-3.json.gz",
+      "original_sha256": "6f2210f8dd263913eb2010c1a9bf721e3c23d00f990d77920a51742eed452c36",
+      "stored_sha256": "1e77da6969da4d3ecd335a66b1f0967a3cbf3b08c6db87c57d9246063f1e537f",
+      "original_bytes": 267921,
+      "stored_bytes": 52175
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-43-start-0.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-43-start-0.json.gz",
+      "original_sha256": "d9b3216e2975217faee8810f893b720ef2390d3090ce5c8b26e7b13c8f490d95",
+      "stored_sha256": "b6df6cf9df9b33f75dac439a6bae5cece22323343772a60f0ffb441a11760fb1",
+      "original_bytes": 148388,
+      "stored_bytes": 27387
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-43-start-1.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-43-start-1.json.gz",
+      "original_sha256": "a4835fe7db6a0e225e0505af2d8ff0d7153b90934bb792660b40564e23ffd425",
+      "stored_sha256": "b9b7831c1ca028b94b4c0e36519c621506fbe2175a5c8ce3ea34d61526fb3391",
+      "original_bytes": 169998,
+      "stored_bytes": 31708
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-43-start-2.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-43-start-2.json.gz",
+      "original_sha256": "114a24473aa68fe0be229e08354d07ecbbb3daec6b43ed9531e1e186ab07b701",
+      "stored_sha256": "9adf656a74a6b93450317ffea73639ab7144cd4175e800d1478030efaa5c31a8",
+      "original_bytes": 268049,
+      "stored_bytes": 53042
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-43-start-3.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-43-start-3.json.gz",
+      "original_sha256": "b242208fa33093431334ae9c82686b51b0ec99f66eb80e2fc52c918dd112d4db",
+      "stored_sha256": "08456297ea2d7eb521e1030acd3b714d1aba4dc4f5ccae63e716c5bbec871483",
+      "original_bytes": 267958,
+      "stored_bytes": 52160
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-7-start-0.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-7-start-0.json.gz",
+      "original_sha256": "0beebe94383aa205d20e96e4b2d4214c23d63aaaf1c1a53db6537fb67e2adf10",
+      "stored_sha256": "74c5fd7e66746ca132882751bd48ab331f835ac904a751776cedd2ec1046b3ad",
+      "original_bytes": 145712,
+      "stored_bytes": 26836
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-7-start-1.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-7-start-1.json.gz",
+      "original_sha256": "fc7748becb83506a26068d70c251392e48f7dc926304f1086476c0b86a006037",
+      "stored_sha256": "00bd51e9790e75c013c9c87ae294bd98bdcecb3d58a325af780204bd939657e8",
+      "original_bytes": 268000,
+      "stored_bytes": 52110
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-7-start-2.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-7-start-2.json.gz",
+      "original_sha256": "d0b52b5bb2f0717a64d341b84c58f0bc9588c2d65d5661474097ab59b0b1cbc3",
+      "stored_sha256": "8adfbc539e5245ee4a4d60e23639bcc78ffd638b59d92ed3f177749b82b2521c",
+      "original_bytes": 165654,
+      "stored_bytes": 30818
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-7-start-3.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/priority-debris-on-7-start-3.json.gz",
+      "original_sha256": "1af77c6c768e8aee9714971ce64f8d4661756b4251c345befb9392132c12f0ee",
+      "stored_sha256": "7120649fb535a148d32c937f09a7de36ef4eae488f8dd4b1ab247dce8d4a523e",
+      "original_bytes": 176042,
+      "stored_bytes": 32786
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-19-start-0.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-19-start-0.json.gz",
+      "original_sha256": "11f2445539f2d605f4ceeb7d96434b07a415bcdd46319b0caa20ebd10b352d31",
+      "stored_sha256": "8982f2e50e87447594879035517697e098336d225a3200785335350ed9276f01",
+      "original_bytes": 269973,
+      "stored_bytes": 55130
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-19-start-1.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-19-start-1.json.gz",
+      "original_sha256": "de80fe8063582861afe2fd40227ddb40ff347770fbd01a726e793a7cb60e0774",
+      "stored_sha256": "6972a4129da8d9735c81861280f65caf3213f678e8e88a2eaa5363e37874d871",
+      "original_bytes": 273671,
+      "stored_bytes": 56081
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-19-start-2.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-19-start-2.json.gz",
+      "original_sha256": "4d52c5e3fc30b3badbb51851335d925cb8d14ecf5ed41703a957be476fa10451",
+      "stored_sha256": "9c44df65c814198e66b5fad061b528759f1284e0626a1c7e0a7bc189db0a8665",
+      "original_bytes": 269880,
+      "stored_bytes": 55264
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-19-start-3.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-19-start-3.json.gz",
+      "original_sha256": "db3cc9e517e534a32fd1a95618dec630540faf05e7c7472e789f95b62202e957",
+      "stored_sha256": "a562fc15d06d1a4cb475ff4d7ff1dca16a7c3d8a3979df5152a75941919bd19c",
+      "original_bytes": 269923,
+      "stored_bytes": 55033
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-43-start-0.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-43-start-0.json.gz",
+      "original_sha256": "6b8e8da5d3a16e9c748762311101a18c271ea1d7cd4053e47238a45702f2b3d2",
+      "stored_sha256": "2a72b6b72c9cb3844037c8d28a653c952c0a9e0f0f9e088a31396aa74017247a",
+      "original_bytes": 273553,
+      "stored_bytes": 55904
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-43-start-1.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-43-start-1.json.gz",
+      "original_sha256": "2968570fbe628efeed6e3c9cacb33b6b51b85a3146282c79b363450c557f0524",
+      "stored_sha256": "8ef976344b1b42067cb3133619ea322136d7d908e725530e06bbdba01fdbb4ce",
+      "original_bytes": 269857,
+      "stored_bytes": 55488
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-43-start-2.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-43-start-2.json.gz",
+      "original_sha256": "41f863f6f60d7cf16b0fa28a044216701c1157919b028043955ba0cfc778577e",
+      "stored_sha256": "8889588a4edfd3297aec01650f438c738b7661ec430b24c2f6fad6d8c26efe93",
+      "original_bytes": 269019,
+      "stored_bytes": 53437
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-43-start-3.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-43-start-3.json.gz",
+      "original_sha256": "9cf2111d47252039893ff0594731bc3ab9701b5becdec6788fcb21635047b2d1",
+      "stored_sha256": "7026e1a79e810d181e725d4fd60d6fb9167f1956b6b14b180a6ab1759ddb6b26",
+      "original_bytes": 268937,
+      "stored_bytes": 52948
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-7-start-0.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-7-start-0.json.gz",
+      "original_sha256": "4e99172cf744fbb5cfffee3253790c138dd4fbd4927a0317e37663abbe050c71",
+      "stored_sha256": "081e3f0bff71f8d11fff9b3e32cf9b8f2b8d50187551dd033764d0c1338ecf82",
+      "original_bytes": 269906,
+      "stored_bytes": 55144
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-7-start-1.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-7-start-1.json.gz",
+      "original_sha256": "03f5a5dd4f08e5fae623ddc9a6bc62ec12aee82aaa4c545e62fa3df4de9008a4",
+      "stored_sha256": "1cd95f237f9240cc2882e1645c2f2451b024374a03cfa825ca16c3457026c18e",
+      "original_bytes": 268902,
+      "stored_bytes": 52795
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-7-start-2.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-7-start-2.json.gz",
+      "original_sha256": "d7d5fd25213555cb6dc3469d558b7bf688f67910a462be5509b89a07ae3f35bd",
+      "stored_sha256": "8fefab9a171a87a1ba5b2446e1e2c3e3ea69048b8fc7a2a790ec7dac09c5156e",
+      "original_bytes": 269865,
+      "stored_bytes": 55129
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-7-start-3.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-off-7-start-3.json.gz",
+      "original_sha256": "ce4e9715522765a0aaf94787d2ed0f750aa6f1e9ae9572450d473c5758bfb8e0",
+      "stored_sha256": "421ace61f85da8994728eced2fe06391afb4a885b2cf1c740671ce1802f8bbc4",
+      "original_bytes": 270006,
+      "stored_bytes": 54971
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-19-start-0.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-19-start-0.json.gz",
+      "original_sha256": "e7b184121b86cc5871d5d3a0c3eff3665b7e7d561261b2fdda4442d361ea9461",
+      "stored_sha256": "b5de1b8a0e2f1acccde8485022a4bc14165968d03489dbeabf6559a048c0d1f6",
+      "original_bytes": 268093,
+      "stored_bytes": 50258
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-19-start-1.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-19-start-1.json.gz",
+      "original_sha256": "981b69b85ff1cafd415c9170cc0f90f6dc8e5cec8cf940773e29d59a21ac0e54",
+      "stored_sha256": "d1df5efa4e9fef0f809e02a586629917c30d8163663fb9f4d96f52fa5bf39af3",
+      "original_bytes": 270916,
+      "stored_bytes": 50373
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-19-start-2.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-19-start-2.json.gz",
+      "original_sha256": "700535cbbe3989d18b52d83193974a4bd7861af3dea237c68f5908d752ea3566",
+      "stored_sha256": "c447a6dd4240885b77ac21df91f0b360969de656fd86c888fb4caba663ee2ed9",
+      "original_bytes": 268126,
+      "stored_bytes": 50374
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-19-start-3.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-19-start-3.json.gz",
+      "original_sha256": "6283aeca9a5ec759de856d9fcbae2a27e16c5680891d95950166aae3ec1ba5c7",
+      "stored_sha256": "2433c443d0e89d558ffdb835ce12e80a30332ed1c0ea6f27004e57ef607aad5c",
+      "original_bytes": 268106,
+      "stored_bytes": 49936
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-43-start-0.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-43-start-0.json.gz",
+      "original_sha256": "85a2e58176bb5c4266d9480a9adb935745cb9a9fc0485d63b34baf613268a685",
+      "stored_sha256": "d8f83fcd50c3ecbc064739061528ead3f769c16fb41019c508609593a0b7a887",
+      "original_bytes": 270864,
+      "stored_bytes": 50229
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-43-start-1.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-43-start-1.json.gz",
+      "original_sha256": "cda5f7dfc9579c216c81428071c496c42ee5acd1185eb2f1f77a979797b1194c",
+      "stored_sha256": "0c491581a96a06736b5b93f2a358a94d0d05aeca9a3f3280d7e32bf8559c1b75",
+      "original_bytes": 268021,
+      "stored_bytes": 50153
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-43-start-2.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-43-start-2.json.gz",
+      "original_sha256": "129cc6747e85f656f5279d61ae66bfc851e8fd3b9bab3a865162598cb5d6b28d",
+      "stored_sha256": "06baa3d38ed326fafc3fcb3a1d10fd091e68e2ab3442dab99422142dfd2b9e1b",
+      "original_bytes": 255636,
+      "stored_bytes": 47803
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-43-start-3.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-43-start-3.json.gz",
+      "original_sha256": "5263afd0b4720cafaea9b41a848d374a6174048da955958df027cf284b230aca",
+      "stored_sha256": "afdd067f7baeb61b40e9e55080207c6a5812c07a03a5ca3b7c9212cfd61546f9",
+      "original_bytes": 267347,
+      "stored_bytes": 49617
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-7-start-0.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-7-start-0.json.gz",
+      "original_sha256": "717f9d76a01f6bf9138b525dc65827181cc9d22b4e8537a6df4086f7afa0ef84",
+      "stored_sha256": "32c1e4848446791c9c11f748e2edd0288a5d289ae78bd36ac1b08223e33e88b8",
+      "original_bytes": 268082,
+      "stored_bytes": 51136
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-7-start-1.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-7-start-1.json.gz",
+      "original_sha256": "d3830b56886f46c13352e960056a846ff0e4efbf7be36fdc1449da2e2545f822",
+      "stored_sha256": "b19049ef483958923aae31e72f47b2ad661cdc091433c09601e99f613b8ac6de",
+      "original_bytes": 268069,
+      "stored_bytes": 49572
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-7-start-2.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-7-start-2.json.gz",
+      "original_sha256": "ef079752195af87e26925f5733efa1db423690c02b9dc01541c0be718eca4b18",
+      "stored_sha256": "6965bf49de45a4694759727287889e8577d10a4d939fe735967a137dd9a95477",
+      "original_bytes": 254196,
+      "stored_bytes": 47649
+    },
+    {
+      "logical_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-7-start-3.json",
+      "stored_path": "results/responsibility-p1-robustness-20261115/unit-debris-on-7-start-3.json.gz",
+      "original_sha256": "de2589eddab29f8040dc1a7a139fce35e7a4cf7b9db5bc0c55d3b6e6f7c34faf",
+      "stored_sha256": "5d5d225b0965a3e5decc8f4959d25198b604725187c5ef6919444f53d29483d6",
+      "original_bytes": 268149,
+      "stored_bytes": 50530
+    }
+  ],
+  "original_bytes": 11484490,
+  "stored_bytes": 2216003
+}

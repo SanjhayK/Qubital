@@ -1,0 +1,58 @@
+{
+  "checked_at_america_new_york": "2026-11-14T20:53:52.079699-05:00",
+  "base_main_sha": "58fef66666fa3d61d2e0a7899c3a51aa6efdd340",
+  "branch": "codex/repository-cleanup",
+  "original_tracked_bytes": 13878278,
+  "approximate_cleaned_checkout_bytes": 4753645,
+  "scientific_artifacts_and_original_model_files_byte_verified": 266,
+  "original_scientific_results_preserved": "plain or gzip-decompressed bytes match pre-cleanup commit 18730d02c59beaa26528922b616511a4a67503f6",
+  "compressed_cobyla_attempts": 48,
+  "uncompressed_trace_bytes": 11484490,
+  "compressed_trace_bytes": 2216003,
+  "history_rewritten": false,
+  "dependency_pins_changed": false,
+  "pip_check": "No broken requirements found",
+  "staged_credentials_raw_package_and_optional_credit_scan": "pass",
+  "source_and_json_syntax_checks": "pass",
+  "readme_local_links": "pass",
+  "teammate_owned_models_tests_and_dashboard_branch": "preserved; separate dashboard syntax checked but not integrated or run",
+  "slides_presentation_notes_and_devpost_materials": "untouched",
+  "latest_rubric_source": "QFF26_Friday_Overview_and_QiskitIntro.pptx; 17 slides read; source hash and relevant requirements recorded with hardware artifacts",
+  "hardware": {
+    "job_id": "dbsgu4habdes73fr5530",
+    "status": "DONE",
+    "backend": "ibm_fez",
+    "jobs_submitted": 1,
+    "main_shots": 4096,
+    "control_shots": 192,
+    "total_shots": 4288,
+    "quantum_seconds_reported": 3,
+    "consumed_ru_reported": 0.047299,
+    "remaining_seconds_reported": 597,
+    "execution": "fixed-angle, no twirling, DD, mitigation or hardware training",
+    "matched_results": "results/responsibility-hardware-20261115/comparison.csv"
+  },
+  "corrected_portability_issue": "Version reporting in injected offline submission tests no longer requires the optional IBM Runtime distribution; actual execution source archived by hash.",
+  "previous_failure_fixed": {
+    "core_suite_first_attempt": "232 passed, 1 failed due to optional Runtime version metadata lookup",
+    "final_suite": "see final verified counts below"
+  },
+  "future_work": "review/merge cleanup PR; human slides and required Garnet Gate check-in/submission/access checks; no additional hardware job is authorized by this audit",
+  "core_tests": {
+    "tests": 233,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 233,
+    "seconds": 48.632
+  },
+  "ibm_sdk_tests": {
+    "tests": 233,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 233,
+    "seconds": 65.285
+  },
+  "ibm_sdk_warnings": 37
+}

@@ -1,0 +1,3 @@
+execution_type,case,shots,optimum_hit_probability,mean_objective,absolute_regret,best_actual_sampled_bits
+ideal_simulator_same_angles,priority-debris-on,4096,0.043212890625,0.5027976276672271,0.07999281927136587,"[""000010""]"
+ibm_fez_unmitigated,priority-debris-on,4096,0.05078125,0.5106671919340459,0.0878623835381846,"[""000010""]"

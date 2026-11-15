@@ -1,0 +1,204 @@
+{
+  "actual_job_metrics": {
+    "timestamps": {
+      "created": "2026-11-15T01:46:58.846233Z",
+      "finished": "2026-11-15T01:47:05.951814Z",
+      "running": "2026-11-15T01:47:00.186751Z"
+    },
+    "usage": {
+      "quantum_seconds": 3,
+      "seconds": 3,
+      "status": "complete"
+    }
+  },
+  "allocation_after": {
+    "usage_consumed_ru": 0.047299,
+    "usage_limit_ru": 10,
+    "usage_period": {
+      "end_time": "2026-11-15T01:47:37.747Z",
+      "start_time": "2026-10-18T01:47:37.747Z"
+    },
+    "usage_remaining_seconds": 597
+  },
+  "angles": {
+    "beta": -0.3713096130814176,
+    "gamma": 4.91701540321722
+  },
+  "backend": "ibm_fez",
+  "canonical_counts": [
+    {
+      "000000": 34,
+      "000001": 126,
+      "000010": 208,
+      "000011": 54,
+      "000100": 19,
+      "000101": 89,
+      "000110": 125,
+      "000111": 38,
+      "001000": 42,
+      "001001": 89,
+      "001010": 100,
+      "001011": 12,
+      "001100": 44,
+      "001101": 61,
+      "001110": 51,
+      "001111": 3,
+      "010000": 62,
+      "010001": 140,
+      "010010": 185,
+      "010011": 35,
+      "010100": 64,
+      "010101": 83,
+      "010110": 130,
+      "010111": 21,
+      "011000": 83,
+      "011001": 99,
+      "011010": 71,
+      "011011": 7,
+      "011100": 53,
+      "011101": 48,
+      "011110": 39,
+      "011111": 2,
+      "100000": 95,
+      "100001": 127,
+      "100010": 87,
+      "100011": 8,
+      "100100": 69,
+      "100101": 86,
+      "100110": 72,
+      "100111": 6,
+      "101000": 76,
+      "101001": 82,
+      "101010": 36,
+      "101011": 7,
+      "101100": 56,
+      "101101": 47,
+      "101110": 13,
+      "101111": 7,
+      "110000": 100,
+      "110001": 127,
+      "110010": 110,
+      "110011": 15,
+      "110100": 107,
+      "110101": 94,
+      "110110": 65,
+      "110111": 13,
+      "111000": 116,
+      "111001": 68,
+      "111010": 26,
+      "111011": 13,
+      "111100": 80,
+      "111101": 47,
+      "111110": 19,
+      "111111": 5
+    },
+    {
+      "100000": 32
+    },
+    {
+      "010000": 32
+    },
+    {
+      "001000": 32
+    },
+    {
+      "000100": 32
+    },
+    {
+      "000000": 1,
+      "000010": 30,
+      "010010": 1
+    },
+    {
+      "000001": 31,
+      "000011": 1
+    }
+  ],
+  "case": "priority-debris-on",
+  "collected_at_utc": "2026-11-15T01:47:37.360298+00:00",
+  "data_sha256": "53f6fa639083579e65921cd3058ec2370f537eecb05d77398ec9d0989e22edec",
+  "eta": 0.5,
+  "execution_type": "hardware_fixed_angle_sampling",
+  "hardware_metrics": {
+    "absolute_regret": 0.0878623835381846,
+    "assignment_validity": 1.0,
+    "best_actual_sampled_bits": [
+      "000010"
+    ],
+    "best_actual_sampled_objective": 0.42280480839586126,
+    "complete_optimum_hit_probability": 0.05078125,
+    "distinct_assignments": 64,
+    "distinct_near_optimal_assignments": 1,
+    "distinct_optimal_assignments": 1,
+    "full_score_sample_mean": 0.5106671919340459,
+    "relative_gap": 0.20780838295462645,
+    "returned_samples": 4096,
+    "validity_interpretation": "all unconstrained assignments valid by construction; not physical safety"
+  },
+  "interpretation": "raw device sampling; differences include gate/readout error, decoherence, drift and shot fluctuations; no isolated noise-cause, physical safety or quantum advantage claim",
+  "job_id": "dbsgu4habdes73fr5530",
+  "mapping_controls": [
+    {
+      "correct": 32,
+      "event_index": 0,
+      "expected_canonical": "100000",
+      "observed_correct_fraction": 1.0,
+      "shots": 32
+    },
+    {
+      "correct": 32,
+      "event_index": 1,
+      "expected_canonical": "010000",
+      "observed_correct_fraction": 1.0,
+      "shots": 32
+    },
+    {
+      "correct": 32,
+      "event_index": 2,
+      "expected_canonical": "001000",
+      "observed_correct_fraction": 1.0,
+      "shots": 32
+    },
+    {
+      "correct": 32,
+      "event_index": 3,
+      "expected_canonical": "000100",
+      "observed_correct_fraction": 1.0,
+      "shots": 32
+    },
+    {
+      "correct": 30,
+      "event_index": 4,
+      "expected_canonical": "000010",
+      "observed_correct_fraction": 0.9375,
+      "shots": 32
+    },
+    {
+      "correct": 31,
+      "event_index": 5,
+      "expected_canonical": "000001",
+      "observed_correct_fraction": 0.96875,
+      "shots": 32
+    }
+  ],
+  "mitigation_applied": false,
+  "model_id": "qubital.responsibility.v1",
+  "optimum_hit_difference_hardware_minus_ideal": 0.007568359375,
+  "paired_ideal_metrics": {
+    "absolute_regret": 0.07999281927136587,
+    "assignment_validity": 1.0,
+    "best_actual_sampled_bits": [
+      "000010"
+    ],
+    "best_actual_sampled_objective": 0.42280480839586126,
+    "complete_optimum_hit_probability": 0.043212890625,
+    "distinct_assignments": 61,
+    "distinct_near_optimal_assignments": 1,
+    "distinct_optimal_assignments": 1,
+    "full_score_sample_mean": 0.5027976276672271,
+    "relative_gap": 0.18919562332997558,
+    "returned_samples": 4096,
+    "validity_interpretation": "all unconstrained assignments valid by construction; not physical safety"
+  },
+  "sampled_mean_difference_hardware_minus_ideal": 0.00786956426681873
+}

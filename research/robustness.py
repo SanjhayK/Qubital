@@ -8,7 +8,6 @@ final measurements always use that Qiskit circuit on BasicSimulator.
 import argparse
 import csv
 from datetime import datetime, timezone
-import hashlib
 from importlib.metadata import version
 import json
 import math
@@ -18,13 +17,14 @@ import subprocess
 import time
 
 import numpy as np
-from qiskit import qpy, transpile
+from qiskit import transpile
 from qiskit.providers.basic_provider import BasicSimulator
 from qiskit.quantum_info import Statevector
 from scipy.optimize import minimize
 
 from quantum import build_qaoa_circuit, decode_counts, verify_measurement_mapping
 from research.experiments import sample_metrics, verify_encoding, write_json
+from research.artifacts import digest, verify_preserved, verify_source
 from research.socrates_gate import adapt_case
 from research.verify_results import verify as verify_v2
 
@@ -52,10 +52,6 @@ SETTINGS = {
     "execution_type": "ideal_simulator", "hardware_jobs_authorized": False,
     "hardware_jobs_submitted": 0,
 }
-
-
-def digest(path):
-    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
 def starts_for_seed(seed, count):
@@ -169,10 +165,7 @@ def sample_selected(cost, selected, seed, shots):
 
 def check_preservation(output):
     manifest = json.loads((Path(output) / "preserved-files.json").read_text())
-    for name, expected in manifest.items():
-        if digest(ROOT / name) != expected:
-            raise ValueError(f"preserved file changed: {name}")
-    return len(manifest)
+    return verify_preserved(ROOT, manifest, completed=(Path(output) / "completed.json").is_file())
 
 
 def plan(snapshot_root, baseline, output):
@@ -182,7 +175,7 @@ def plan(snapshot_root, baseline, output):
     tracked = subprocess.check_output(["git", "ls-files", "-z"], cwd=ROOT).decode().split("\0")
     preserved = {name: digest(ROOT / name) for name in tracked if name}
     write_json(output / "preserved-files.json", preserved)
-    sources = ("research/robustness.py", "research/verify_robustness.py")
+    sources = ("research/robustness.py", "research/verify_robustness.py", "research/artifacts.py")
     protocol = dict(SETTINGS, frozen_at_utc=datetime.now(timezone.utc).isoformat(),
                     baseline_directory=baseline.relative_to(ROOT).as_posix(),
                     baseline_commit=subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT).decode().strip(),
@@ -208,8 +201,8 @@ def read_protocol(output):
     if digest(output / "preserved-files.json") != protocol["preserved_files_sha256"]:
         raise ValueError("preservation manifest changed")
     for name, expected in protocol["source_sha256"].items():
-        if digest(ROOT / name) != expected:
-            raise ValueError(f"planned source changed: {name}")
+        verify_source(ROOT, name, expected, output / (Path(name).name + ".txt"),
+                      completed=(output / "completed.json").is_file())
     check_preservation(output)
     return protocol
 

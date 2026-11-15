@@ -1,0 +1,240 @@
+"""Explicit IBM job submission and retrieval for the verified fixed-angle case.
+
+`check` is offline. `submit` is the only spending path, makes exactly one Sampler
+request and never retries automatically. `collect` retrieves that existing job.
+Credentials come only from secure environment settings and are never saved.
+"""
+
+import argparse
+from contextlib import contextmanager
+from datetime import datetime, timezone
+from importlib.metadata import PackageNotFoundError, version
+import json
+import logging
+import math
+import os
+from pathlib import Path
+import warnings
+
+from qiskit import qpy
+from qiskit.quantum_info import Statevector
+
+from quantum import build_qaoa_circuit
+from research.artifacts import digest, read_json
+from research.experiments import sample_metrics, verify_encoding, write_json
+from research.hardware_plan import choose_training_record, verify_layout
+from research.socrates_gate import adapt_case
+
+
+def check(prepared, snapshot_root):
+    prepared = Path(prepared)
+    proposal = read_json(prepared / "proposal.json")
+    if (proposal["model_id"] != "qubital.responsibility.v1" or proposal["eta"] != .5
+            or proposal["weight_variant"] != "priority" or proposal["background"] is not True
+            or proposal.get("training_study_id") != "qubital.p1.optimizer-robustness.bfgs.v1"):
+        raise ValueError("require the current verified BFGS priority/background-on proposal")
+    root = Path(__file__).resolve().parents[1]
+    runs = root / "results/responsibility-p1-robustness-bfgs-20261115"
+    selected = choose_training_record(runs, snapshot_root)
+    if proposal["angles"] != selected["angles"] or proposal["selected_training_seed"] != selected["seed"]:
+        raise ValueError("proposal angles do not match verified training")
+    with (prepared / "isa.qpy").open("rb") as stream:
+        circuits = qpy.load(stream)
+    with (prepared / "logical.qpy").open("rb") as stream:
+        logical = qpy.load(stream)
+    shots = [c["shots"] for c in proposal["circuits"]]
+    if len(circuits) != 7 or len(logical) != 7 or shots != [4096, 32, 32, 32, 32, 32, 32]:
+        raise ValueError("require exactly one 4096-shot QAOA and six 32-shot controls")
+    layout = verify_layout(circuits[0])
+    if any(verify_layout(c) != layout or c.num_parameters for c in circuits):
+        raise ValueError("all circuits must be fixed-angle and use identical physical event qubits")
+    case = adapt_case(snapshot_root, "priority")
+    _, cost, _, _ = verify_encoding(case, .5, True)
+    actual = Statevector.from_instruction(logical[0].remove_final_measurements(inplace=False))
+    expected = Statevector.from_instruction(build_qaoa_circuit(cost, **proposal["angles"]))
+    if not actual.equiv(expected):
+        raise ValueError("logical circuit does not match the model and approved angles")
+    return proposal, circuits, {"backend": proposal["backend"], "circuits": 7,
+        "shots": shots, "total_shots": sum(shots), "physical_event_qubits": layout,
+        "proposal_sha256": digest(prepared / "proposal.json"),
+        "isa_sha256": digest(prepared / "isa.qpy"), "logical_sha256": digest(prepared / "logical.qpy"),
+        "paired_ideal_reference": proposal["paired_ideal_reference"],
+        "training_record_sha256": digest(runs / proposal["paired_ideal_reference"]),
+        "one_subjob_estimated_ru": proposal["one_subjob_duration_model_ru"],
+        "estimate_is_not_billing_guarantee": True}
+
+
+@contextmanager
+def quiet_ibm():
+    previous = logging.root.manager.disable
+    logging.disable(logging.CRITICAL)
+    try:
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            yield
+    finally:
+        logging.disable(previous)
+
+
+def connect():
+    if not all(os.environ.get(n) for n in ("qiskithacks", "ibmcrn")):
+        raise ValueError("secure qiskithacks and ibmcrn bindings are required")
+    from qiskit_ibm_runtime import QiskitRuntimeService
+    service = QiskitRuntimeService(channel="ibm_quantum_platform", token=os.environ["qiskithacks"], instance=os.environ["ibmcrn"])
+    if service.active_instance() != os.environ["ibmcrn"]:
+        raise ValueError("IBM instance mismatch")
+    return service
+
+
+def safe_usage(service):
+    usage = service.usage()
+    allowed = ("usage_consumed_ru", "usage_limit_ru", "usage_remaining_seconds", "usage_period")
+    return {key: usage[key] for key in allowed if key in usage}
+
+
+def submit(prepared, snapshot_root, output, approved_sha256, *, service=None, sampler_factory=None):
+    prepared, output = Path(prepared), Path(output)
+    proposal, circuits, plan = check(prepared, snapshot_root)
+    if plan["proposal_sha256"] != approved_sha256:
+        raise ValueError("proposal changed since review")
+    age = (datetime.now(timezone.utc) - datetime.fromisoformat(proposal["checked_at_utc"])).total_seconds()
+    if not 0 <= age <= 3600:
+        raise ValueError("refresh backend preparation older than one hour")
+    # A new output directory is reserved before any request; never resubmit it.
+    output.mkdir(parents=True, exist_ok=False)
+    versions = {}
+    for name in ("qiskit", "qiskit-ibm-runtime", "numpy", "scipy"):
+        try:
+            versions[name] = version(name)
+        except PackageNotFoundError:
+            versions[name] = None  # Offline dependency-injected tests need no Runtime SDK.
+    plan.update(model_id=proposal["model_id"], case="priority-debris-on", eta=.5,
+                software_versions=versions,
+                runner_sha256=digest(__file__))
+    write_json(output / "intent.json", dict(plan, at_utc=datetime.now(timezone.utc).isoformat(),
+        max_execution_time_seconds=60, execution_type="hardware_fixed_angle_sampling",
+        policy="one Sampler job, no session, no automatic retry; preserve this directory if outcome is unknown"))
+    service = service or connect()
+    before = safe_usage(service)
+    remaining = before.get("usage_remaining_seconds")
+    if not isinstance(remaining, (int, float)) or not math.isfinite(remaining) or remaining < 60:
+        raise ValueError("require at least 60 verified allocation seconds before this bounded job")
+    write_json(output / "allocation-before.json", before)
+    backend = service.backend(plan["backend"])
+    if not backend.status().operational:
+        raise ValueError("processor is not operational")
+    for circuit in circuits:
+        for instruction in circuit.data:
+            if instruction.operation.name == "barrier":
+                continue
+            qargs = tuple(circuit.find_bit(q).index for q in instruction.qubits)
+            if not backend.target.instruction_supported(operation_name=instruction.operation.name, qargs=qargs):
+                raise ValueError("prepared ISA is no longer supported; recompile before submission")
+    if sampler_factory is None:
+        from qiskit_ibm_runtime import SamplerV2
+        sampler_factory = SamplerV2
+    options = {"max_execution_time": 60, "execution": {"init_qubits": True},
+               "twirling": {"enable_gates": False, "enable_measure": False},
+               "dynamical_decoupling": {"enable": False}}
+    sampler = sampler_factory(mode=backend, options=options)
+    # Only this call submits work. Per-PUB shots avoid accidentally using 4096
+    # shots on every mapping control. There is no session or hardware training.
+    job = sampler.run([(c, None, shots) for c, shots in zip(circuits, plan["shots"])])
+    receipt = dict(plan, job_id=job.job_id(), submitted_at_utc=datetime.now(timezone.utc).isoformat(),
+                   options=options, hardware_jobs_submitted=1)
+    write_json(output / "job.json", receipt)
+    return receipt
+
+
+def canonical_counts(raw, circuit):
+    verify_layout(circuit)
+    if any(not isinstance(k, str) or len(k) != 6 or set(k) - {"0", "1"}
+           or type(v) is not int or v < 0 for k, v in raw.items()):
+        raise ValueError("expected six-bit displayed count strings and nonnegative integer counts")
+    return {key[::-1]: value for key, value in raw.items()}
+
+
+def analyze(prepared, snapshot_root, raw_counts):
+    proposal, circuits, plan = check(prepared, snapshot_root)
+    if len(raw_counts) != 7:
+        raise ValueError("hardware result must have seven PUB outputs")
+    decoded = [canonical_counts(raw, circuit) for raw, circuit in zip(raw_counts, circuits)]
+    if [sum(c.values()) for c in decoded] != plan["shots"]:
+        raise ValueError("returned shot counts differ from the submitted experiment")
+    _, _, scores, _ = verify_encoding(adapt_case(snapshot_root, "priority"), .5, True)
+    minimum = min(scores.values())
+    optimum = sorted(bits for bits, value in scores.items() if abs(value - minimum) <= 1e-12)
+    metrics = sample_metrics(decoded[0], scores, minimum, optimum)
+    root = Path(__file__).resolve().parents[1]
+    ideal = read_json(root / "results/responsibility-p1-robustness-bfgs-20261115" / plan["paired_ideal_reference"])
+    controls = []
+    for i, counts in enumerate(decoded[1:]):
+        expected = "0" * i + "1" + "0" * (5-i)
+        controls.append({"event_index": i, "expected_canonical": expected,
+                         "correct": counts.get(expected, 0), "shots": sum(counts.values()),
+                         "observed_correct_fraction": counts.get(expected, 0) / sum(counts.values())})
+    return {"execution_type": "hardware_fixed_angle_sampling", "model_id": proposal["model_id"],
+        "case": "priority-debris-on", "eta": .5, "data_sha256": proposal["data_sha256"],
+        "backend": plan["backend"], "angles": proposal["angles"], "canonical_counts": decoded,
+        "hardware_metrics": metrics, "paired_ideal_metrics": ideal["metrics"],
+        "sampled_mean_difference_hardware_minus_ideal": metrics["full_score_sample_mean"] - ideal["metrics"]["full_score_sample_mean"],
+        "optimum_hit_difference_hardware_minus_ideal": metrics["complete_optimum_hit_probability"] - ideal["metrics"]["complete_optimum_hit_probability"],
+        "mapping_controls": controls, "mitigation_applied": False,
+        "interpretation": "raw device sampling; differences include gate/readout error, decoherence, drift and shot fluctuations; no isolated noise-cause, physical safety or quantum advantage claim"}
+
+
+def collect(prepared, snapshot_root, output, *, service=None):
+    output = Path(output)
+    receipt = read_json(output / "job.json")
+    _, circuits, plan = check(prepared, snapshot_root)
+    if any(receipt[key] != plan[key] for key in ("proposal_sha256", "isa_sha256", "logical_sha256")):
+        raise ValueError("prepared circuits changed after submission")
+    if (output / "analysis.json").exists():
+        return {"status": "already_collected", "job_id": receipt["job_id"]}
+    service = service or connect()
+    job = service.job(receipt["job_id"])
+    status = job.status()
+    status = str(getattr(status, "name", status)).upper()
+    if status != "DONE":
+        return {"status": status, "job_id": receipt["job_id"], "new_jobs_submitted": 0}
+    result = job.result(timeout=30)
+    raw = [dict(getattr(pub.data, circuit.cregs[0].name).get_counts()) for pub, circuit in zip(result, circuits)]
+    # Preserve actual counts before scoring, even if an unexpected format fails.
+    if not (output / "raw-counts.json").exists():
+        write_json(output / "raw-counts.json", raw)
+    analysis = analyze(prepared, snapshot_root, raw)
+    metrics = job.metrics()
+    analysis.update(job_id=receipt["job_id"], collected_at_utc=datetime.now(timezone.utc).isoformat(),
+                    actual_job_metrics={key: metrics[key] for key in ("usage", "timestamps", "executions") if key in metrics},
+                    allocation_after=safe_usage(service))
+    write_json(output / "analysis.json", analysis)
+    return {"status": "DONE", "job_id": receipt["job_id"], "hardware_metrics": analysis["hardware_metrics"],
+            "actual_job_metrics": analysis["actual_job_metrics"], "allocation_after": analysis["allocation_after"]}
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("phase", choices=("check", "submit", "collect"))
+    parser.add_argument("--prepared", required=True, type=Path)
+    parser.add_argument("--snapshot-root", required=True, type=Path)
+    parser.add_argument("--output", type=Path)
+    parser.add_argument("--approved-proposal-sha256")
+    args = parser.parse_args()
+    try:
+        with quiet_ibm():
+            if args.phase == "check":
+                report = check(args.prepared, args.snapshot_root)[2]
+            elif args.phase == "submit":
+                if args.output is None or args.approved_proposal_sha256 is None:
+                    raise ValueError("submission requires a new output path and exact reviewed proposal hash")
+                report = submit(args.prepared, args.snapshot_root, args.output, args.approved_proposal_sha256)
+            else:
+                if args.output is None:
+                    raise ValueError("collection requires the existing job directory")
+                report = collect(args.prepared, args.snapshot_root, args.output)
+        print(json.dumps(report, indent=2, allow_nan=False))
+    except Exception as error:
+        # SDK exceptions can embed account identifiers. Do not print them.
+        print(json.dumps({"status": "blocked", "error_type": type(error).__name__,
+                          "note": "No automatic retry. Inspect any existing intent/job receipt before another submission."}))
+        raise SystemExit(1)
